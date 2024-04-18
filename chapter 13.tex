@@ -1,0 +1,150 @@
+\setcounter{subsection}{12}
+\setcounter{section}{13}
+\setcounter{mydef}{0}
+\setcounter{equation}{0}
+
+\subsection{Ein iteratives Verfahren zur Lösung des inversen Streuproblems}
+Wir beschreiben noch ein Verfahren zur Rekonstruktion von \(n^2\) (nicht nur \(\support(n^2-1)\), wie in Kapitel 12) aus \(u^\infty(\widehat{x};d)\) für einige \(\widehat{x},d\in\SS^2\). Dazu nehmen wir an, dass \(n^2\in L^\infty(\R^3)\) mit \(n^2(x)=1\) in \(\R^3\setminus\overline{B_R(0)}\) für ein \(R>0\). Mit Hilfe der Lippmann-Schwinger-Gleichung \eqref{lippmann schwinger gleichung}
+\begin{equation*}
+	u(\,\cdot\,;d)-k^2V\big(\kontrast u(\,\cdot\,;d)\big)=u^i(\,\cdot\,;d),\qquad\te{ in }B_R(0),
+\end{equation*}
+wobei \(\kontrast=n^2-1\), \(u^i(x;d)=\e^{\ii kx\cdot d}\) und \(V\) das Volumenpotential aus \eqref{volumenpotential def} bezeichnet, folgt
+\begin{equation}
+	\label{fernfeld zur berechnung von n^2}
+	\begin{aligned}
+		u^s(\,\cdot\,;d)&=k^2V\big(\kontrast u(\,\cdot\,;d)\big),&\te{ in }\R^3,\\
+		u^\infty(\widehat{x};d)&=\frac{k^2}{4\pi}\int_{B_R(0)}\kontrast(y)u(y;d)\e^{-\ii k\widehat{x}\cdot y}\dy,&\widehat{x}\in\SS^2.
+	\end{aligned}
+\end{equation}
+Definiert man den Integraloperator \(\func{W}{L^\infty\big(B_R(0)\big)}{L^\infty(\SS^2)}\) durch
+\begin{equation}
+	\label{definition integraloperator W}
+	\big(W\psi\big)(\widehat{x})\coloneqq\frac{k^2}{4\pi}\int_{B_R(0)}\psi(y)\e^{-\ii k\widehat{x}\cdot y}\dy,\qquad\widehat{x}\in\SS^2,
+\end{equation}
+so kann man das inverse Streuproblem als System von Gleichungen schreiben:
+\begin{equation}
+	\label{inverses streuproblem als system von gleichungen}
+	\begin{aligned}
+		u(\,\cdot\,;d)-k^2V\big(\kontrast u(\,\cdot\,;d)\big) & =u^i(\,\cdot\,;d), & \te{ in }B_R(0),\\
+		W\big(\kontrast u(\,\cdot\,;d)\big) & =f, & \te{ auf }\SS^2.
+	\end{aligned}
+\end{equation}
+Hierbei ist \(f\) das \glqq{}gemessene\grqq{} Fernfeld. Da ein Fernfeld in der Regel nicht ausreicht, um \(n^2\) zu rekonstruieren, betrachten wir \(u^i=u^i(\,\cdot\,;d)\), \(u=u(\,\cdot\,;d)\) und \(f=f(\,\cdot\,;d)\) als Funktion von zwei Variablen (Beobachtungsrichtung und Ausbreitungsrichtung des Primärfelds). Dementsprechend betrachten wir \(V\) und \(W\) als beschränkte lineare Operatoren
+\begin{align}
+	\label{betrachtung von V als beschränkter linearer operator}
+	{V}\colon{L^\infty\big(B_R(0)\times\SS^2\big)}&\to{L^\infty\big(B_R(0)\times\SS^2\big)},\\
+	\label{betrachtung von W als beschränkter linearer operator}
+	{W}\colon{L^\infty\big(B_R(0)\times\SS^2\big)}&\to{L^\infty\big(\SS^2\times\SS^2\big)}.
+\end{align}
+Damit kann man nun ein Regularisierungsverfahren (zB. ein regularisiertes Newton-Verfahren) anwenden, um das nichtlineare Gleichungssystem \eqref{inverses streuproblem als system von gleichungen} zu lösen.
+
+\paragraph{Ein vereinfachtes Newton-Verfahren:}\
+
+Im Folgenden nehmen wir an, dass \(n^2\in\CC(\R^3)\) und, dass \(n^2=1\) in \(\R^3\setminus\overline{D}\) für Gebiet \(D\subset B_R(0)\subset\R^3\). O.B.d.A. können wir (durch Umskalieren) annehmen, dass \(D\subset Q=[-\pi,\pi]^3\subset\R^3\) ist. Wir definieren den nichtlinearen Operator
+\begin{equation}
+	\label{definition nichtlinearer operator T}
+	\begin{aligned}
+		{T}\colon{\CC(Q)\times\CC(Q\times\SS^2)}&\to{\CC(Q\times\SS^2)\times\CC(\SS^2\times\SS^2)},\\
+		(\kontrast,u)&\mapsto\big(u-k^2V(\kontrast u),W(\kontrast u)\big).
+	\end{aligned}
+\end{equation}
+Dann kann das inverse Streuproblem geschrieben werden als
+\begin{equation*}
+	T(\kontrast,u)=(u^i,f).
+\end{equation*}
+Das Newton-Verfahren berechnet Approximationen \((\kontrast_\ell,u_\ell)\), \(\ell=1,2,\ldots\), vermöge
+\begin{equation}
+	\label{iterative darstellung von tupel (kontrast_l,u_l)}
+	(\kontrast_{\ell+1},u_{\ell+1})
+	=(\kontrast_\ell,u_\ell)
+	-\big(T'(\kontrast_\ell,u_\ell)\big)^{-1}\big(T(\kontrast_\ell,u_\ell)-(u^i,f)\big).
+\end{equation}
+Hier bezeichnet \(T'(\kontrast,u)\) die Fréchet-Ableitung von \(T\) in \((\kontrast,u)\). Aus \eqref{definition nichtlinearer operator T} folgt, dass
+\begin{equation}
+	\label{frechet ableitung von nichtlin operator T}
+	\big(T'(\kontrast,u)\big)(\mu,\nu) = \big( -k^2V(\mu u)+\nu-k^2V(\kontrast\nu), W(\mu u)+W(\kontrast\nu) \big),
+\end{equation}
+für \(\mu\in\CC(Q)\) und \(\nu\in\CC(Q\times\SS^2)\).\vspace{2mm}
+
+Im vereinfachten Newtonverfahren ersetzt man \(T'(\kontrast_\ell,u_\ell)\) durch ein festes \(T'(\widehat{\kontrast},\widehat{u})\). Damit kann man unter gewissen Voraussetzungen lineare Konvergenz erwarten. Wir wählen \(\widehat{\kontrast}=0\) und \(\widehat{u}=u^i\). Dann berechnet das vereinfachte Newtonverfahren \(\kontrast_{\ell+1}=\kontrast_\ell+\mu\) und \(u_{\ell+1}=u_\ell+\nu\), wobei \((\mu,\nu)\) die Gleichung
+\begin{equation*}
+	\big(T'(0,u^i)\big)(\mu,\nu)=(u^i,f)-T(\kontrast_\ell,u_\ell),
+\end{equation*}
+löst. Damit erhält man den folgenden Algorithmus
+\begin{enumerate}[label=(\alph*)]
+	\item Setze \(\kontrast_0=0\), \(u_0=u^i\) und \(\ell=0\).
+	\item\label{vereinfachtes newtonverf. schritt 2} Bestimme \((\mu,\nu)\in\CC(Q)\times\CC(Q\times\SS^2)\), sodass
+	\begin{equation}
+		\label{problem aus Algorithmus zum vereinfachten newton}
+		\begin{aligned}
+			-k^2V(\mu u^i)+\nu & =u^i-u_\ell+k^2V(\kontrast_\ell u_\ell),\\
+			W(\mu u^i) & =f-W(\kontrast_\ell u_\ell).
+		\end{aligned}
+	\end{equation}
+	\item Setze \(\kontrast_{\ell+1}=\kontrast_\ell+\mu\) und \(u_{\ell+1}=u_\ell+\nu\), ersetze \(\ell=\ell+1\) und gehe zu \ref{vereinfachtes newtonverf. schritt 2}.
+\end{enumerate}
+Wir nehmen an, dass die gegebenen Fernfelder \(f\) stetig sind, d.h. \(f\in\CC(\SS^2\times\SS^2)\). Eine Gleichung der Form \(W(\mu u^i)=\rho\) zu lösen, bedeutet die Integralgleichung
+\begin{equation}
+	\label{integralgleichung zum vereinfachten newton verfahren}
+	\int_Q\mu(y)\e^{\ii ky\cdot(d-\widehat{x})}\dy = -\frac{4\pi}{k^2}\rho(\widehat{x};d),\qquad\widehat{x},d\in\SS^2,
+\end{equation}
+zu lösen. Diese Gleichung kann (zB.) mit einem Kollokationsverfahren numerisch gelöst werden. Die linke Seite von \eqref{integralgleichung zum vereinfachten newton verfahren} ist die Fouriertransformation von \(\mu\) ausgewertet in \(\xi=k(d-\widehat{x})\in\R^3\).\vspace{1mm}
+
+Sei \(N\in\N\) die größte Zahl, sodass \(\sqrt{3}N\leq 2k\),
+\begin{equation*}
+	\tag{Gitter}
+	Z_N\coloneqq\{j\in\Z^3\colon|j_s|\leq N,s=1,2,3\},
+\end{equation*}
+und
+\begin{equation*}
+	\tag{endlich-dim. Unterraum}
+	X_N\coloneqq\Big\{\sum_{j\in Z_N}a_j\e^{\ii j\cdot x}\mid a_j\in\C\Big\}\subset\CC(Q).
+\end{equation*}
+Dann gibt es für alle \(j\in Z_N\) Vektoren \(\widehat{x}_j,d_j\in\SS^2\), sodass \(j=k(\widehat{x}_j-d_j)\) (das gilt genau dann, wenn \(\frac{j}{k}+d_j=\widehat{x}_j\); schneide \(\SS^2\) mit der Sphäre vom Radius \(1\) um \(\frac{j}{k}\)). Nun setzen wir \(x_j,d_j\) in \eqref{integralgleichung zum vereinfachten newton verfahren} ein
+\begin{equation}
+	\label{vektoren in integralgleichung zum vereinfachten newton eingesetzt}
+	\int_Q\mu(y)\e^{-\ii j\cdot y}\dy=-\frac{4\pi}{k^2}\rho(x_j,d_j),\qquad j\in Z_N.
+\end{equation}
+Auf der linken Seite stehen die Fourierkoeffizienten von \(\mu\), also ist die eindeutige Lösung von \eqref{vektoren in integralgleichung zum vereinfachten newton eingesetzt} in \(X_N\) gegeben durch \(\mu=L_1\rho\), wobei \(\func{L_1}{\CC(\SS^2\times\SS^2)}{X_N}\) definiert ist durch
+\begin{equation}
+	\label{definition operator L_1}
+	\big(L_1\rho\big)(x)\coloneqq -\frac{1}{2\pi^2k^2}\sum_{j\in Z_N}\rho(\widehat{x}_j,d_j)\e^{\ii j\cdot x}.
+\end{equation}
+Der regularisierte Algorithmus ist nun gegeben durch
+\begin{enumerate}[label=(\alph*)]
+	\item\label{regularisiertes vereinfachtes newtonverf. schritt 1} Setze \(\kontrast_0=0\), \(u_0=u^i\) und \(\ell=0\).
+	\item\label{regularisiertes vereinfachtes newtonverf. schritt 2} Setze
+	\begin{align*}
+		\mu&=L_1\big(f-W(\kontrast_\ell u_\ell)\big),\\
+		\nu&=u^i-u_\ell - k^2V(\kontrast_\ell u_\ell) - k^2V(\mu u^i).
+	\end{align*}
+	\item\label{regularisiertes vereinfachtes newtonverf. schritt 3} Setze \(\kontrast_{\ell+1}=\kontrast_\ell+\mu\), \(u_{\ell+1}=u_\ell+\nu\), ersetze \(\ell=\ell+1\) und gehe zu \ref{regularisiertes vereinfachtes newtonverf. schritt 2}.
+\end{enumerate}
+Man kann folgenden Satz zeigen:
+\begin{satz}
+	Es gibt \(\varepsilon>0\), sodass für \(\kontrast\in\CC(Q)\) mit \(\|\kontrast\|_\infty\leq\varepsilon\) zu zugehörigem Gesamtfeld \(u=u(\widehat{x};d)\) und exakten Fernfelddaten \(f(\widehat{x};d)=u^\infty(\widehat{x};d)\), die Folge \((\kontrast_\ell,u_\ell)\), \(\ell=0,1,2,\ldots\), aus dem regularisierten Algorithmus \ref{regularisiertes vereinfachtes newtonverf. schritt 1}-\ref{regularisiertes vereinfachtes newtonverf. schritt 3} gegen ein \((\widetilde{\kontrast},\widetilde{u})\in X_N\times\CC(Q\times\SS^2)\) konvergiert, das das Streuproblem (mit Brechungsindex \(\widetilde{n}^2=\widetilde{\kontrast}+1\)) löst. 
+	
+	Das zugehörige Fernfeld \(\widetilde{u}^\infty\) stimmt in den Punkten \((\widehat{x}_j,\widehat{d}_j)\in\SS^2\times\SS^2\), \(j\in Z_N\), mit den gegebenen Daten \(f\) überein. Falls zusätzlich die exakte Lösung \(\kontrast\) in \(X_N\) liegt, konvergiert die Folge \((\kontrast_\ell,u_\ell)\) gegen \((\kontrast,u)\).
+\end{satz}
+\begin{proof}
+	Vgl. Gutmann \& Klibanov, Inverse Problems, 1994
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

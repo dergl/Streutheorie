@@ -1,0 +1,547 @@
+\setcounter{subsection}{8}
+\setcounter{section}{9}
+\setcounter{mydef}{0}
+\setcounter{equation}{0}
+
+\subsection{Eigenschaften des Fernfelds}
+Der folgende Satz besagt, dass es dasselbe liefert, ein Objekt in Richtung \(d\in\SS^2\) zu beleuchten und in Richtung \(\widehat{x}\in\SS^2\) zu messen, wie umgekehrt: beleuchten in Richtung \(-\widehat{x}\) und messen in Richtung \(-d\).
+\begin{satz}[Reziprozitätsprinzip]\label{satz: reziprozitätsprinzip}
+	Bezeichne \(u^\infty(\widehat{x};d)\) das Fernfeld zu einer einfallenden ebenen Welle \(u^i(y)=\e^{\ii ky\cdot d}\) mit Einfallsrichtung \(d\in\SS^2\), ausgewertet in Richtung \(\widehat{x}\in\SS^2\). Dann ist
+	\begin{equation}
+		\label{reziprozitätsprinzip}
+		u^\infty(\widehat{x};d)=u^\infty(-d;-\widehat{x})\qquad\te{ für alle }\widehat{x},d\in\SS^2.
+	\end{equation}
+\end{satz}
+\begin{proof}
+	Da wegen des Regularitätssatzes \ref{thm: regularität} schwache Lösungen von \eqref{direktes streuproblem} in \(\R^3\setminus B_R(0)\) glatt sind, können wir die Greensche Formel \eqref{greenscher satz 3} anwenden:
+	\begin{align*}
+		0&=\int_{B_R(0)}u^ i(y;d) \underbrace{\big(\Delta u^i(y;-\widehat{x})+k^2u^i(y;-\widehat{x})\big)}_{=0} - u^i(y;-\widehat{x}) \underbrace{\big(\Delta u^i(y;d)+k^2u^i(y;d)\big)}_{=0}\dy\\
+		&=\int_{\p B_R(0)}u^i(y;d)\frac{\p u^i}{\p\normal}(y;-\widehat{x})-u^i(y;-\widehat{x})\frac{\p u^i}{\p\normal}(y;d)\ds(y),
+	\end{align*}
+	und für \(\rho>R\)
+	\begin{align*}
+		0&=-\int_{B_\rho(0)\setminus B_R(0)} u^s(y;d)\underbrace{\big(\Delta u^s(y;-\widehat{x})+k^2u^s(y;-\widehat{x})\big)}_{=0} - u^s(y;\widehat{x})\underbrace{\big(\Delta u^s(y;d)+k^2u^s(y;d)\big)}_{=0} \dy\\
+		&=\int_{\p B_R(0)} u^s(y;d)\frac{\p u^s}{\p\normal}(y;-\widehat{x})-u^s(y;-\widehat{x})\frac{\p u^s}{\p\normal}(y;d)\ds(y)\\
+		&\quad-\int_{\p B_\rho(0)} u^s(y;d)\frac{\p u^s}{\p\normal}(y;-\widehat{x})-u^s(y;-\widehat{x})\frac{\p u^s}{\p\normal}(y;d)\ds(y),
+	\end{align*}
+	wie im Beweis von Satz \ref{theorem: darstellungssatz im äußeren} sieht man, dass das zweite Integral auf der rechten Seite für \(\rho\to\infty\) verschwindet. Andererseits liefert die Darstellungsformel \eqref{fernfeld definition kapitel 2} für das Fernfeld, dass
+	\begin{align*}
+		4\pi u^\infty(\widehat{x};d)&=\int_{B_R(0)} u^s(y;d)\frac{\p u^i}{\p\normal}(y;-\widehat{x}) - u^i(y;-\widehat{x})\frac{\p u^s}{\p\normal}(y;d) \ds(y)\\
+		-4\pi u^\infty(-d;-\widehat{x})&=-\int_{B_R(0)} u^s(y;-\widehat{x})\frac{\p u^i}{\p\normal}(y;d) - u^i(y;d)\frac{\p u^s}{\p\normal}(y;-\widehat{x}) \ds(y).
+	\end{align*}
+	Addiert man diese vier Gleichungen, so erhält man
+	\begin{equation*}
+		4\pi\big(u^\infty(\widehat{x};d)-u^\infty(-d;-\widehat{x})\big)= \int_{B_R(0)}u(y;d)\frac{\p u}{\p\normal}(y;-\widehat{x}) - u(y;-\widehat{x})\frac{\p u}{\p\normal}(y;d) \ds(y).
+	\end{equation*}
+	Wir müssen noch zeigen, dass die rechte Seite verschwindet. Dazu wählen wir eine Abschneidefunktion \(\phi\in\Cc^\infty(\R^3)\), sodass \(\phi=1\) in \(B_R(0)\) und \(\phi=0\) in \(\R^3\setminus B_\rho(0)\) für ein \(\rho>R\). Setze
+	\begin{equation*}
+		\psi(y)\coloneqq \phi(y)u(y;-\widehat{x}),
+	\end{equation*}
+	dann folgt aus der variationellen Formulierung \eqref{schwache lösung definition} von \eqref{direktes streuproblem}, dass
+	\begin{align*}
+		0&=\int_{B_R(0)} \nabla u(y;d)\cdot\nabla u(y;-\widehat{x}) - k^2n^2(y)u(y;d)u(y;-\widehat{x})\dy\\
+		&\quad+\int_{B_\rho(0)\setminus B_R(0)} \nabla u(y;d)\cdot\nabla\big(\phi(y)u(y;-\widehat{x})\big) - k^2\phi(y)u(y;d)u(y;-\widehat{x})\dy.
+	\end{align*}
+	Vertauschen der Rollen von \(u(\,\cdot\,;-\widehat{x})\) und \(u(\,\cdot\,;d)\) in dieser Gleichung und Subtrahieren der beiden Gleichungen liefert
+	\begin{equation*}
+		0=\int_{B_\rho(0)\setminus B_R(0)} \nabla u(y;d)\cdot \nabla\big(\phi(y)u(y;-\widehat{x})\big) - \nabla u(y;-\widehat{x})\cdot\nabla\big(\phi(y)u(y;d)\big) \dy.
+	\end{equation*}
+	Da \(u(\,\cdot\,;d)\) und \(u(\,\cdot\,;-\widehat{x})\) in \(\R^3\setminus B_R(0)\) glatt sind, folgt mit der Greenschen Formel \eqref{greenscher satz 2}, dass
+	\begin{align*}
+		0&=\int_{B_\rho(0)\setminus B_R(0)} \big(-\Delta u(y;d)\big)\phi(y)u(y;-\widehat{x}) - \big(-\Delta u(y;-\widehat{x})\big)\phi(y)u(y;d) \dy\\
+		&\quad-\int_{\p B_R(0)} u(y;-\widehat{x})\frac{\p u}{\p\normal}(y;d) - u(y;d)\frac{\p u}{\p\normal}(y;-\widehat{x}) \ds(y)\\
+		&=-\int_{\p B_R(0)} u(y;-\widehat{x})\frac{\p u}{\p\normal}(y;d) - u(y;d)\frac{\p u}{\p\normal}(y;-\widehat{x}) \ds(y).
+	\end{align*}
+\end{proof}
+\begin{definition}
+	Eine Superposition von ebenen Wellen
+	\begin{equation}
+		\label{superposition von ebenen wellen}
+		v(x)\coloneqq\int_{\SS^2}\e^{\ii kx\cdot d}g(d)\ds(d),\qquad x\in\R^3,
+	\end{equation}
+	wobei \(g\in L^2(\SS^2)\), heißt \bol{Herglotzwellenfunktion} mit Dichte \(g\).
+\end{definition}
+\begin{satz}
+	Sei \(v\) eine Herglotzwelle mit Dichte \(g\in L^2(\SS^2)\), sodass \(v\equiv0\) in \(\R^3\). Dann ist \(g\equiv0\).
+\end{satz}
+\begin{proof}
+	Entwickeln von \(g\) in
+	\begin{equation*}
+		g(d)=\sum_{n=0}^\infty\sum_{m=-n}^na_n^mY_n^m(d),\qquad d\in\SS^2,
+	\end{equation*}
+	(vgl. Satz \ref{satz: kugelflächenfkten sind vollst ONS von L^2(S^2)}), einsetzen in \eqref{superposition von ebenen wellen} und Funk-Hecke-Formel liefert
+	\begin{equation*}
+		0
+		=\sum_{n=0}^\infty\sum_{m=-n}^na_n^m\int_{\SS^2}Y_n^m(d)\e^{\ii kx\cdot d}\ds(d)
+		=\sum_{n=0}^\infty\sum_{m=-n}^n 4\pi\ii^nj_n(k|x|)Y_n^m(\widehat{x}).
+	\end{equation*}
+	Koeffizientenvergleich liefert \(a_n^m=0\) für alle \(m,n\) (\(Y_n^m\) lin. unabh.), d.h. \(g\equiv0\).
+\end{proof}
+\begin{lem}\label{lem: herglotzwelle löst HG}
+	Sei \(g\in L^2(\SS^2)\). Dann löst die Herglotzwellenfunktion
+	\begin{equation*}
+		v^i(x)\coloneqq\int_{\SS^2}\e^{\ii kx\cdot d}g(d)\ds(d),\qquad x\in\R^3,
+	\end{equation*}
+	die Helmholtzgleichung \(\Delta v^i+k^2v^i=0\) in \(\R^3\). Das zugehörige gestreute Feld ist
+	\begin{equation*}
+		v^s(x)=\int_{\SS^2}u^s(x;d)g(d)\ds(d),\qquad x\in\R^3,
+	\end{equation*}
+	und hat das Fernfeld
+	\begin{equation*}
+		v^\infty(\widehat{x})=\int_{\SS^2}u^\infty(\widehat{x};d)g(d)\ds(d),\qquad\widehat{x}\in\SS^2.
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	Folgt unmittelbar durch Vertauschen von Integration und Differentiation, der Eindeutigkeit von Lösungen des Streuproblems und der Darstellungsformel für das Fernfeld.
+\end{proof}
+%\begin{bem}
+%	Sei \(g\in L^2(\SS^2)\) und 
+%	\begin{equation*}
+%		u^i(x)\coloneqq\int_{\SS^2}\e^{\ii kx\cdot d}g(d)\ds(d) = \int_{\SS^2}u^i(x;d)g(d)\ds(d),\qquad x\in\R^3.
+%	\end{equation*}
+%	Dann ist die zugehörige Lösung des direkten Streuproblems \eqref{direktes streuproblem} und
+%	\begin{align*}
+%		u(x)&=\int_{\SS^2}u(x;d)g(d)\ds(d),& x\in\R^3,\\
+%		u^s(x)&=\int_{\SS^2}u^s(x;d)g(d)\ds(d),& x\in\R^3,\\
+%		u^\infty(\widehat{x})&=\int_{\SS^2}u^\infty(\widehat{x};d)g(d)\ds(d),& x\in\R^3.
+%	\end{align*}
+%\end{bem}
+Der Operator \(\func{F}{L^2(\SS^2)}{L^2(\SS^2)}\)
+\begin{equation}
+	\label{fernfeldoperator}
+	\big(Fg\big)(\widehat{x})\coloneqq\int_{\SS^2} u^\infty(\widehat{x};d)g(d)\ds(d),\qquad \widehat{x}\in\SS^2,
+\end{equation}
+heißt \bol{Fernfeldoperator}. \(F\) ist ein linearer Integraloperator mit glattem (quadratintegrablem) Kern \(u^\infty\in L^2(\SS^2\times\SS^2)\), d.h. \(F\) ist kompakt. Außerdem definieren wir den \bol{Streuoperator} \(\func{S}{L^2(\SS^2)}{L^2(\SS^2)}\),
+\begin{equation*}
+	S\coloneqq I+\frac{\ii k}{2\pi}F.
+\end{equation*}
+Im Folgenden geben wir einige wichtige Eigenschaften dieser Operatoren an.
+\begin{lem}\label{lem: definition von vi und wi}
+	Für \(g,h\in L^2(\SS^2)\) seien \(v^i\) und \(w^i\) definiert durch
+	\begin{align}
+		\label{eigenschaft Streuoperator 1}
+		v^i(x)&\coloneqq\int_{\SS^2}\e^{\ii kx\cdot d}g(d)\ds(d),\qquad x\in\R^3,\\
+		\label{eigenschaft Streuoperator 2}
+		w^i(x)&\coloneqq\int_{\SS^2}\e^{\ii kx\cdot d}h(d)\ds(d),\qquad x\in\R^3.
+	\end{align}
+	Seien \(v,w\in\Hloc^1(\R^3)\) die zugehörigen Lösungen des Streuproblems \eqref{direktes streuproblem} mit \(u^i=v^i\) bzw. \(u^i=w^i\). Dann gilt
+	\begin{equation}
+		\label{eigenschaft Streuoperator folgerung}
+		\ii k^2\int_{B_R(0)}\IM(n^2)v\overline{w}\dx=2\pi\scalLtwoStwo{Fg}{h}-2\pi\scalLtwoStwo{g}{Fg}-\ii k\scalLtwoStwo{Fg}{Fh}.
+	\end{equation}
+\end{lem}
+\begin{proof}
+	Seien \(v^s=v-v^i\) und \(w^s=w-w^i\) die zugehörigen gestreuten Felder mit Fernfeldern \(v^\infty\) und \(w^\infty\). Dann ist wegen Lemma \ref{lem: herglotzwelle löst HG} \(v^\infty=Fg\) und \(w^\infty=Fh\). Wie im Beweis von Satz \ref{satz: reziprozitätsprinzip} wählen wir eine Abschneidefunktion \(\phi\in\Cc^\infty(\R^3)\), sodass \(\phi\equiv1\) in \(B_R(0)\) und \(\phi\equiv0\) in \(\R^3\setminus B_\rho(0)\) für ein \(\rho>R\). Damit setzen wir \(\psi=\phi\overline{w}\) in der schwachen Formulierung \eqref{schwache lösung definition} von \eqref{direktes streuproblem} ein und erhalten
+	\begin{align*}
+		0&=\int_{B_R(0)}\nabla v\cdot \nabla \overline{w}-k^2n^2v\overline{w}\dx+\int_{B_\rho(0)\setminus B_R(0)} \nabla v\cdot \nabla(\phi\overline{w})-k^2v(\phi\overline{w})\dx\\
+		&\overset{\scriptsize \eqref{greenscher satz 2}}{=}\int_{B_R(0)}\nabla v\cdot\nabla\overline{w}-k^2n^2v\overline{w}\dx-\int_{\p B_R(0)}\overline{w}\frac{\p v}{\p\normal}\ds(x).
+	\end{align*}
+	Analog erhält man für \(\psi=\phi v\)
+	\begin{align*}
+		0&=\int_{B_R(0)}\nabla v\cdot \nabla \overline{w}-k^2\overline{n^2w}v\dx+\int_{B_\rho(0)\setminus B_R(0)} \nabla \overline{w}\cdot \nabla(\phi v)-k^2\overline{w}(\phi v)\dx\\
+		&\overset{\scriptsize \eqref{greenscher satz 2}}{=}\int_{B_R(0)}\nabla\overline{w}\cdot\nabla v-k^2\overline{n^2w}v\dx-\int_{\p B_R(0)}v\frac{\p \overline{w}}{\p\normal}\ds(x).
+	\end{align*}
+	Subtrahiert man diese Gleichungen, so folgt
+	\begin{equation*}
+		2\ii k^2\int_{B_R(0)}\IM(n^2)v\overline{w}\dx=\int_{\p B_R(0)}v\frac{\p \overline{w}}{\p\normal}-\overline{w}\frac{\p v}{\p\normal}\ds.
+	\end{equation*}
+	Da \(v=v^i+v^s\) und \(w=w^i+w^s\), kann die rechte Seite in \(4\) Teile zerlegt werden:
+	\begin{equation*}
+		\int_{\p B_R(0)}v^i\frac{\p \overline{w^i}}{\p\normal}-\overline{w^i}\frac{\p v^i}{\p\normal}\ds=0,\tag{nach \eqref{greenscher satz 3}.}
+	\end{equation*}
+	Analog folgt, dass
+	\begin{equation*}
+		\int_{\p B_R(0)} v^s\frac{\p\overline{w^s}}{\p\normal}-\overline{w^s}\frac{\p v^s}{\p\normal}\ds\overset{\scriptsize\eqref{greenscher satz 3}}{=}\int_{\p B_\rho(0)}v^s\frac{\p\overline{w^s}}{\p\normal}-\overline{w^s}\frac{\p v^s}{\p\normal}\ds,
+	\end{equation*}
+	für \(\rho>R\), und aus der SAB und \eqref{darstellungssatz im äußeren beweis 2} erhalten wir, dass
+	\begin{align*}
+		v^s(x)\frac{\p \overline{w^s}}{\p\normal}(x)-\overline{w^s(x)}\frac{\p v^s}{\p\normal}(x)
+		&=-2\ii kv^s(x)\overline{w^s(x)}+\OO(r^{-3})\\
+		&=-\frac{2\ii k}{|x|^2}v^\infty(\widehat{x})\overline{w^\infty(\widehat{x})}+\OO(r^{-3}).
+	\end{align*}
+	Damit folgt, dass
+	\begin{align*}
+		\int_{\p B_\rho(0)}v^s\frac{\p\overline{w^s}}{\p\normal}-\overline{w^s}\frac{\p v^s}{\p\normal}\ds\overset{\rho\to\infty}{\lorarr}
+		&-2\ii k\int_{\SS^2}v^\infty\overline{w^\infty}\ds\\
+		&=-2\ii k\scalLtwoStwo{Fg}{Fh}.
+	\end{align*}
+	Schließlich liefert die Definition von \(v^i\) und \(w^i\) sowie \eqref{definition und satz in kapitel 2 gleichung}, dass
+	\begin{align*}
+		\int_{\p B_R(0)}v^i\frac{\p \overline{w^s}}{\p\normal}-\overline{w^s}\frac{\p v^i}{\p\normal}\ds
+		&=\int_{\SS^2}g(d)\int_{\p B_R(0)}\e^{\ii kx\cdot d}\frac{\p \overline{w^s}}{\p\normal}(x)-\overline{w^s(x)}\frac{\p \e^{\ii kx\cdot d}}{\p\normal}\ds(x)\ds(d)\\
+		&=-4\pi\int_{\SS^2}g(d)\overline{w^\infty(d)}\ds(d)\\
+		&=-4\pi\scalLtwoStwo{g}{Fh}.
+	\end{align*}
+	Analog folgt, dass
+	\begin{equation*}
+		\int_{\p B_R(0)}v^s\frac{\p \overline{w^i}}{\p\normal}-\overline{w^i}\frac{\p v^s}{\p\normal}\ds=4\pi\scalLtwoStwo{Fg}{h}.
+	\end{equation*}
+\end{proof}
+\begin{satz}\label{satz: F ist normal und S unitär}
+	Sei \(n^2\in L^\infty(\R^3)\), \(\support(1-n^2)\subset B_R(0)\), \(\RE(n^2)\geq0\), \(\IM(n^2)=0\), (d.h. das Medium ist nicht-dissipativ). Dann ist \(F\) normal (d.h. \(F^\ast F=FF^\ast\)) und \(S\) ist unitär (d.h. \(S^\ast S=SS^\ast=I\)).
+\end{satz}
+\begin{proof}
+	Für \(\IM(n^2)=0\) zeigt Lemma \ref{lem: definition von vi und wi}, dass
+	\begin{equation}
+		\label{L2 skalatprodukt von Fg, Fh}
+		\ii k\scalLtwoStwo{Fg}{Fh} = 2\pi\scalLtwoStwo{Fg}{h} - 2\pi\scalLtwoStwo{g}{Fh},
+	\end{equation}
+	für alle \(g,h\in L^2(\SS^2)\). Nach dem Reziprozitätsprinzip folgt
+	\begin{align*}
+		\big(F^\ast g\big)(\widehat{x})
+		&=\int_{\SS^2}\overline{u^\infty(d;\widehat{x})}g(d)\ds(d)\\
+		&=\int_{\SS^2}\overline{u^\infty(-\widehat{x};-d)}g(d)\ds(d)\\
+		&=\overline{\int_{\SS^2}u^\infty(-\widehat{x};d)\overline{g(-d)}\ds(d)},
+	\end{align*}
+	also \(F^\ast g=\overline{RFR\overline{g}}\), wobei \(\func{R}{L^2(\SS^2)}{L^2(\SS^2)}\), \(\big(Rh\big)(\widehat{x})\coloneqq h(-\widehat{x})\) für alle \(\widehat{x}\in\SS^2\). Da
+	\begin{equation*}
+		\scalLtwoStwo{Rg}{Rh}=\scalLtwoStwo{g}{h}=\scalLtwoStwo{\overline{h}}{\overline{g}},\qquad\te{ für alle }g,h\in L^2(\SS^2),
+	\end{equation*}
+	folgt mit \eqref{L2 skalatprodukt von Fg, Fh}, dass
+	\begin{align*}
+		\ii k\scalLtwoStwo{F^\ast h}{F^\ast g}
+		&=\ii k\scalLtwoStwo{RFR\overline{g}}{RFR\overline{h}}\\
+		&=\ii k\scalLtwoStwo{FR\overline{g}}{FR\overline{h}}\\
+		&\overset{\scriptsize\eqref{L2 skalatprodukt von Fg, Fh}}{=}2\pi\scalLtwoStwo{FR\overline{g}}{R\overline{h}} - 2\pi\scalLtwoStwo{R\overline{g}}{FR\overline{h}}\\
+		&=2\pi\scalLtwoStwo{RFR\overline{g}}{\overline{h}} - 2\pi\scalLtwoStwo{\overline{g}}{RFR\overline{h}}\\
+		&=2\pi\scalLtwoStwo{h}{F^\ast g} - 2\pi\scalLtwoStwo{F^\ast h}{g}\\
+		&=2\pi\scalLtwoStwo{Fh}{g} - 2\pi\scalLtwoStwo{h}{Fg}\\
+		&\overset{\scriptsize\eqref{L2 skalatprodukt von Fg, Fh}}{=} \ii k\scalLtwoStwo{Fh}{Fg}.
+	\end{align*}
+	Da dies für alle \(g,h\in L^2(\SS^2)\) gilt, folgt \(F^\ast F=FF^\ast\). Noch einmal aus \eqref{L2 skalatprodukt von Fg, Fh} folgt
+	\begin{equation*}
+		-\scalLtwoStwo{g}{\ii kF^\ast Fh} = 2\pi\scalLtwoStwo{g}{(F^\ast -F)h},\qquad\te{ für alle }g,h\in L^2(\SS^2),
+	\end{equation*}
+	d.h. \(\ii kF^\ast F=2\pi(F-F^\ast)\) und
+	\begin{equation*}
+		S^\ast S=\big(I-\frac{\ii k}{2\pi}F^\ast\big)(I+\frac{\ii k}{2\pi}F)=I+\frac{\ii k}{2\pi}(F-F^\ast)+\frac{k^2}{4\pi}F^\ast F=I,
+	\end{equation*}
+	und analog folgt, dass \(SS^\ast=I\).
+\end{proof}
+Im Folgenden wird die Frage nach der Injektivität des Fernfeldoperators von zentraler Bedeutung sein, d.h. gibt es eine Primärwelle, die eine Superposition von ebenen Wellen ist, sodass das zugehörige Fernfeld verschwindet. Der Kern von F wird durch das sogenannte \rec{innere Transmissionseigenwertproblem} charakterisiert.\vspace{2mm}
+
+Bevor wir dieses Problem einführen zeigen wir, dass für beschränkte \(\CC^1\)-Gebiete \(\Omega\) Funktionen \(u\in\H^1(\Omega)\) wohldefinierte Randwerte auf \(\p\Omega\) haben. Dazu zeigen wir zuerst, dass für beschränkte \(\CC^1\)-Gebiete \(\Omega\) sogar \(\CC^\infty(\overline{\Omega})\subset\H^1(\Omega)\) dicht liegt (Vgl. Theorem \ref{thm: meyers and serrin}).
+\begin{satz}\label{satz: dichtesatz cinfty in H1 auf Abschluss von omega}
+	Sei \(\Omega\subset\R^3\) ein beschränktes \(\CC^1\)-Gebiet und \(u\in\H^1(\Omega)\). Dann gibt es eine Folge \((u_\ell)_{\ell\in\N}\subset\CC^\infty(\overline{\Omega})\), sodass
+	\begin{equation*}
+		u_\ell\to u,\qquad\te{ in }\H^1(\Omega).
+	\end{equation*}
+	Dabei ist \(\CC^\infty(\overline{\Omega})\coloneqq\big\{v\restrict{\Omega}\colon v\in L^\infty(\R^3)\big\}\).
+\end{satz}
+\begin{proof}
+	Sei \(x_0\in\p\Omega\), \(B_r(x_0)\) und \(\gamma\) eine Umgebung und eine Funktion wie in Definition \ref{def: parametrisierung des randes} und \(U\coloneqq\Omega\cap B_{\frac{r}{2}}(x_0)\). Für \(x\in U\) und \(\delta>0\) definiere
+	\begin{equation*}
+		x^\delta=x+\delta e_3,
+	\end{equation*}
+	und die verschobene Funktion
+	\begin{equation*}
+		u^\delta(x)\coloneqq u(x^\delta),\qquad x\in U.
+	\end{equation*}\vspace{25mm}
+
+	Wir zeigen zunächst, dass \(\|u^\delta-u\|_{\H^1(U)}\to 0\) für \(\delta\to 0\). Sei dazu \(W\) eine Umgebung von \(\overline{U}\) und \((u_\ell)_\ell\subset\CC^\infty(W)\), sodass \(u_\ell\to u\) in \(L^2(W)\) (Vgl. Korollar \ref{kor: Ccinfty dicht in Lp}). Für jedes \(\ell\in\N\) ist nach dem Satz von Lebesgue
+	\begin{equation*}
+		\lim_{\delta\to0}\|u_\ell^\delta-u_\ell\|_{L^2(U)}=0.
+	\end{equation*}
+	Für hinreichend große \(\ell\) und kleine \(\delta\) wird deshalb
+	\begin{align*}
+		\|u^\delta-u\|_{L^2(U)}
+		&\leq \|u^\delta-u_\ell^\delta\|_{L^2(U)} + \|u_\ell^\delta-u_\ell\|_{L^2(U)} + \|u_\ell-u\|_{L^2(U)}\\
+		&\leq 2\|u_\ell-u\|_{L^2(W)} + \|u_\ell^\delta-u_\ell\|_{L^2(U)},
+	\end{align*}
+	beliebig klein. Da Ableitung und Translation vertauschen, folgt
+	\begin{equation*}
+		\|u^\delta-u\|_{\H^1 U}\to0.
+	\end{equation*}
+	Da \(\gamma\) eine \(\CC^1\)-Randkurve ist, folgt, dass für hinreichend kleine \(\delta>0\) und \(\varepsilon>0\) gilt, dass
+	\begin{equation*}
+		B_\varepsilon(x^\delta)\subset\Omega\cap B_r(x_0),\qquad\te{ für alle }x\in W,
+	\end{equation*}
+	und wir können \(u^\delta(x)=u(x^\delta)\) sogar für alle \(x\in\NN_\varepsilon(U)\) definieren. Mit Lemma \ref{lem: ableitung in faltung reinziehen für mollifier} erhalten wir \((u_\ell^\delta)_\ell\subset\CC^\infty(\overline{U})\) mit \(u_\ell^\delta\to u^\delta\) in \(\H^1(U)\).\vspace{1.5mm}
+	
+	Für \(\delta\to0\) und geeignet gewähltes \(\ell=\ell(\delta)\) folgt aber
+	\begin{equation*}
+		u_{\ell(\delta)}^\delta\to u,\qquad\te{ in }\H^1(U).
+	\end{equation*}
+	Da \(\p\Omega\) kompakt ist, existieren endlich viele Punkte \(x_{0,1},\ldots,x_{0,M}\), sodass für die gebildeten Umgebungen gilt
+	\begin{equation*}
+		\p\Omega\subset\bigcup_{m=1}^MB_\frac{r_m}{2}(x_{0,m}).
+	\end{equation*}
+	Definiert man wie oben \(u_m=\Omega\cap B_\frac{r_m}{2}(x_{0,m})\), so erhält man Folgen \(u_\ell^{(m)}\subset\CC^\infty(\overline{U}_m)\) mit 
+	\begin{equation*}
+		\lim_{\ell\to\infty}\|u_\ell^{(m)}-u\|_{\H^1(U_m)}=0.
+	\end{equation*}
+	Sei noch \(U_0\) eine offene Menge mit \(\overline{U}_0\subset\Omega\) und \(\Omega\subset\bigcup_{m=0}^MU_m\), dann existiert nach Lemma \ref{lem: ableitung in faltung reinziehen für mollifier} eine Folge \((u_\ell^{(0)})_\ell\subset\CC^\infty(\overline{U}_0)\) mit
+	\begin{equation*}
+		\|u_\ell^{(0)}-u\|_{\H^1(U_0)}\lorarr0.
+	\end{equation*}\vspace{1mm}
+
+	Sei schließlich \((\psi_m)_{m=0,\ldots,M}\) eine (glatte) Zerlegung der Eins auf \(\overline{\Omega}\) bzgl. \(U_0, B_{\frac{r_1}{2}}(x_{0,1}),\ldots,B_{\frac{r_M}{2}}(x_{0,M})\) (Vgl. Lemma \ref{lem: zerlegung der eins}). Damit definieren wir
+	\begin{equation*}
+		u_\ell(x)\coloneqq\sum_{m=0}^M\psi_m(x)u_\ell^{(m)}(x)\;\in\CC^\infty(\R^3).
+	\end{equation*}
+	Nach Lemma \ref{lem: produktregel} ist
+	\begin{align*}
+		u_\ell - u&=\sum_{m=0}^M\psi_m(u_\ell^{(m)}-u),\\
+		\p_{x_j}(u_\ell-u)&=\sum_{m=0}^M \big(\partial_{x_j}\psi_m\big)\big(u_\ell^{(m)}-u\big) + \psi_m\partial_{x_j}\big(u_\ell^{(m)}-u\big),
+	\end{align*}
+	und damit \(\|u_\ell-u\|_{\H^1(\Omega)}\to0\) für \(\ell\to\infty\).
+\end{proof}
+\begin{de+sa}[Spursatz]\label{def+satz: spursatz}
+	Sei \(\Omega\subset\R^3\) ein beschränktes \(\CC^1\)-Gebiet. Dann existiert ein beschränkter linearer Operator
+	\begin{equation*}
+		\func{\gamma_{\p\Omega}}{\H^1(\Omega)}{L^2(\p\Omega)},
+	\end{equation*}
+	sodass \(\gamma_{\p\Omega}u\coloneqq u\restrict{\p\Omega}\) für alle \(u\in\H^1(\Omega)\cap\CC^\infty(\overline{\Omega})\). \(\gamma_{\p\Omega}\) heißt \bol{Spuroperator}. Auch für \(u\notin\CC^\infty(\overline{\Omega})\) schreiben wir im Folgenden \(u\restrict{\p\Omega}=\gamma_{\p\Omega}u\).
+\end{de+sa}
+\begin{proof}
+	Sei \(x_0\in\p\Omega\), \(B_r(x_0)\) und \(\gamma\) eine Umgebung und eine Funktion wie in Definition \ref{def: parametrisierung des randes}. Weiterhin sei
+	\begin{equation*}
+		T_r\coloneqq\big\{t\in\R^2\mid\big(t,\gamma(t)\big)\in B_r(x_0)\big\},
+	\end{equation*}
+	und \(\psi\in\Cc^\infty(\R^3)\) eine Funktion mit \(\support(\psi)\subset B_r(x_0)\), \(0\leq\psi\leq1\) und \(\psi=1\) in \(B_\frac{r}{2}(x_0)\). Für alle \(u\in\CC^\infty(\overline{\Omega})\) ist mit der greenschen Determinante \(g(t)=1+\big|\frac{\p\psi}{\p t_1}(t)\big|^2+\big|\frac{\p\psi}{\p t_2}(t)\big|^2\)
+	\begin{align*}
+		\int_{\p\Omega\cap B_\frac{r}{2}(x_0)}|u|^2\ds
+		&=\int_{T_\frac{r}{2}}\big|u\big(t,\gamma(t)\big)\big|^2\sqrt{g(t)}\dt\\
+		&\leq C_1\int_{T_r}\psi\big(t,\gamma(t)\big)\big|u\big(t,\gamma(t)\big)\big|^2\dt\\
+		&\leq C_1\int_{T_r}\int_{\gamma(t)}^\infty\Big|u(t,x_3)\frac{\p}{\p x_3}\psi(t,x_3)\Big|^2\dt\\
+		&=C_1\int_{B_r(x_0)\cap\Omega}\Big|\frac{\p}{\p x_3}\big(\psi(x)(u(x))^2\big)\Big|\ds\\
+		&\leq C_2\Big(\|u\|_{L^2(\Omega)}^2+\|u\|_{L^2(\Omega)}\Big\|\frac{\p u}{\p x_3}\Big\|_{L^2(\Omega)}\Big)\\
+		&\leq C_3\|u\|_{\H^1(\Omega)}^2,
+	\end{align*}
+	mit einer von \(u\) unabhängigen Konstanten \(C_3\). Da \(\p\Omega\) kompakt ist, existieren endlich viele Punkte \(x_{0,m}\), sodass \(B_\frac{r_1}{2}(x_{0,1}),\ldots,B_\frac{r_m}{2}(x_{0,m})\) den Rand \(\p\Omega\) überdecken. Insbesondere existiert also eine Konstante \(C>0\), sodass
+	\begin{equation*}
+		\big\|u\restrict{\p\Omega}\big\|_{L^2(\p\Omega)}^2\leq C\|u\|_{\H^1(\Omega)}^2,\qquad\te{ für alle }u\in\CC^\infty(\overline{\Omega}).
+	\end{equation*}
+	Damit ist der durch \(\gamma_{\p\Omega}\colon u\mapsto u\restrict{\p\Omega}\) definierte Operator auf der dichten Teilmenge \(\CC^\infty(\overline{\Omega})\subset\H^1(\Omega)\) stetig, und kann deshalb auf ganz \(\H^1(\Omega)\) fortgesetzt werden.
+\end{proof}
+\begin{definition}
+	Sei
+	\begin{equation*}
+		\H_0^1(\Omega)\coloneqq\big\{u\in\H^1(\Omega)\mid u\restrict{\p\Omega}=0\big\}.
+	\end{equation*}
+	Wegen Satz \ref{def+satz: spursatz} ist das ein abgeschlossener Unterraum von \(\H^1(\Omega)\) mit dem \(\H^1\)-Skalarprodukt.
+\end{definition}
+Mit Hilfe der Greenschen Formel \eqref{greenscher satz 2} kann auch die Normalenableitung auf Sobolevräume verallgemeinert werden.
+\begin{definition}
+	Sei \(\Omega\subset\R^3\) ein beschränktes \(\CC^1\)-Gebiet und 
+	\begin{equation*}
+		u\in\H_\Delta^1(\Omega)\coloneqq\{w\in\H^1(\Omega)\mid\Delta w\in L^2(\Omega)\}.
+	\end{equation*}
+	Dann heißt \(g\in L^2(\p\Omega)\) die \bol{Normalenableitung} von u, falls
+	\begin{equation*}
+		\int_{\p\Omega}gv\restrict{\p\Omega}\ds = \int_\Omega\nabla u\cdot\nabla v\dx + \int_\Omega v\Delta u\dx,\qquad\te{ wobei }v\restrict{\p\Omega}=\gamma_{\p\Omega}v\te{ und }\Delta u\in L^2(\Omega),
+	\end{equation*}
+	für alle \(v\in\H^1(\Omega)\). Wir schreiben \(g=\frac{\p u}{\p\normal}\restrict{\p\Omega}\).
+\end{definition}
+\begin{counter bem}
+	 Nicht jedes \(u\in\H_\Delta^1(\Omega)\) hat eine Normalenableitung in \(L^2(\p\Omega)\), da der Raum \(L^2(\p\Omega)\) dafür \glqq{}zu klein\grqq{} ist. Definiert man
+	 \begin{equation*}
+	 	\H^\frac{1}{2}(\p\Omega)\coloneqq\Ran(\gamma_{\p\Omega}),
+	 \end{equation*}
+ 	d.h. als das Bild des Spuroperators aus Definition \ref{def+satz: spursatz}, zusammen mit der Norm
+ 	\begin{equation*}
+ 		\|\phi\|_{\H^\frac{1}{2}(\p\Omega)}\coloneqq\inf_{\substack{u\in\H^1(\Omega)\\\gamma_{\p\Omega}(u)=\emptyset}}\|u\|_{\H^1(\Omega)},
+ 	\end{equation*}
+ 	und \(\H^{-\frac{1}{2}}(\p\Omega)\) als den Dualraum von \(\H^{\frac{1}{2}}(\p\Omega)\), dann kann man wie in Satz \ref{def+satz: spursatz} die klassische Normalenableitung auf \(\CC^\infty(\overline{\Omega})\) zu einem stetigen linearen Operator von \(\H_\Delta^1(\Omega)\) nach \(\H^{-\frac{1}{2}}(\p\Omega)\) fortsetzen. Es gilt
+ 	\begin{equation*}
+ 		\H^{\frac{1}{2}}(\p\Omega)\subsetneq L^2(\p\Omega)\subsetneq \H^{-\frac{1}{2}}(\p\Omega).
+ 	\end{equation*}
+\end{counter bem}
+\begin{lem}\label{lem: fortsetzung von zwei gebieten auf ein gebiet}
+	Sei \(\Omega\subset\R^3\) ein beschränktes \(\CC^1\)-Gebiet und \(\Omega_1,\Omega_2\subset\Omega\) zwei disjunkte \(\CC^1\)-Gebiete, sodass \(\overline{\Omega}\subset\overline{\Omega}_1\cup\overline{\Omega}_2\). Bezeichne \(\Sigma\coloneqq\overline{\Omega}_1\cap\overline{\Omega}_2\). Seien \(u_1\in\H^1(\Omega_1)\), \(u_2\in\H^1(\Omega_2)\), dass \(u_1\restrict{\Sigma}=u_2\restrict{\Sigma}\) und definiere
+	\begin{equation*}
+		u\coloneqq
+		\begin{cases}
+			u_1,&\te{ in }\Omega_1,\\
+			u_2,&\te{ in }\Omega_2.
+		\end{cases}
+	\end{equation*}
+	Dann ist \(u\in\H^1(\Omega)\).
+\end{lem}
+\begin{proof}
+	Wir zeigen, dass \(\nabla u\in L^2(\Omega)\) und \(\nabla u=\nabla u_i\) in \(\Omega_i\), \(i=1,2\). Dazu sei \(\phi\in\Cc^\infty(\Omega)\). Dann folgt aus der Definition der schwachen Differentierbarkeit von \(u_1\) und \(u_2\) (Vgl. Definition \ref{def: schwache ableitung}), dass
+	\begin{align*}
+		\int_\Omega u\frac{\p\phi}{\p x_j}\dx
+		&=\int_{\Omega_1}u_1\frac{\p\phi}{\p x_j}\dx + \int_{\Omega_2}u_2\frac{\p\phi}{\p x_j}\dx\\
+		\substack{
+		\te{\scriptsize\eqref{greenscher satz 2} anwendbar nach Dichteargument}\\
+		\te{mit Sätzen \ref{satz: dichtesatz cinfty in H1 auf Abschluss von omega}, \ref{def+satz: spursatz}}
+		}
+		&=-\int_{\Omega_1}\phi\frac{\p u_1}{\p x_j}\dx + \int_{\p\Omega_1}u_1\phi\normal_j\ds\\
+		&\quad\, - \int_{\Omega_2}\phi\frac{\p u_2}{\p x_j}\dx + \int_{\p\Omega_2}u_2\phi\widetilde{\normal}_j\ds,
+	\end{align*}
+	wobei \(\normal\) die äußere Normale an \(\p\Omega_1\) bzw. \(\widetilde{\normal}\) die äußere Normale an \(\p\Omega_2\) bezeichne. Wegen \(\phi=0\) auf \(\p\Omega\) und \(\normal=-\widetilde{\normal}\) auf \(\Sigma\) folgt
+	\begin{equation*}
+		\int_{\Omega}u\frac{\p\phi}{\p x_j}\dx = -\int_{\Omega_1}\phi\frac{\p u_1}{\p x_j}\dx - \int_{\Omega_2}\phi\frac{\p u_2}{\p x_j}\dx.
+	\end{equation*}
+\end{proof}
+
+\subsubsection*{Inneres Transmissionseigenwertproblem}
+Sei \(D\subset\R^3\) ein beschränktes \(\CC^1\)-Gebiet. Bestimme \(k>0\) und \(v,w\in\H^1(D)\), \((v,w)\neq(0,0)\), sodass
+\begin{equation}
+	\label{inneres transmissionseigenwertproblem}
+	\begin{aligned}
+		\Delta v+k^2v&=0,&\te{ in }D,\\
+		\Delta w+k^2n^2w&=0,&\te{ in }D,\\
+		v&=w,&\te{ auf }\p D,\\
+		\frac{\p w}{\p\normal}&=\frac{\p v}{\p\normal},&\te{ auf }\p D.
+	\end{aligned}
+\end{equation}
+Es gibt auch eine inhomogene Version von \eqref{inneres transmissionseigenwertproblem}:
+\subsubsection*{Inneres Transmissionsproblem}
+Sei \(D\subset\R^3\) ein beschränktes \(\CC^1\)-Gebiet. Zu gegebenem \(f,g\) bestimme \(v,w\in\H^1(D)\), sodass
+\begin{equation}
+	\label{inneres transmissionsproblem}
+	\begin{aligned}
+		\Delta v+k^2v&=0,&\te{ in }D,\\
+		\Delta w+k^2n^2w&=0,&\te{ in }D,\\
+		w-v&=f,&\te{ auf }\p D,\\
+		\frac{\p w}{\p\normal}-\frac{\p v}{\p\normal}&=g,&\te{ auf }\p D.
+	\end{aligned}
+\end{equation}
+Beide Gleichungen \eqref{inneres transmissionseigenwertproblem} und \eqref{inneres transmissionsproblem} sind im schwachen Sinne zu verstehen, d.h. zB. für \eqref{inneres transmissionsproblem}
+\begin{equation}
+	\label{schwache formulierung des inneren transmissionsproblems}
+	\begin{aligned}
+		\int_D\nabla w\cdot\nabla \psi-k^2n^2\psi\dx - \int_D\nabla v\cdot\psi-k^2v\psi\dx
+		&=\int_{\p D}g\psi\dx,&\te{ für alle }\psi\in\H^1(D),\\
+		w-v&=f,&\te{\scriptsize im Sinn von Definition und Satz \ref{def+satz: spursatz}},\\
+		\int_D\nabla w\cdot\nabla\psi-k^2n^2\psi\dx=\int_D\nabla v\cdot\nabla\psi-k^2v\psi\dx&=0&\te{ für alle }\psi\in\H_0^1(D).
+	\end{aligned}
+\end{equation}
+\begin{satz}\label{satz: lösungen der (in)homogenen integralgleichungen}
+	Sei \(D\subset\R^3\) ein beschränktes \(\CC^1\)-Gebiet, sodass \(\R^3\setminus\overline{D}\) zusammenhängend ist und \(\support(1-n^2)\subset D\). Dann gilt
+	\begin{enumerate}[label=(\alph*)]
+		\item\label{satz: lösungen der (in)homogenen integralgleichungen: a} \(g\in L^2(\SS^2)\) ist genau dann eine Lösung der homogenen Integralgleichung
+		\begin{equation}
+			\label{homogene integralgleichung}
+			\big(Fg\big)(\widehat{x})=\int_{\SS^2}u^\infty(\widehat{x};d)g(d)\ds(d)=0,\qquad\te{ für alle }\widehat{x}\in\SS^2,
+		\end{equation}
+		wenn es \(v,w\in\H^1(D)\) gibt, sodass \((v,w)\) das innere Transmissionseigenwertproblem \eqref{inneres transmissionseigenwertproblem} löst \bol{und} \(v\) durch die \bol{Herglotzwellenfunktion}
+		\begin{equation}
+			\label{herglotzwellenfunktion}
+			v(x)=\int_{\SS^2}\e^{\ii kx\cdot \widehat{y}}g(\widehat{y})\ds(\widehat{y}),\qquad x\in D,
+		\end{equation}
+		gegeben ist. Insbesondere ist \(F\) injektiv, falls \eqref{inneres transmissionseigenwertproblem} nur die triviale Lösung \((v,w)=(0,0)\) in \(D\) hat.
+		
+		\item\label{satz: lösungen der (in)homogenen integralgleichungen: b} Sei \(z\in D\). Die Integralgleichung
+		\begin{equation}
+			\label{integralgleichung mit rhs ebene welle}
+			\int_{\SS^2}u^\infty(\widehat{x};d)g(d)\ds(d)=\e^{-\ii k\widehat{x}\cdot z},\qquad \widehat{x}\in\SS^2,
+		\end{equation}
+		hat genau dann eine Lösung, wenn das innere Transmissionsproblem
+		\begin{equation}
+			\label{inneres transmissionsproblem mit expliziter rhs}
+			\begin{aligned}
+				\Delta v+k^2v&=0,&\te{ in }D,\\
+				\Delta w+k^2n^2w&=0,&\te{ in }D,\\
+				w-v&=\frac{\e^{\ii k|x-z|}}{|x-z|},&\te{ auf }\p D,\\
+				\frac{\p w}{\p\normal}-\frac{\p v}{\p\normal}&=\frac{\p}{\p\normal}\frac{\e^{\ii k|x-z|}}{|x-z|},&\te{ auf }\p D,
+			\end{aligned}
+		\end{equation}
+		eine Lösung \((v,w)\in\H^1(D)\times\H^1(D)\) hat, sodass \(v\) durch die Herglotzwellenfunktion \eqref{herglotzwellenfunktion} gegeben ist.
+		
+		\item\label{satz: lösungen der (in)homogenen integralgleichungen: c} Für \(z\notin D\) hat \eqref{integralgleichung mit rhs ebene welle} keine Lösung in \(L^2(\SS^2)\).
+	\end{enumerate}\vspace{25mm}
+\end{satz}
+\begin{proof}\
+	\begin{enumerate}[label=(\alph*)]
+		\item Sei \(g\in L^2(\SS^2)\) eine Lösung von \eqref{homogene integralgleichung} und definiere \(v\) durch \eqref{herglotzwellenfunktion}. Die linke Seite von \eqref{homogene integralgleichung} ist das Fernfeld \(w^\infty\) eines gestreuten Felds \(w^s\), das zum Primärfeld \(w^i=v\) gehört. Wegen \eqref{homogene integralgleichung} ist \(w^\infty=0\) und, da \(w=w^i+w^s\) die Helmholtzgleichung
+		\begin{equation*}
+			\Delta w+k^2n^2w=0,\qquad\te{ in }\R^3,
+		\end{equation*}
+		erfüllt, folgt aus Rellis Lemma (Satz \ref{satz: rellichs lemma}) und der Analytizität von \(w^s\) in \(\R^3\setminus\overline{D}\), dass \(w^s=w-v=0\) in \(\R^3\setminus\overline{D}\). Damit ist 
+		\begin{equation*}
+			w-v=0\quad\te{ auf }\p D\qquad\te{ und }\qquad\frac{\p(w-v)}{\p\normal}=0\quad\te{ auf }\p D,
+		\end{equation*}
+		und die eine Richtung ist gezeigt.\vspace{2mm}
+		
+		Nun sei \(v\) wie in \eqref{herglotzwellenfunktion} und \(w\in\H^1(D)\) so, dass \((v,w)\) das Eigenwertproblem \eqref{inneres transmissionseigenwertproblem} löst. Wir setzen \(w\) durch \(w(x)=v(x)\) für \(x\notin D\) auf ganz \(\R^3\) fort. Dann ist \(w\in\Hloc^1(\R^3)\), da \(v=w\) auf \(\p D\) (Vgl. Lemma \ref{lem: fortsetzung von zwei gebieten auf ein gebiet}). Außerdem erfüllt \(w\) die Helmholtzgleichung
+		\begin{equation*}
+			\Delta w+k^2n^2w=0,\qquad\te{ in }\R^3\quad\te{(schwach).}
+		\end{equation*}
+		Da \(v-w=0\) in \(\R^3\setminus\overline{D}\), erfüllt \(v-w\eqqcolon w^s\) die Ausstrahlungsbedingung und daher ist \(w\) das eindeutig definierte Gesamtfeld zum Primärfeld \(v\). Es folgt \(w^\infty=0\). Aus der Definition von \(v\) folgt, dass
+		\begin{equation*}
+			w(x)=\int_{\SS^2}u(x;d)g(d)\ds(d),\qquad x\in\R^3,
+		\end{equation*}
+		also gilt auch (und damit ist (a) gezeigt):
+		\begin{equation*}
+			0=w^\infty(\widehat{x})=\int_{\SS^2}u^\infty(\widehat{x};d)g(d)\ds(x).
+		\end{equation*}
+	
+		\item Sei \(g\in L^2(\SS^2)\) eine Lösung von \eqref{integralgleichung mit rhs ebene welle} und definiere \(v\) wie in \eqref{herglotzwellenfunktion}. Wie in a) ist die linke Seite von \eqref{integralgleichung mit rhs ebene welle} das Fernfeld \(w^\infty\) des gestreuten Feldes \(w^s\), das zum Primärfeld \(w^i=v\) gehört. Jetzt verschwindet \(w^\infty\) aber nicht, sondern ist gleich \(\e^{-\ii kz\cdot x}\).
+		Nach Lemma \ref{lem: fundamentallsg löst HG} ist \(\e^{-\ii kz\cdot\widehat{x}}\) auch das Fernfeld der reskalierten Fundamentallösung
+		\begin{equation*}
+			4\pi\Phi(x-z)=\frac{\e^{\ii k|x-z|}}{|x-z|}.
+		\end{equation*}
+		Da \(z\in D\) und \(\R^3\setminus\overline{D}\) zusammenhängend, folgt wie in (a), dass 
+		\begin{equation*}
+			w-v=\frac{\e^{\ii k|x-z|}}{|x-z|},\qquad\te{ in }\R^3\setminus D,
+		\end{equation*}
+		und damit folgt die eine Richtung. Die andere Richtung folgt analog zu (a).
+		
+		\item Angenommen es gibt eine Lösung \(g\in L^2(\SS^2)\) von \eqref{integralgleichung mit rhs ebene welle}. Sei \(v\) wie in \eqref{herglotzwellenfunktion}. Dann folgt wie in (b), dass \(w-v=\frac{\e^{\ii k|x-z|}}{|x-z|}\) in \(\R^3\setminus(D\cup\{z\})\), wobei
+		\begin{equation*}
+			w(x)=\int_{\SS^2}u(x;d)g(d)\ds(d),\qquad x\in\R^3,
+		\end{equation*}
+		das Gesamtfeld zum Primärfeld \(v\) ist. Das kann aber nicht sein, da 
+		\begin{equation*}
+			w-v=w^s\int_{\SS^2}u^s(\,\cdot\,,d)g(d)\ds(d),
+		\end{equation*}
+		in \(z\notin D\) beschränkt ist, während \(\frac{\e^{\ii k|x-z|}}{|x-z|}\) in \(x=z\) unbeschränkt ist.
+	\end{enumerate}
+\end{proof}
+Um zu untersuchen, unter welchen Bedingungen der Fernfeldoperator dichtes Bild in \(L^2(\SS^2)\) hat, betrachten wir den Kern des adjungierten Operators.
+\begin{satz}
+	Der Kern \(\{h\in L^2(\SS^2)\mid F^\ast h=0\}\) besteht aus allen \(h\in L^2(\SS^2)\), für die die zugehörige Herglotz-Wellenfunktion
+	\begin{equation*}
+		v(x)=\int_{\SS^2}\e^{\ii kx\cdot \widehat{y}}\overline{h(-\widehat{y})}\ds(\widehat{y}),\qquad x\in\R^3,
+	\end{equation*}
+	das innere Transmissionseigenwertproblem \eqref{inneres transmissionseigenwertproblem} für ein \(w\in\H^1(D)\) erfüllt.
+\end{satz}
+\begin{proof}
+	Mit dem Reziprozitätsprinzip \eqref{reziprozitätsprinzip} folgt, dass
+	\begin{align*}
+		F^\ast h=0
+		&\Lolrarr \underbrace{\int_{\SS^2}\overline{u^\infty(d;\widehat{x})}h(d)\ds(d)}_{=(F^\ast h)(\widehat{x})} = 0&\te{ für alle }\widehat{x}\in\SS^2\\
+		&\Lolrarr \int_{\SS^2}u^\infty(-\widehat{x};-d)\overline{h(d)}\ds(d) = 0&\te{ für alle }\widehat{x}\in\SS^2\\
+		&\Lolrarr\int_{\SS^2}u^\infty(\widehat{x};d)\overline{h(-d)}\ds(d) = 0&\te{ für alle }\widehat{x}\in\SS^2.
+	\end{align*}
+	Damit folgt die Behauptung aus Satz \ref{satz: lösungen der (in)homogenen integralgleichungen}.\ref{satz: lösungen der (in)homogenen integralgleichungen: a}.
+\end{proof}
+\begin{definition}
+	Eine Wellenzahl \(k>0\) heißt \bol{innerer Transmissionseigenwert} von \eqref{inneres transmissionsproblem}, wenn es eine nichttriviale Lösung von \eqref{inneres transmissionseigenwertproblem} gibt.
+\end{definition}
+Wir haben gesehen, dass \(F\) injektiv mit dichtem Bild ist, falls \(k\) \rec{kein} innerer Transmissionseigenwert ist.
+\begin{counter bem plain}
+	Die Resultate \ref{satz: lösungen der (in)homogenen integralgleichungen: b} und \ref{satz: lösungen der (in)homogenen integralgleichungen: c} in Satz \ref{satz: lösungen der (in)homogenen integralgleichungen} suggerieren, dass es möglich sein sollte, den unbekannten Träger \(\support(1-n^2)\) durch ein Kriterium, das nur die Lösbarkeit der linearen Integralgleichung \eqref{integralgleichung mit rhs ebene welle} verwendet, zu charakterisieren.
+	
+	Das führt auf die sogenannte \rec{Linear Sampling Methode}. Da aber auch für \(z\in D\) die Integralgleichung \eqref{integralgleichung mit rhs ebene welle} nicht immer lösbar ist (wegen der zusätzlichen Voraussetzung, dass \(v\) eine Herglotz-Wellenfunktion ist), erhält man mit diesem Ansatz unter Umständen nur eine Teilmenge des Trägers von \(1-n^2\). Die Faktorisierungsmethode (siehe Kapitel 11) behebt dieses Problem.
+\end{counter bem plain}
+\begin{counter bem}\
+	\begin{enumerate}[label=(\alph*)]
+		\item Falls \(\IM(n^2)>0\) auf einer offenen Teilmenge \(A\subset D\), dann ist kein \(k>0\) ein innerer Transmissionseigenwert. (siehe Colton \& Kress 1998, p. 226)
+		\item Falls \(\IM(n^2)=0\) (und \(n^2(x)\geq c\) für ein \(c>0\)), dann ist die Menge der Transmissionseigenwerte diskret (d.h. höchstens abzählbar). (Vgl. Cakoni \& Colton 2006, p. 115)
+	\end{enumerate}
+\end{counter bem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

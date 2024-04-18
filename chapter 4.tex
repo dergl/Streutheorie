@@ -1,0 +1,401 @@
+
+\subsection{Existenz von Lösungen des direkten Problems}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\arabic{subsection}}
+\setcounter{subsection}{4}
+\setcounter{section}{4}
+\setcounter{mydef}{0}
+\setcounter{equation}{0}
+
+\begin{definition}[Volumenpotential]\label{def: volumenpotential}
+	Sei \(\Omega\subset\R^3\) offen und beschränkt und \(\varphi\in L^2(\Omega)\). Dann definieren wir 
+	\begin{equation}
+		\label{volumenpotential def}
+		\big(V\varphi\big)(x)\coloneqq\int_\Omega\Phi(x-y)\varphi(y)\dy,\;\qquad x\in\R^3.
+	\end{equation}
+\end{definition}
+\begin{lem}
+	Die Fundamentallösung \(\Phi(x)=\frac{1}{4\pi|x|}\e^{\ii k|x|}\), \(x\neq0\), erfüllt
+	\begin{equation}
+		\label{abfall fundamentallösung}
+		\begin{aligned}
+			|\Phi(x)|&\leq C|x|^{-1},\;\;\qquad\te{ für }|x|\rarr0,\\
+			\Big|\frac{\p}{\p x_j}\Phi(x)\Big|&\leq C|x|^{-2},\;\;\qquad\te{ für }|x|\rarr0,\\
+			\Big|\frac{\p^2}{\p x_j\p x_\ell}\Phi(x)\Big|&\leq C|x|^{-3},\;\;\qquad\te{ für }|x|\rarr0.
+		\end{aligned}
+	\end{equation}
+\end{lem}
+\begin{proof}
+	Es gilt
+	\begin{equation*}
+		|\Phi(x)|=\frac{1}{4\pi}\frac{1}{|x|},
+	\end{equation*}
+	also für alle \(|x|\leq k^{-1}\)
+	\begin{equation*}
+		\Big|\frac{\p\Phi}{\p x_j}(x)\Big|=\Big|\frac{1}{4\pi}\frac{\e^{\ii k|x|}}{|x|}\Big(\ii k-\frac{1}{|x|}\Big)\frac{x_j}{|x|}\Big|\leq\frac{1}{4\pi}\frac{1}{|x|}\Big(\frac{1}{|x|}+\frac{1}{|x|}\Big)1\leq\frac{1}{4\pi}\frac{2}{|x|^2}.
+	\end{equation*}
+	Außerdem
+	\begin{align*}
+		\Big|\frac{\p^2\Phi}{\p x_j\p x_\ell}(x)\Big|
+		&=\Big|\frac{1}{4\pi}\Big(\ii k-\frac{1}{|x|}\Big)^2\frac{\e^{\ii k|x|}}{|x|}\frac{x_jx_\ell}{|x|^2}
+		+\frac{1}{4\pi}\frac{\e^{\ii k|x|}}{|x|}\frac{1}{|x|^2}\frac{x_jx_\ell}{|x|^2}
+		+\frac{1}{4\pi}\frac{\e^{\ii k|x|}}{|x|}\Big(\ii k-\frac{1}{|x|}\Big)\Big(\frac{\delta_{j\ell}}{|x|}-\frac{x_jx_\ell}{|x|^3}\Big)\Big|\\
+		&=\Big|\frac{1}{4\pi}\frac{\e^{\ii k|x|}}{|x|}\Big[\Big(-k^2-\frac{2\ii k}{|x|}+\frac{1}{|x|^2}+\frac{1}{|x|^2}-\frac{\ii k}{|x|}+\frac{1}{|x|^2}\Big)\frac{x_jx_\ell}{|x|^2}
+		-\frac{\delta_{j\ell}}{|x|}\Big(ik-\frac{1}{|x|}\Big)\Big]\Big|\\
+		&=\Big|\frac{1}{4\pi}\underbrace{\frac{\e^{\ii k|x|}}{|x|}}_{\OO(|x|^{-1})}
+		\Big[\underbrace{-k^2-\frac{3}{|x|}\Big(\ii k-\frac{1}{|x|}\Big)}_{\OO(|x|^{-2})}
+		\underbrace{\frac{x_jx_\ell}{|x|^2}}_{\OO(1)}
+		-\underbrace{\frac{\delta_{j\ell}}{|x|}\Big(\ii k-\frac{1}{|x|}\Big)}_{\OO(|x|^{-2})}
+		\Big]\Big|\\
+		&\leq C|x|^{-3},
+	\end{align*}
+	falls \(|x|>0\) klein genug.
+\end{proof}
+\begin{lem}\label{lem: volumenpotential + fundamentallösung}
+	Sei \(\Omega\subset\R^3\) offen und beschränkt und \(\varphi\in L^\infty(\Omega)\). Dann ist \(w\coloneqq V\varphi\in\CC^1(\R^3)\) und für alle \(x\in\R^3\) gilt
+	\begin{equation}
+		\label{lemma volumenpotential und fundamentallösung}
+		\frac{\p w}{\p x_j}(x)=\int_\Omega\varphi(y)\frac{\p\Phi}{\p x_j}(x-y)\dy,\;\qquad j=1,2,3.
+	\end{equation}
+\end{lem}
+\begin{proof}
+	Aus der Abschätzung \eqref{abfall fundamentallösung} folgt, dass 
+	\begin{equation*}
+		v(x)\coloneqq\int_\Omega\varphi(y)\frac{\p\Phi}{\p x_j}(x-y)\dy,\qquad x\in\R^3,
+	\end{equation*}
+	wohldefiniert ist. Um zu zeigen, dass \(v=\frac{\p w}{\p x_j}\), betrachten wir eine Abschneidefunktion \(\eta\in\CC^\infty(\R)\), sodass
+	\begin{equation*}
+		0\leq\eta\leq1,\qquad0\leq\eta'\leq2,\qquad\eta=0\;\te{ für }|t|\leq1,\qquad\eta(t)=1\;\te{ für }|t|\geq2,
+	\end{equation*}
+	(vgl. Lemma \ref{lem: abschneidefunktionen}) und definieren für \(n\in\N\)
+	\begin{equation*}
+		w_n(x)\coloneqq\int_\Omega\Phi(x-y)\eta_n(|x-y|)\varphi(y)\dy,
+	\end{equation*}
+	wobei \(\eta_n(t)\coloneqq\eta(tn)\). Dann ist \(w_n\in\CC^\infty(\R^3)\) und
+	\begin{equation*}
+		v(x)-\frac{\p w_n}{\p x_j}(x)=\int_{|x-y|\leq\frac{2}{n}}\frac{\p}{\p x_j}\big(\big(1-\eta_n(|\cdot|)\big)\Phi\big)(x-y)\varphi(y)\dy,
+	\end{equation*}
+	analog zeigt man
+	\begin{align*}
+		|w(x)-w_n(x)|&=\Big|\int_\Omega\Phi(x-y)\big(1-\eta_n(|x-y|)\big)\varphi(y)\dy\Big|\\
+		&\leq\|\varphi\|_{L^\infty(\Omega)}\int_{|x-y|\leq\frac{2}{n}}|\Phi(x-y)|\\
+		&=\|\varphi\|_{L^\infty(\Omega)}\int_0^\frac{2}{n}\frac{1}{4\pi}\frac{1}{r}4\pi r^2\dr=\|\varphi\|_{L^\infty(\Omega)}\frac{2}{n^2}\overset{n\to\infty}{\lorarr}0.
+	\end{align*}
+	Also
+	\begin{align*}
+		\Big|v(x)-\frac{\p w_n}{\p x_j}(x)\Big|
+		&\leq\|\varphi\|_{L^\infty(\Omega)}\int_{|x-y|\leq\frac{2}{n}}\Big|\frac{\p\Phi}{\p x_j}(x-y)\Big|+2n|\Phi(x-y)|\dy\\
+		&\leq\|\varphi\|_{L^\infty(\Omega)} C\int_0^{\frac{2}{n}}(r^{-2}+2nr^{-1})4\pi\rho^2\dr\\
+		&\leq\|\varphi\|_{L^\infty(\Omega)} C4\pi\Big(\frac{2}{n}+\frac{4}{n}\Big)\overset{n\rarr\infty}{\lorarr}0.
+	\end{align*}
+	Das heißt, \(w_n\) und \(\frac{\p w_n}{\p x_j}\) konvergieren gegen \(w\) und \(v\) gleichmäßig auf kompakten Teilmengen von \(\R^3\) für \(n\rarr\infty\), also ist \(w\in\CC^1(\R^3)\) und \(\frac{\p w}{\p x_j}=v\).
+\end{proof}
+\begin{lem}\label{lem: w ist lsg von helmholtz mit rhs -S}
+	Sei \(\Omega\subset\R^3\) beschränkt und offen und \(\varphi\in\CC^1(\Omega)\) beschränkt (und damit integrierbar). Dann ist \(w\coloneqq V\varphi\in\CC^2(\R^3\setminus\p\Omega)\),
+	\begin{equation*}
+		\Delta w+k^2w=-\varphi,\quad\te{ in }\Omega,\te{ und }\qquad\Delta w+k^2w=0,\quad\te{ in }\R^3\setminus\overline{\Omega},
+	\end{equation*}
+	und für \(x\in\Omega\) gilt
+	\begin{equation}
+		\label{w = VS zweimal part. abgeleitet}
+		\frac{\p^2w}{\p x_j\p x_\ell}(x)=\int_{\Omega_0}\big(\varphi(y)-\varphi(x)\big)\frac{\p^2\Phi}{\p x_j\p x_\ell}(x-y)\dy-\varphi(x)\int_{\p\Omega_0}\normal_\ell(y)\frac{\p\Phi}{\p x_j}(x-y)\ds(y),
+	\end{equation}
+	\(j,\ell=1,2,3\), wobei \(\Omega_0\) ein offenes, beschränktes \(\CC^1\)-Gebiet mit \(\Omega\subset\Omega_0\) ist und \(\varphi\) durch \(0\) auf \(\Omega_0\) fortgesetzt wird.
+\end{lem}
+\begin{proof}
+	Die Abschätzung \eqref{abfall fundamentallösung} für \(\frac{\p^2\Phi}{\p x_j\p x_\ell}\) und Mittelwertsatz (\(\varphi(y)-\varphi(x)=\varphi'(\xi)\cdot(y-x)\)) zusammen mit der stetigen Differentierbarkeit von \(\varphi\) zeigen, dass
+	\begin{equation*}
+		u(x)\coloneqq\int_{\Omega_0}\big(\varphi(y)-\varphi(x)\big)\frac{\p^2\Phi}{\p x_j\p x_\ell}(x-y)\dy-\varphi(x)\int_{\p\Omega_0}\normal_\ell(y)\frac{\p\Phi}{\p x_j}(x-y)\ds(y),
+	\end{equation*}
+	für \(x\in\Omega\) wohldefiniert ist. Sei \(v=\frac{\p w}{\p x_j}\) und für \(n\in\N\) 
+	\begin{equation*}
+		v_n(x)\coloneqq\int_\Omega\eta_n(|x-y|)\varphi(y)\frac{\p\Phi}{\p x_j}(x-y)\dy,
+	\end{equation*}
+	wobei \(\eta_n\) die Abschneidefunktion aus dem Beweis von Lemma \ref{lem: volumenpotential + fundamentallösung} ist. Dann ist \(v_n\in\CC^\infty(\Omega)\) und
+	\begin{align*}
+		\frac{\p v_n}{\p x_\ell}(x)
+		&=\int_\Omega\varphi(y)\frac{\p}{\p x_\ell}\Big(\eta_n(|\cdot|)\frac{\p\Phi}{\p x_j}\Big)(x-y)\dy\\
+		&=\int_{\Omega_0}\big(\varphi(y)-\varphi(x)\big)\frac{\p}{\p x_\ell}\Big(\eta_n(|\cdot|)\frac{\p\Phi}{\p x_j}\Big)(x-y)\dy
+		+\varphi(x)\int_{\Omega_0}\frac{\p}{\p x_\ell}\Big(\eta_n(|\cdot|)\frac{\p\Phi}{\p x_j}\Big)(x-y)\dy\\
+		\scriptsize\eqref{greenscher satz 2}&=\int_{\Omega_0}\big(\varphi(y)-\varphi(x)\big)\frac{\p}{\p x_\ell}\Big(\eta_n(|\cdot|)\frac{\p\Phi}{\p x_j}\Big)(x-y)\dy
+		-\varphi(x)\int_{\p\Omega_0}\normal_\ell(y)\frac{\p\Phi}{\p x_j}(x-y)\dy
+	\end{align*}
+	für \(n\) hinreichend groß (und \(x\in\Omega\)). In der letzten Gleichheit haben wir 
+	\begin{align*}
+		\int_D\frac{\p\widetilde{u}}{\p x_\ell}\dy&
+		=\int_D\widetilde{u}\underbrace{\Delta x_\ell}_{=0}+\nabla\widetilde{u}\cdot\underbrace{\nabla x_\ell}_{=e_\ell}\dy\\
+		&=\int_D\divv(\widetilde{u}\nabla x_\ell)\dy\\
+		&=\int_{\p D}\widetilde{u}\underbrace{ \nabla x_\ell\cdot\normal }_{=\normal_\ell}\ds
+		=\int_{\p D}\widetilde{u}\normal_\ell\ds,
+	\end{align*}
+	verwendet mit \(\widetilde{u}=\eta_n(|x-\cdot|)\frac{\p\Phi}{\p x_j}(x-\cdot)\), \(D=\Omega_0\) und \(\eta_n(|x-y|)=1\) auf \(\p\Omega_0\) für großes \(n\). Damit folgt
+	\begin{align*}
+		\Big|u(x)-\frac{\p v_n}{\p x_\ell}(x)\Big|
+		&=\Big|\int_{|x-y|\leq\frac{2}{n}}\big(\varphi(y)-\varphi(x)\big)\frac{\p}{\p x_\ell}\Big((1-\eta_n)\frac{\p\Phi}{\p x_j}\Big)(x-y)\dy\Big|\\
+		{\te{\scriptsize\(\varphi(y)-\varphi(x)=\varphi'(\xi)\cdot(y-x)\)}}&\leq\|\varphi\|_{\CC^1\big(B_\frac{2}{n}(x)\big)}\int_{|x-y|\leq\frac{2}{n}}\Big(\Big|\frac{\p^2\Phi}{\p x_j\p x_\ell}(x-y)\Big|+2n\Big|\frac{\p\Phi}{\p x_j}(x-y)\Big|\Big)|x-y|\dy\\
+		\scriptsize\eqref{abfall fundamentallösung}&\leq\|\varphi\|_{\CC^1\big(B_\frac{2}{n}(x)\big)}C\int_0^\frac{2}{n}(r^{-3}+2nr^{-2})4\pi r^3\dr\\
+		&\leq C\|\varphi\|_{\CC^1\big(B_\frac{2}{n}(x)\big)}\Big(\frac{2}{n}+\frac{4}{n}\Big)\overset{n\rarr\infty}{\lorarr}0.
+	\end{align*}
+	Also konvergiert \(\frac{\p v_n}{\p x_\ell}\) gleichmäßig gegen \(u\) auf kompakten Teilmengen von \(\Omega\) für \(n\rarr\infty\). Da \(v_n\) gleichmäßig gegen \(v=\frac{\p w}{\p x_j}\) auf kompakten Teilmengen von \(\Omega\) konvergiert folgt, dass \(w\in\CC^2(\Omega)\) und \(u=\frac{\p^2w}{\p x_j\p x_\ell}\).
+	
+	Setze nun \(\Omega_0=B_R(0)\) in \eqref{w = VS zweimal part. abgeleitet}, dann ist für hinreichend großes \(R\)
+	\begin{align*}
+		\Delta w(x)&=-k^2\int_{\Omega_0}\Phi(x-y)\big(\varphi(y)-\varphi(x)\big)\dy-\varphi(x)\int_{\p\Omega_0}\sum_{\ell=1}^3\frac{y_\ell}{|y|}\frac{\p\Phi}{\p x_\ell}(x-y)\ds(y)\\
+		&=-k^2w(x)+k^2\varphi(x)\int_{\Omega_0}\Phi(x-y)\dy+\varphi(x)\int_{\p\Omega_0}\frac{y}{|y|}\cdot\nabla_y\Phi(x-y)\ds(y)\\
+		&=-k^2w(x)+k^2\varphi(x)\int_{\Omega_0}\Phi(x-y)\dy+\varphi(x)\int_{\p\Omega_0}\frac{\p\Phi(x-y)}{\p\normal(y)}\ds(y),
+	\end{align*}
+	da \(\nabla_x\Phi(x-y)=-\nabla_y\Phi(x-y)\). Wie im Beweis von Satz \ref{satz: darstellungssatz im inneren} folgt, dass 
+	\begin{equation*}
+		\int_{\p\Omega_0}\frac{\p\Phi(x-y)}{\p\normal(y)}\ds(y)=\int_{\Omega_0\setminus B_\varepsilon(x)}\Delta\Phi(x-y)\dy+\int_{\p B_\varepsilon(x)}\frac{\p\Phi(x-y)}{\p\normal(y)}\ds(y)\overset{\varepsilon\rarr0}{\lorarr}-k^2\int_{\Omega_0}\Phi(x-y)\dy-1,
+	\end{equation*}
+	also \(\Delta w(x)+k^2w(x)=-\varphi(x)\). Die entsprechenden Aussagen in \(\R^3\setminus\overline{\Omega}\) folgen sofort aus den entsprechenden Eigenschaften von \(\Phi\). (Falls \(x\notin\Omega\), so ist \(w\) glatt, also sind Integral und \(\Delta\) vertauschbar).
+\end{proof}
+\begin{satz}\label{satz: w ist schwache lösung von helmholtz mit rhs -S}
+	Sei \(\Omega\subset\R^3\) beschränkt und offen und \(\varphi\in L^2(\Omega)\). Dann ist \(w\coloneqq V\varphi\in\Hloc^1(\R^3)\), \(w\) erfüllt \SABdp (glm. bzgl. \(\widehat{x}\in\SS^2\)) und \(w\) ist eine schwache Lösung von \(\Delta w+k^2w=-\varphi\) in \(\R^3\), d.h.
+	\begin{equation}
+		\label{w ist schwache lösung 1}
+		\int_{\R^3}\nabla w\cdot\nabla\psi-k^2w\psi\dx=\int_\Omega\varphi\psi\dx,\;\qquad\te{ für alle }\psi\in\Hc^1(\R^3).
+	\end{equation}
+	Außerdem gibt es für alle \(R>0\) mit \(\overline{\Omega}\subset B_R(0)\) ein \(C>0\) (das nur von \(R,k\) und \(\Omega\) abhängt), sodass
+	\begin{equation}
+		\label{w ist schwache lösung 2}
+		\|w\|_{\H^1(B_R(0))}\leq C\|\varphi\|_{L^2(\Omega)}.
+	\end{equation}
+\end{satz}
+\begin{proof}\
+	\begin{enumerate}[label=(\roman*)]
+		\item Da \(\Omega\) beschränkt ist und \(w\) außerhalb von \(\Omega\) glatt ist, überträgt sich die SAB von der Fundamentallösung.
+		\item Die Aussage von Lemma \ref{lem: w ist lsg von helmholtz mit rhs -S} bleibt auch für komplexe Wellenzahlen \(k\in\C\) richtig, und die Greensche Formel \eqref{greenscher satz 2} zeigt, dass \eqref{w ist schwache lösung 1} für \(\varphi\in\CC^1(\overline{\Omega})\) erfüllt ist.
+		\item Betrachte \(k=\ii\) und \(\varphi\in\CC^1(\overline{\Omega})\). Wegen
+		\begin{equation*}
+			\Phi_{\ii}(x)\coloneqq\frac{1}{4\pi|x|}\e^{-|x|},
+		\end{equation*}
+		fällt das Volumenpotential 
+		\begin{equation*}
+			v(x)\coloneqq\int_\Omega\varphi(y)\Phi_\ii(x-y)\dy,
+		\end{equation*}
+		für \(|x|\rarr\infty\) exponentiell ab. Sei \(\tau_n\in\Cc^\infty(\R^3)\) eine Abschneidefunktion mit 
+		\begin{equation*}
+			0\leq\tau_n\leq1,\qquad0\leq\tau_n'\leq2,\qquad\tau_n(t)=1\;\quad\te{ für }|t|\leq n,\te{ und}\quad\tau_n(t)=0\,\quad\te{ für }|t|>2n,
+		\end{equation*}
+		dann ist \(\psi\coloneqq\tau_n\overline{v}\in\Hc^1(\R^3)\) und für \(n\rarr\infty\) folgt aus \eqref{w ist schwache lösung 1}, dass
+		\begin{align*}
+			\|v\|_{\H^1(\R^3)}^2&=\int_{\R^3}|\nabla v|^2+|v|^2\dx
+			=\int_{\R^3}\overline{v}\varphi\dx\\
+			&\leq\|v\|_{L^2(\Omega)}\|\varphi\|_{L^2(\Omega)}\leq\|v\|_{\H^1(\R^3)}\|\varphi\|_{L^2(\Omega)}.
+		\end{align*}
+		Wir folgern
+		\begin{equation*}
+			\|v\|_{\H^1(B_R(0))}\leq\|v\|_{\H^1(\R^3)}\leq\|\varphi\|_{L^2(\Omega)},
+		\end{equation*}
+		daher ist
+		\begin{equation*}
+			\func{V_\ii}{\big(\CC^1(\overline{\Omega}),\|\cdot\|_{L^2(\Omega)}\big)}{\H^1\big(B_R(0)\big)},\qquad\varphi\mapsto V_\ii\varphi=v,
+		\end{equation*}
+		stetig, und da \(\CC^1(\overline{\Omega})\subset L^2(\Omega)\) dicht ist (Korollar \ref{kor: Ccinfty dicht in Lp}), kann \(V_\ii\) zu einem stetigen linearen Operator \(\func{\widetilde{V}_\ii}{L^2(\Omega)}{\H^1\big(B_R(0)\big)}\) fortgesetzt werden.
+		\item Da
+		\begin{equation*}
+			\Phi_k(x)-\Phi_\ii(x)=\frac{\e^{\ii k|x|}}{4\pi|x|}-\frac{\e^{-|x|}}{4\pi |x|}=\frac{1}{4\pi|x|}\big(1+\OO(|x|)-(1-\OO(|x|))\big)=\OO(1),\qquad|x|\to0,
+		\end{equation*}
+		und
+		\begin{align*}
+			\nabla\Phi_k(x)-\nabla\Phi_\ii(x)
+			&=\frac{x}{|x|}\frac{1}{4\pi}\Big(\e^{\ii k|x|}\Big(\ii k-\frac{1}{|x|}\Big)-\e^{-|x|}\Big(-1-\frac{1}{|x|}\Big)\Big)\\
+			\te{\scriptsize Taylor um \(0\)}&=\frac{x}{|x|}\frac{1}{4\pi}\Big(\ii k-\frac{1}{|x|}+1+\frac{1}{|x|}+\OO(1)\Big)\\
+			&=\OO(1),
+		\end{align*}
+		für \(|x|\rarr0\), folgt, dass
+		\begin{equation*}
+			V_{\mathrm{diff}}\colon\quad\varphi\mapsto\int_\Omega\big(\Phi_k(\cdot-y)-\Phi_\ii(\cdot-y)\big)\varphi(y)\dy,
+		\end{equation*}
+		ein beschränkter, linearer Operator von \(\big(\CC^1(\overline{\Omega}),\|\cdot\|_{L^2(\Omega)}\big)\) nach \(\H^1\big(B_R(0)\big)\) ist. Damit hat \(V_{\mathrm{diff}}\) und auch \(V=V_{\mathrm{diff}}+V_{\ii}\) eine stetig lineare Fortsetzung von \(L^2(\Omega)\) nach \(\H^1\big(B_R(0)\big)\), insbesondere folgt \eqref{w ist schwache lösung 2}. Da \(\CC^1(\overline{\Omega})\subset L^2(\Omega)\) dicht ist, gilt \eqref{w ist schwache lösung 1} für alle \(\varphi\in L^2(\Omega)\).
+	\end{enumerate}
+\end{proof}
+\noindent Wir haben nun also die Existenz von Lösungen der Gleichung
+\begin{equation*}
+	\Delta u+k^2u=f,\;\qquad\te{ für alle }f\in L^2(\R^3)\te{ mit kompaktem Träger},
+\end{equation*}
+die die \SABdp erfüllen,gezeigt. Als nächstes zeigen wir die Existenz von Lösungen zu \eqref{helmholtzgleichung dp}-\eqref{SAB direktes problem}. Dazu reduzieren wir das Problem zu einer Integralgleichung 2. Art.
+\begin{satz}\label{satz: lippmann schwinger}\
+	\begin{enumerate}[label=(\alph*)]
+		\item Sei \(u\in\Hloc^1(\R^3)\) eine schwache Lösung des Streuproblems \eqref{helmholtzgleichung dp}-\eqref{SAB direktes problem}. Dann ist \(u\restrict{B_R(0)}\in L^2\big(B_R(0)\big)\) für alle \(R>0\) und \(u\restrict{B_R(0)}\) löst die \rec{Lippmann-Schwinger-Gleichung}
+		\begin{equation}
+			\label{lippmann schwinger gleichung}
+			u(x)=u^i(x)-k^2\int_{B_R(0)}\big(1-n^2(y)\big)\Phi(x-y)u(y)\dy-\int_{B_R(0)}\Phi(x-y)f(y)\dy,
+		\end{equation}
+		für \(x\in B_R(0)\).
+		\item Sei umgekehrt \(u\in L^2\big(B_R(0)\big)\) eine Lösung der Integralgleichung \eqref{lippmann schwinger gleichung}, dann kann \(u\) durch die rechte Seite von \eqref{lippmann schwinger gleichung} zu einer schwachen Lösung \(u\in\Hloc^1(\R^3)\) des Streuproblems \eqref{helmholtzgleichung dp}-\eqref{SAB direktes problem} fortgesetzt werden.
+	\end{enumerate}
+\end{satz}
+\begin{proof}\
+	\begin{enumerate}[label=(\alph*)]
+		\item Sei \(u\in\Hloc^1(\R^3)\) eine Lösung von \eqref{helmholtzgleichung dp}-\eqref{SAB direktes problem} und
+		\begin{equation*}
+			v\coloneqq V\big(k^2(1-n^2)u\restrict{B_R(0)}+f\big).
+		\end{equation*}
+		Nach Satz \ref{satz: w ist schwache lösung von helmholtz mit rhs -S} ist \(v\in\Hloc^1(\R^3)\) eine schwache Lösung von
+		\begin{equation*}
+			\Delta v+k^2v=-k^2(1-n^2)u\restrict{B_R(0)}-f,
+		\end{equation*}
+		die die \SABdp erfüllt. Aus Platzgründen werden im Folgenden starke Formulierungen geschrieben, es sind aber immer schwache gemeint. Aus \(\Delta u+k^2u=k^2(1-n^2)u+f\) und \(\Delta u^i+k^2u^i=0\) folgt, dass
+		\begin{equation*}
+			\Delta(v+u^s)+k^2(v+u^s)=0,\;\qquad\te{ in }\R^3.
+		\end{equation*}
+		Der Regularitätssatz Theorem \ref{thm: regularität} zeigt, dass \(v+u^s\) eine klassische Lösung der Helmholtzgleichung in \(\R^3\) ist, und da \(v+u^s\) die \SABdp erfüllt, ist \(v+u^s=0\) in \(\R^3\) (vgl. Kapitel 2). Also ist
+		\begin{equation*}
+			u=u^i+u^s=u^i-v,
+		\end{equation*}
+		d.h. \(u\restrict{B_R(0)}\) erfüllt die Lippmann-Schwinger-Gleichung \eqref{lippmann schwinger gleichung}.
+		\item Sei \(u\in L^2\big(B_R(0)\big)\) eine Lösung von \eqref{lippmann schwinger gleichung}. Setze \(v\coloneqq V\big(k^2(1-n^2)u+f\big)\). Dann ist \(u=u^i-v\) in \(B_R(0)\) und \(u\) kann durch die rechte Seite von \(\eqref{lippmann schwinger gleichung}\) auf ganz \(\R^3\) fortgesetzt werden. Satz \ref{satz: w ist schwache lösung von helmholtz mit rhs -S} zeigt \(v\in\Hloc^1(\R^3)\) und \(\Delta v+k^2v=-k^2(1-n^2)u\restrict{B_R(0)}-f\) (schwach) und \(v\) erfüllt die SAB. Daher ist auch \(u\in\Hloc^1(\R^3)\),
+		\begin{equation*}
+			\Delta u+k^2u=-(\Delta v+k^2v)=k^2(1-n^2)u+f,
+		\end{equation*}
+		d.h. \(\Delta u+k^2n^2u=f\) (schwach), also \(u^s=-v\).
+	\end{enumerate}
+\end{proof}
+\begin{lem}\label{lem: kompakter integraloperator}
+	Sei \(\Omega\subset\R^3\) offen und \(k\in L^2(\Omega\times\Omega)\). Dann ist der Integraloperator \(\func{T}{L^2(\Omega)}{L^2(\Omega)}\)
+	\begin{equation*}
+		\big(T\varphi\big)(x)\coloneqq\int_\Omega k(x,y)\varphi(y)\dy,
+	\end{equation*}
+	ein kompakter Operator.
+\end{lem}
+\begin{proof}
+	Funktionalanalysis.
+\end{proof}
+\begin{satz}\label{satz: existenz von lösungen des DP bei eindeutigkeit}
+	Seien \(n^2,k,f\) und \(u^i\) wie am Anfang von Abschnitt II eingeführt. Dann existiert eine Lösung \(u\in\Hloc^1(\R^3)\) zum direkten Streuproblem \eqref{helmholtzgleichung dp}-\eqref{SAB direktes problem} \(\big(\)bzw. \(u\restrict{B_R(0)}\in L^2(B_R(0))\) zur Lippmann-Schwinger-Gleichung \eqref{lippmann schwinger gleichung}\(\big)\), falls Lösungen zu \eqref{helmholtzgleichung dp}-\eqref{SAB direktes problem} \(\big(\)bzw. zu \eqref{lippmann schwinger gleichung}\(\big)\) eindeutig bestimmt sind. Die Lösung hängt stetig von \(u^i\) und \(f\) ab, d.h. es gibt eine Konstante \(C>0\), sodass
+	\begin{equation*}
+		\|u\|_{\H^1(B_R(0))}\leq C\big(\|u^i\|_{L^2(B_R(0))}+\|f\|_{L^2\big(B_R(0)\big)}\big),
+	\end{equation*}
+	wobei \(C\) nur von \(k,n^2\) und \(R\) abhängt.
+\end{satz}
+\begin{proof}
+	Wir wenden die Fredholmsche Alternative auf die Integralgleichung \(u=u^i-Tu-Vf\) an, wobei
+	\begin{align*}
+		\func{V}{L^2\big(B_R(0)\big)}{L^2\big(B_R(0)\big)},\qquad\big(Vf\big)(x)&\coloneqq\int_{B_R(0)}\Phi(x-y)f(y)\dy,\\
+		\func{T}{L^2\big(B_R(0)\big)}{L^2\big(B_R(0)\big)},\qquad\big(Tu\big)(x)&\coloneqq k^2\int_{B_R(0)}\big(1-n^2(y)\big)\Phi(x-y)u(y)\dy.
+	\end{align*}
+	Nach Lemma \ref{lem: kompakter integraloperator} sind diese Operatoren kompakt. Daher ist (nach der Fredholmschen Alternative) \(I+T\) stetig invertierbar, falls \(I+T\) injektiv ist. Daraus folgt die Behauptung, da \eqref{lippmann schwinger gleichung} in der Form
+	\begin{align*}
+		&u=u^i-Tu-Vf,&\te{ auf }B_R(0)\\
+		\Lolrarr\,&(I+T)u=u^i-Vf,&\te{ auf }B_R(0),
+	\end{align*}
+	geschrieben werden kann.
+\end{proof}
+Um Existenz und Eindeutigkeit von Lösungen des direkten Problems \eqref{helmholtzgleichung dp}-\eqref{SAB direktes problem} zu zeigen, müssen wir also noch Eindeutigkeit zeigen. Satz \ref{satz: existenz von lösungen des DP bei eindeutigkeit} liefert dann aber auch stetige Abhängigkeit der Lösung von \(f\) und \(u^i\). 
+
+Bevor wir zur Eindeutigkeit kommen, beschreiben wir noch das Fernfeld zur Lösung (vgl. Satz \& Definition \ref{satz+def: fernfeld})
+\begin{satz}\label{satz: wie sieht schwache lsg des direkten streuproblems aus? und fernfeld?}
+	Sei \(u\in\Hloc^1(\R^3)\) eine schwache Lösung des Streuproblems \eqref{helmholtzgleichung dp}-\eqref{SAB direktes problem}. Dann gilt
+	\begin{equation}
+		\label{einführung (ähnlich SAB) fernfeld zur eindeutigkeit der lsg vom DP}
+		u(x)=u^i(x)+\frac{\e^{\ii k|x|}}{|x|}u^\infty(\widehat{x})+\OO\Big(\frac{1}{|x|^2}\Big),\qquad\te{ für }|x|\rarr\infty,
+	\end{equation}
+	gleichmäßig für \(\widehat{x}=\frac{x}{|x|}\in\SS^2\), wobei
+	\begin{equation}
+		\label{fernfeld zur eindeutigkeit der lsg vom DP}
+		u^\infty(\widehat{x}) = -\frac{k^2}{4\pi}\int_{\R^3}\big(1-n^2(y)\big)u(y)\e^{-\ii k\widehat{x}\cdot y}\dy-\frac{1}{4\pi}\int_{\R^3}f(y)\e^{-\ii k\widehat{x}\cdot y}\dy.
+	\end{equation}
+\end{satz}
+\begin{proof}
+	Die Formeln \eqref{einführung (ähnlich SAB) fernfeld zur eindeutigkeit der lsg vom DP} und \eqref{fernfeld zur eindeutigkeit der lsg vom DP} folgen unmittelbar aus \eqref{lippmann schwinger gleichung} und dem asymptotischen Verhalten der Fundamentallösung aus \eqref{lemma zur SAB in kapitel 2}.
+\end{proof}
+
+\subsubsection*{Existenz und Eindeutigkeit für niedrige Frequenzen und die Bornsche Näherung}
+Für \(f\in L^\infty(\R^3)\) (mit kompaktem Träger \(\support(f)\subset B_R(0)\)) kann man die Lippmann-Schwinger-Gleichung \(u+Tu=u^i-Vf\) auch als Integralgleichung auf \(L^\infty\big(B_R(0)\big)\) oder sogar auf \(\CC\big(\overline{B_R(0)}\big)\) betrachten, da nach Lemma \ref{lem: volumenpotential + fundamentallösung} das Volumenpotential \(L^\infty\)-Funktionen auf stetige Funktionen abbildet. Im Folgenden betrachten wir \(T\) als Operator auf \(\CC\big(\overline{B_R(0)}\big)\),
+\begin{align*}
+	|(Tu)(x)|&=\Big|k^2\int_{B_R(0)}\big(1-n^2(y)\big)\Phi(x-y)u(y)\dy\Big|\\
+	&\leq k^2\|1-n^2\|_{L^\infty(B_R(0))}\|u\|_{L^\infty(B_R(0))}\int_{B_R(0)}|\Phi(x-y)|\dy\\
+	&\leq k^2\|1-n^2\|_{L^\infty(B_R(0))}\|u\|_{L^\infty(B_R(0))}\max_{x\in B_R(0)}\int_{B_R(0)}\frac{1}{4\pi|x-y|}\dy\\
+	&=k^2\|1-n^2\|_{L^\infty(B_R(0))}\|u\|_{L^\infty(B_R(0))}\int_{B_R(0)}\frac{1}{4\pi}\frac{1}{|y|}\dy\\
+	&=k^2\|1-n^2\|_{L^\infty(B_R(0))}\|u\|_{L^\infty(B_R(0))}\int_0^R\frac{1}{4\pi}\frac{1}{r}4\pi r^2\dr\\
+	&=\frac{(kR)^2}{2}\|1-n^2\|_{L^\infty(B_R(0))}\|u\|_{L^\infty(B_R(0))}\\
+	&=\frac{(kR)^2}{2}\|1-n^2\|_{L^\infty(B_R(0))}\|u\|_{\CC(\overline{B_R(0)})}\\
+\end{align*}
+Für die Operatornorm gilt damit
+\begin{equation*}
+	\|T\|_{\CC(\overline{B_R(0)})\leftarrow\CC(\overline{B_R(0)})}=\|T\|_{L^\infty(B_R(0))}=\sup_{u\neq0}\frac{\|Tu\|_\infty}{\|u\|_\infty}\leq\frac{(kR)^2}{2}\|1-n^2\|_\infty,
+\end{equation*}
+daher ist \(\|T\|_{L^\infty(B_R(0))}<1\), falls \((kR)^2\|1-n^2\|_{L^\infty(B_R(0))}<2\). In diesem Fall liefert der Banachsche Fixpunktsatz Existenz und Eindeutigkeit einer Lösung der Integralgleichung \eqref{lippmann schwinger gleichung} (und damit auch des Streuproblems \eqref{helmholtzgleichung dp}-\eqref{SAB direktes problem}), da
+\begin{equation*}
+	u\restrict{B_R(0)}=u^i\restrict{B_R(0)}-Tu\restrict{B_R(0)}-Vf,\qquad\te{ in }B_R(0).
+\end{equation*}
+Die Lösung kann mit einer Neumannschen Reihe dargestellt werden:
+\begin{equation*}
+	\tag{Born-Reihe}
+	u\restrict{B_R(0)}=\sum_{m=0}^\infty(-1)^{m}T^m\big(u^i\restrict{B_R(0)}-Vf\big).
+\end{equation*}
+Betrachtet man nur die ersten beiden Terme in dieser Reihe, erhält man die \rec{Bornsche Näherung}
+\begin{equation*}
+	u_b(x)=u^i(x)-\big(Vf\big)(x)-k^2\int_{B_R(0)}\big(1-n^2(y)\big)\Phi(x-y)(u^i-Vf)(y)\dy,\qquad\te{ für alle }x\in\R^3.
+\end{equation*}
+Wegen (aus Notationsgründen schreibe \(\|T\|\coloneqq \|T\|_{\CC(\overline{B_R(0)})\leftarrow\CC(\overline{B_R(0)})}\))
+\begin{equation}
+	\label{fehler bornsche näherung in supremumsnorm}
+	\begin{aligned}
+		\|u-u_b\|_{L^\infty(B_R(0))}
+		&\leq\sum_{m=2}^\infty\|T\|^m\|u^i-Vf\|_{L^\infty(B_R(0))}\\
+		&\leq\sum_{m=2}^\infty\|T\|^m(\|u^i\|_{L^\infty(B_R(0))}+\|Vf\|_{L^\infty(B_R(0))})\\
+		&\leq\sum_{m=2}^\infty\|T\|^m\Big(\|u^i\|_{L^\infty(B_R(0))}+\frac{R^2}{2}\|f\|_{L^\infty(B_R(0))}\Big)\\
+		&=\Big(\sum_{m=0}^\infty\|T\|^m\Big)\|T\|^2\Big(\|u^i\|_{L^\infty(B_R(0))}+\frac{R^2}{2}\|f\|_{L^\infty(B_R(0))}\Big)\\
+		&=\frac{1}{1-\|T\|}\|T\|^2\Big(\|u^i\|_{L^\infty(B_R(0))}+\frac{R^2}{2}\|f\|_{L^\infty(B_R(0))}\Big)\\
+		&\leq2\frac{(kR)^4}{4}\|1-n^2\|_{L^\infty(B_R(0))}^2\Big(\|u^i\|_{L^\infty(B_R(0))}+\frac{R^2}{2}\|f\|_{L^\infty(B_R(0))}\Big),
+	\end{aligned}
+\end{equation}
+falls \(\|T\|_{\CC(\overline{B_R(0)})\leftarrow\CC(\overline{B_R(0)})}\leq\frac{(kR)^2}{2}\|1-n^2\|_\infty<\frac{1}{2}\), ist die Bornsche Näherung eine gute Approximation, falls die rechte Seite von \eqref{fehler bornsche näherung in supremumsnorm} klein ist.
+\begin{bem}
+	\begin{align*}
+		\Delta u+k^2u&=f+k^2(1-n^2)u,\quad&\te{ in }\R^3,\\
+		\Delta u_b+k^2u_b&=f+k^2(1-n^2)(u^i-Vf),&\te{ in }\R^3,
+	\end{align*}
+	wobei \(w\coloneqq-Vf\) die Gleichung \(\Delta w+k^2w=f\) löst, d.h. die Bornapproximation vernachlässigt die Mehrfachstreuung an \((1-n^2)\) auf der rechten Seite.
+	
+	Für das Fernfeld der Bornschen Näherung ergibt sich
+	\begin{equation}
+		\label{fernfeld bornsche näherung}
+		u_b^\infty(\widehat{x})=-\frac{1}{4\pi}\int_{\R^3}\e^{-\ii k\widehat{x}\cdot y}f(y)\dy-\frac{k^2}{4\pi}\int_{\R^3}\big(1-n^2(y)\big)\big(u^i-Vf\big)(y)\e^{-\ii k\widehat{x}\cdot y}\dy.
+	\end{equation}
+	Speziell für \(f\equiv0\) und \(u^i(x)=\e^{\ii kx\cdot d}\), \(d\in\SS^2\), folgt
+	\begin{equation*}
+		u_b^\infty(\widehat{x};d)\coloneqq u_b^\infty(\widehat{x})=-\frac{k^2}{4\pi}\int_{\R^3}\big(1-n^2(y)\big)\e^{-\ii k(\widehat{x}-d)\cdot y}\dy,\qquad\widehat{x}\in\SS^2,
+	\end{equation*}
+	d.h. \(u_b^\infty(\widehat{x},d)\) ist ein Vielfaches der Fouriertransformation des Kontrasts \((1-n^2)\), ausgewertet in \(k(\widehat{x}-d)\), d.h. \(u_b^\infty\) entspricht der Fouriertransformation auf der Sphäre
+	\begin{equation*}
+		k(\SS^2-d)=\{z=k(\widehat{x}-d)\mid\widehat{x}\in\SS^2\}.
+	\end{equation*}
+	Es gilt das \rec{Reziprozitätsprinzip}
+	\begin{equation}
+%		\label{reziprozitätsprinzip}
+		u_b^\infty(-d;-\widehat{x})=u_b^\infty(\widehat{x};d).
+	\end{equation}
+\end{bem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

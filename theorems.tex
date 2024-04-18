@@ -1,0 +1,68 @@
+\newtheoremstyle{note}% style name
+{2ex}% above space
+{2ex}% below space
+{}% body font
+{}% indent amount
+{}%{\scshape}% head font
+{}% post head punctuation
+{\newline}% post head punctuation
+{}% head spec 
+
+\newtheoremstyle{tstyle}% name of the style to be used
+%{\topsep}% measure of space to leave above the theorem. E.g.: 3pt
+%{\topsep}% measure of space to leave below the theorem. E.g.: 3pt
+%{\itshape}% name of font to use in the body of the theorem
+%{0pt}% measure of space to indent
+%{\bfseries}% name of head font
+%{. ---}% punctuation between head and body
+%{ }% space after theorem head; " " = normal interword space
+%{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+{2ex}% measure of space to leave above the theorem. E.g.: 3pt
+{2ex}% measure of space to leave below the theorem. E.g.: 3pt
+{}% name of font to use in the body of the theorem
+{}% measure of space to indent
+{\bfseries}% name of head font
+{\newline}%
+{ }% punctuation between head and body
+{ }% space after theorem head; " " = normal interword space
+%{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+
+
+
+
+%\theoremstyle{definition} % stattdessen plain / remark
+%\theoremstyle{tstyle}
+
+\newtheorem{mydef}{Definition}[section]
+
+
+
+\newtheorem{satz}[mydef]{Satz}
+%\theoremstyle{marginbreak}
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{cor}[mydef]{Korollar}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{prop}[mydef]{Proposition}
+
+
+\newtheorem{definition}[mydef]{Definition}
+\newtheorem*{no counter definition}{Definition}
+\newtheorem*{no counter korollar}{Korollar}
+\newtheorem*{no counter bemerkung}{Bemerkung}
+\newtheorem{sa+de}[mydef]{Satz und Definition}
+\newtheorem{de+sa}[mydef]{Definition und Satz}
+\newtheorem{counter bem}[mydef]{Bemerkung}
+\theoremstyle{definition} % Set style for definition, i.e. not recursive
+%\newtheorem{definition}[mydef]{Definition}
+\newtheorem{bsp}[mydef]{Beispiel}
+
+%\newtheorem{rem}{Remark}[section] % with numbering at remark
+%\newtheorem{ex}{Example}[section] % with numbering at example
+\newtheorem*{rem}{Remark} % without numbering at remark
+\newtheorem*{bem}{Bemerkung} % without numbering at remark
+\newtheorem*{ex}{Example} % without numbering at example
+
+% no recursive writing
+\theoremstyle{tstyle}
+\newtheorem{alg}[mydef]{Algorithmus}
+\newtheorem{counter bem plain}[mydef]{Bemerkung}

@@ -1,0 +1,411 @@
+\renewcommand\thesection{\Roman{section}}
+\setcounter{section}{2}
+\section{Inverse Probleme}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\arabic{subsection}}
+\setcounter{subsection}{6}
+\setcounter{section}{7}
+
+\subsection{Das inverse Quellproblem}
+
+Wir betrachten das direkte Problem aus Abschnitt II für den Spezialfall
+\begin{equation*}
+	\begin{cases}
+		n^2\equiv1,&\te{ in }\R^3\qquad\te{(d.h. keine Streukörper)}\\
+		u^i\equiv0,&\te{ in }\R^3\qquad\te{(d.h. kein Primärfeld)}\\
+		f\in \Lc^2(\R^3),\;\support(f)\subset B_R(0),&\qquad\te{(Quellterm)}
+	\end{cases}
+\end{equation*}
+Die von \(f\) erzeugte, zeitharmonische akustische Welle wird durch die zugehörige schwache Lösung von
+\begin{equation}
+	\label{gleichung zur erzeugung von zeitharmonischer akustischer welle mit f}
+	\begin{aligned}
+		\Delta u+k^2u=f,&\qquad\te{ in }\R^3,\\
+		\frac{\p u}{\p r}(x)-\ii ku(x)=o\Big(\frac{1}{r}\Big),&\qquad\te{ für }r=|x|\to\infty,
+	\end{aligned}
+\end{equation}
+wobei die letzte Gleichung glm. bzgl. \(\widehat{x}=\frac{x}{|x|}\in\SS^2\) zu verstehen ist, d.h. (Vgl. Definition \ref{def: schwache lösung}) \(u\in\Hloc^1(\R^3)\), erfüllt
+\begin{equation}
+	\label{u in Hloc^1 erfüllt zugehörige gleichung in kapitel 7}
+	\int_{\R^3}\nabla u\cdot\nabla\psi-k^2 u\psi\dx=-\int_{\R^3}f\psi\dx,\qquad\te{  für alle }\psi\in\Hc^1(\R^3),
+\end{equation}
+(und die SAB). Mit Hilfe des Volumenpotentials aus Kapitel 4 kann man eine Lösung von \eqref{gleichung zur erzeugung von zeitharmonischer akustischer welle mit f} (bzw. \eqref{u in Hloc^1 erfüllt zugehörige gleichung in kapitel 7}) angeben:
+\begin{equation*}
+	u(x)=-\big(Vf\big)(x)=-\int_{\R^3}\Phi(x-y)f(y)\dy,\qquad x\in\R^3,
+\end{equation*}
+(Vgl. Satz \ref{satz: w ist schwache lösung von helmholtz mit rhs -S}). Nach Satz \ref{satz: eindeutigkeit von Lösungen des direkten Streuproblems} ist das auch die eindeutige Lösung von \eqref{u in Hloc^1 erfüllt zugehörige gleichung in kapitel 7} \& SAB, das folgt aber auch ohne Satz \ref{satz: eindeutigkeit von Lösungen des direkten Streuproblems} sehr schnell:
+
+Seien \(u_1,u_2\in\Hloc^1(\R^3)\) zwei Lösungen von \eqref{u in Hloc^1 erfüllt zugehörige gleichung in kapitel 7} \& SAB mit \(f\in\Lc^2(\R^3)\), dann löst \(v\coloneqq u_1-u_2\in\Hloc^1(\R^3)\) \eqref{u in Hloc^1 erfüllt zugehörige gleichung in kapitel 7} \& SAB mit \(f\equiv0\). Es gilt also \(\Delta v+k^2v=0\) in \(\R^3\) \& SAB ist erfüllt, d.h. \(v\) ist eine ausstrahlende ganze Lösung von \eqref{gleichung zur erzeugung von zeitharmonischer akustischer welle mit f} mit \(f\equiv0\), nach Kapitel 2 ist damit \(v\equiv0\).
+
+Das Fernfeld von \(u\) ist gegeben durch
+\begin{equation}
+	\label{fernfeld von u}
+	u^\infty(\widehat{x})=-\int_{\R^3}\frac{1}{4\pi}\e^{-\ii k\widehat{x}\cdot y}f(y)\dy=-\frac{1}{4\pi}\widehat{f}(k\widehat{x}),\qquad\widehat{x}\in\SS^2,
+\end{equation}
+d.h. \(u^\infty\) ist ein Vielfaches der Fouriertransformation der Quelle \(f\), ausgewertet auf der Sphäre \(k\SS^2=\{k\widehat{x}\mid\widehat{x}\in\SS^2\}\subset\R^3\).
+
+Das \rec{inverse Quellproblem} (IQP) besteht nun darin, Information über die Quelle \(f\) aus dem gegebenen Fernfeld \(u^\infty\) zu rekonstruieren. Betrachtet man den linearen Operator
+\begin{equation}
+	\label{operator G_R definition}
+	\func{G_R}{L^2\big(B_R(0)\big)}{L^2(\SS^2)},\qquad\big(G_Rf\big)(\widehat{x})=-\frac{1}{4\pi}\widehat{f}(k\widehat{x}),\qquad\widehat{x}\in\SS^2,
+\end{equation}
+dann kann das inverse Quellproblem als lineare Operatorgleichung
+\begin{equation}
+	\label{inverses quellproblem als operatorgleichung}
+	G_Rf=u^\infty,
+\end{equation}
+geschrieben werden. Da 
+\begin{equation*}
+	k(\widehat{x},y)\coloneqq-\frac{1}{4\pi}\e^{-\ii k\widehat{x}\cdot y},\qquad \widehat{x}\in\SS^2,y\in B_R(0),
+\end{equation*}
+quadratintegrabel ist, ist \(G_R\) kompakt (siehe Übung), d.h. \eqref{inverses quellproblem als operatorgleichung} ist schlecht gestellt und muss regularisiert werden.
+\begin{lem}
+	Sei \(v\in\Cc^\infty(\R^3)\), \(\support(v)\subset B_R(0)\) und setze \(g\coloneqq\Delta v+k^2v\). Dann ist \(g\restrict{B_R(0)}\in L^2\big(B_R(0)\big)\cap\Ker(G_R)\). Insbesondere ist \(G_R\) nicht injektiv.
+\end{lem}
+\begin{proof}
+	Nach Konstruktion ist \(g\in\Cc^\infty(\R^3)\) mit \(\support(g)\subset B_R(0)\).
+	Die eindeutige Lösung von \(\Delta u+k^2 u=g\) \& SAB ist \(v\in\Cc^\infty(\R^3)\), da \(v\) die Gleichung löst, und die SAB erfüllt weil es in \(\R^3\setminus\overline{B_R(0)}\) verschwindet. Insbesondere ist \(v^\infty=0\), d.h. \((G_Rg)\restrict{B_R(0)}=0\).
+\end{proof}
+Das IQP hat also keine eindeutige Lösung! Aus \eqref{fernfeld von u} folgt, dass \(G_R\) ein Integraloperator mit analytischem Kern ist, und damit insb. ein kompakter Operator. Die Gleichung \eqref{inverses quellproblem als operatorgleichung} ist also schlecht gestellt und muss regularisiert werden.
+\begin{satz}[Singulärwertzerlegung]\label{satz: SVD}
+	Die Singulärwertzerlegung von \(G_R\) ist gegeben durch das Tripel \(\big(\sigma_n^m;u_n^m,v_n^m\big)_{-n\leq m\leq n,\;n\geq0}\), wobei
+	\begin{align*}
+		\sigma_n^m&=\Big(\frac{1}{4\pi}\int_{B_R(0)}\big|j_n(k|x|)\big|^2\dx\Big)^\frac{1}{2}\in\R,\\
+		u_n^m(\widehat{x})&=Y_n^m(\widehat{x}),\qquad \widehat{x}\in\SS^2,& u_n^m\in L^2(\SS^2),\\
+		v_n^m(y)&=\frac{(-\ii)^nj_n(k|y|)}{\sigma_n^m}Y_n^m(\widehat{y}),\qquad y=|y|\widehat{y}\in B_R(0),& v_n^m\in L^2\big(B_R(0)\big),
+	\end{align*}
+	für \(n\geq0\) und \(-n\leq m\leq n\).
+\end{satz}
+\begin{proof}
+	Für alle \(g\in L^2\big(B_R(0)\big),\varphi\in L^2(\SS^2)\) gilt
+	\begin{align*}
+		\scaltwobro{g}{G_R^\ast\varphi}&=\scalLtwoStwo{G_Rg}{\varphi}\\
+		&=\int_{\SS^2}\big(G_Rg\big)(\widehat{x})\overline{\varphi(\widehat{x})}\ds(\widehat{x})\\
+		&=\int_{\SS^2}-\frac{1}{4\pi}\int_{B_R(0)}\e^{-\ii k\widehat{x}\cdot y}g(y)\dy\,\overline{\varphi(\widehat{x})}\ds(\widehat{x})\\
+		\te{\scriptsize Fubini}
+		&=\int_{B_R(0)}g(y)\overline{\Big(-\frac{1}{4\pi}\int_{\SS^2}\e^{\ii k\widehat{x}\cdot y}\varphi(\widehat{x})\ds(\widehat{x})\Big)}\dy,
+	\end{align*}
+	also ist der adjungierte Operator \(\func{G_R^\ast}{L^2(\SS^2)}{L^2\big(B_R(0)\big)}\) gegeben durch
+	\begin{equation*}
+		\big(G_R^\ast\varphi\big)(y)=-\frac{1}{4\pi}\int_{\SS^2}\e^{\ii k\widehat{x}\cdot y}\varphi(\widehat{x})\ds(\widehat{x}),\qquad y\in B_R(0).
+	\end{equation*}
+	Die Funktionen \((u_n^m)_{m,n}\) bilden eine vollständige ONB von \(L^2(\SS^2)\) und 
+	\begin{align*}
+		\big(G_R^\ast u_n^m\big)(y)&=-\frac{1}{4\pi}\int_{\SS^2}\e^{\ii k\widehat{x}\cdot y}Y_n^m(\widehat{x})\ds(\widehat{x})\\
+		&=-\ii^nj_n(k|y|)Y_n^m(\widehat{y}) = \sigma_n^mv_n^m(y),
+	\end{align*}
+	wobei wir die \rec{Funk-Hecke-Formel} (siehe Colton-Kress)
+	\begin{equation*}
+		\int_{\SS^2}\e^{\pm\ii k\widehat{x}\cdot y}Y_n^m(\widehat{x})\ds(\widehat{x})=4\pi(\pm\ii^n)j_n(k|y|)Y_n^m(\widehat{y}),\qquad y\in\R^3,
+	\end{equation*}
+	angewendet haben. Weiter ist
+	\begin{align*}
+		\big(G_RG_R^\ast u_n^m\big)(\widehat{x})&=\frac{1}{4\pi}\ii^n\int_{B_R(0)}j_n(k|y|)\e^{-\ii k\widehat{x}\cdot y}Y_n^m(\widehat{y})\dy\\
+		&=\frac{1}{4\pi}\ii^n\int_0^Rj_n(kr)\int_{\SS^2}\e^{-\ii k\widehat{x}\cdot(r\widehat{y})}Y_n^m(\widehat{y})\ds(\widehat{y})\cdot r^2\dr\\
+		&=\frac{1}{4\pi}\ii^n\int_0^Rj_n(kr)\cdot\frac{4\pi}{\ii^n}j_n(kr)Y_n^m(\widehat{x})\cdot r^2\dr\\
+		&=\int_0^R\big(j_n(kr)\big)^2r^2\dr\cdot Y_n^m(\widehat{x})\\
+		&=(\sigma_n^m)^2u_n^m(\widehat{x}).
+	\end{align*}
+\end{proof}
+Aus \eqref{lsg der sphärischen besselgleichung 1} folgt, dass
+\begin{equation*}
+	j_n(t)=\frac{t^n}{1\cdot3\cdot\ldots\cdot(2n+1)}\Big(1+\OO\Big(\frac{1}{n}\Big)\Big),\qquad\te{ für }n\to\infty,
+\end{equation*}
+d.h.
+\begin{align*}
+	\sigma_n^m
+	&\sim\Big(\frac{1}{4\pi}\int_0^R\Big(\frac{k^nr^n}{1\cdot3\cdot\ldots\cdot(2n+1)}\Big)^24\pi r^2\dr\Big)^\frac{1}{2}\\
+	&=\frac{k^n}{1\cdot3\cdot\ldots\cdot(2n+1)}\frac{R^{\frac{3}{2}+n}}{\sqrt{2n+3}}\\
+	&\leq\frac{k^n}{\sqrt{(2n+1)!}}R^n\frac{R^{\frac{3}{2}}}{\sqrt{2n+3}}\\
+	\te{\scriptsize Sterling}
+	&\approx\frac{R^\frac{3}{2}}{\sqrt{2n+3}}(kR)^n\sqrt{2\pi(2n+1)}\Big(\frac{\e}{2n+1}\Big)^\frac{2n+1}{2},
+\end{align*}
+die Singulärwerte fallen für \(n\to\infty\) also superlinear (sogar exponentiell) ab. Das inverse Quellproblem ist also sehr schlecht gestellt.\vspace{2mm}
+
+Anwenden der \rec{abgeschnittenen Singulärwertzerlegung} als Regularisierung für \eqref{inverses quellproblem als operatorgleichung} liefert eine Approximation
+\begin{equation*}
+	R_Nu^\infty=\sum_{n=0}^N\sum_{m=-n}^n\frac{\scalLtwoStwo{u^\infty}{u_n^m}}{\sigma_n^m}\,v_n^m,
+\end{equation*}
+für die Quelle \(f\). Die \rec{Daten} \(u^\infty\) sind in der Regel nicht exakt gegeben, sondern lediglich eine Näherung \(u^{\infty,\delta}\in L^2(\SS^2)\) mit
+\begin{equation*}
+	\|u^\infty-u^{\infty,\delta}\|_{L^2(\SS^2)}\leq\delta,
+\end{equation*}
+für ein \(\delta>0\). Der Abbruchindex \(N=N(\delta,u^{\infty,\delta})\) wird gemäß einer Parameterauswahlregel gewählt. Das \rec{Diskrepanzprinzip} empfiehlt \(N\) als kleinsten Index, sodass
+\begin{equation*}
+	\|G_RR_Nu^{\infty,\delta}-u^{\infty,\delta}\|_{L^2(\SS^2)}\leq\delta,
+\end{equation*}
+ist, zu wählen. Die abgeschnittene Singulärwertzerlegung zusammen mit dem Diskrepanzprinzip ergibt ein konvergentes Regularisierungsverfahren, d.h.
+\begin{equation*}
+	R_{N(\delta,u^{\infty,\delta})}u^{\infty,\delta}\lorarr G_R^+u^\infty,\qquad\te{ falls }\delta\to0,
+\end{equation*}
+wobei
+\begin{equation*}
+	G_R^+u^\infty=\sum_{n=0}^\infty\sum_{m=-n}^n\frac{\scalLtwoStwo{u^\infty}{u_n^m}}{\sigma_n^m}\,v_n^m,
+\end{equation*}
+die Quelle mit Träger in \(B_R(0)\) und minimaler \(L^2\)-Norm auswählt. Das heißt nicht unbedingt, dass der Träger der Rekonstruktion mit dem Träger des ursprünglichen \(f\) übereinstimmt.\vspace{1.5mm}
+
+Man kann natürlich auch Tikhonovregularisierung oder Landweberiteration zusammen mit einer geeigneten Parameterwahl anwenden. Für positive Rauschpegel \(\delta>0\) ergibt das im Allgemeinen verschiedene Resultate, obwohl für \(\delta\to0\) die verschiedenen Regularisierungen (punktweise) gegen \(G_R^+\) konvergieren.\vspace{1.5mm}
+
+Im Folgenden untersuchen wir die Nichteindeutigkeit des inversen Quellproblems noch ein bisschen weiter, und wir diskutieren eine weitere Möglichkeit Information über Quellen, die ein gegebenes Fernfeld erzeugen, aus diesem zu extrahieren.
+\begin{definition}\
+	\begin{enumerate}[label=(\roman*)]
+		\item Die von einer Quelle \(f\in\Lc^2(\R^3)\) \bol{ausgestrahlte Welle} ist die schwache Lösung \(u\in\Hloc^1(\R^3\) von \eqref{gleichung zur erzeugung von zeitharmonischer akustischer welle mit f} außerhalb von \(\support(f)\).
+		\item Das von einer Quelle \(f\in\Lc^2(\R^3)\) \bol{ausgetrahlte Fernfeld} ist das Fernfeld der von ihr ausgestrahlten Welle.
+		\item Eine Quelle \(f\in\Lc^2(\R^3)\) heißt \bol{nichtausstrahlend}, falls das von ihr ausgestrahlte Fernfeld verschwindet.
+		\item Zwei Quellen \(f,g\in\Lc^2(\R^3)\) heißen \bol{äquivalent}, wenn sie dasselbe Fernfeld ausstrahlen.
+	\end{enumerate}
+\end{definition}
+Wir wollen nun gemeinsame Eigenschaften der Träger aller Quellen, die dasselbe Fernfeld ausstrahlen, charakterisieren. Dazu betrachten wir den unbeschränkten Operator
+\begin{equation*}
+	\func{G}{\Lc^2(\R^3)}{L^2(\SS^2)},\qquad\big(Gf\big)(\widehat{x})\coloneqq-\frac{1}{4\pi}\int_{\R^3}\e^{-\ii k\widehat{x}\cdot y}f(y)\dy.
+\end{equation*}
+\begin{definition}
+	Eine kompakte Menge \(M\subset\R^3\) \bol{trägt ein Fernfeld} \(u^\infty\), falls es für jede offene Umgebung \(U\) von \(M\) ein \(f\in\Lc^2(\R^3)\) gibt mit \(\support(f)\subset U\) und \(u^\infty=Gf\).
+\end{definition}
+Man kann Fernfelder konstruieren, die von einem Punkt getragen werden, aber für die es keine \((L^2)\)-Quelle gibt, deren Träger nur diesen Punkt enthält und dieses Fernfeld ausstrahlt (zB. \(u^\infty\equiv1\)).
+\begin{lem}\label{lem: M trägt fernfeld gdw es ex eind glatte lsg von HG in M^c}
+	Sei \(M\subset\R^3\) kompakt, sodass \(\R^3\setminus M\) keine beschränkte Zusammenhangskomponente hat (d.h. \(M\) hat keine Löcher). Dann gilt:\vspace{1mm}
+	
+	\(M\) trägt ein Fernfeld \(u^\infty\) genau dann, wenn es eine eindeutig bestimmte, glatte Lösung \(u\in\Hloc^1(\R^3\setminus M)\) von \(\Delta u+k^2u=0\) in \(\R^3\setminus M\) mit Fernfeld \(u^\infty\) gibt.
+\end{lem}
+\begin{proof}\
+	\begin{enumerate}
+		\item[\glqq{}\(\Leftarrow\)\grqq{}] Angenommen es gibt so ein \(u\in\Hloc^1(\R^3\setminus M)\). Für \(\varepsilon>0\) sei \(U_\varepsilon(M)\) eine \(\varepsilon\)-Umgebung von \(M\) und \(\phi_\varepsilon\in\CC^\infty(\R^3)\) mit 
+		\begin{equation*}
+			\phi_\varepsilon(x)=
+			\begin{cases}
+				1,&x\in\R^3\setminus U_\varepsilon(M),\\
+				0,&x\in M,
+			\end{cases}
+		\end{equation*}
+		(glätte \(\chi_M\) und betrachte \(1-\widetilde{\chi}_{M,\varepsilon}\)). Dann ist \(f_\varepsilon\coloneqq(\Delta+k^2)(\phi_\varepsilon u)\in\Lc^2(\R^3)\) mit \(\support(f_\varepsilon)\subset U_\varepsilon(M)\) eine Quelle, die \(u^\infty\) ausstrahlt, d.h. \(M\) trägt \(u^\infty\).
+		\item[\glqq{}\(\Rightarrow\)\grqq{}] Falls \(M\) ein Fernfeld \(u^\infty\) trägt, dann gibt es für alle \(\varepsilon>0\) eine Quelle \(f_\varepsilon\) mit \(\support(f_\varepsilon)\subset U_\varepsilon(M)\), die \(u^\infty\) ausstrahlt. Sei \(u_\varepsilon\in\Hloc^1(\R^3)\) die Lösung von \(\Delta u_\varepsilon+k^2u_\varepsilon=f_\varepsilon\) und bezeichne \(\big(\R^3\setminus U_\varepsilon(M)\big)^\infty\) die unbeschränkte Zusammenhangskomponente von \(\R^3\setminus U_\varepsilon(M)\). Für \(\varepsilon\to0\) wächst \(\big(\R^3\setminus U_\varepsilon(M)\big)^\infty\) zu \(\big(\R^3\setminus M\big)^\infty=\R^3\setminus M\). Wir definieren \(u\) durch
+		\begin{equation*}
+			u(x)\coloneqq u_\varepsilon(x),\qquad\te{ für }x\in\big(\R^3\setminus U_\varepsilon(M)\big)^\infty.
+		\end{equation*}
+		Das ist wohldefiniert, da nach Rellichs Lemma (Satz \ref{satz: rellichs lemma}) und der Analytizität von \(u_\varepsilon\) in \(\big(\R^3\setminus U_\varepsilon(M)\big)^\infty\) die \(u_\varepsilon\) für alle \(\varepsilon\leq \varepsilon_0\) in \(\big(\R^3\setminus U_{\varepsilon_0}(M)\big)^\infty\) übereinstimmen. Da \(\Delta u_\varepsilon+k^2u_\varepsilon=0\) in \(\R^3\setminus U_\varepsilon(M)\), folgt, dass \(\Delta u+k^2u=0\) in \(\R^3\setminus M\).
+	\end{enumerate}
+\end{proof}
+\begin{no counter bemerkung}
+	Ein Fernfeld \(u^\infty\) legt die zugehörige Welle außerhalb jeder kompakten Menge \(M\subset\R^3\), die \(u^\infty\) trägt, eindeutig fest.
+\end{no counter bemerkung}
+Das heißt, man kann die ausstrahlende Welle bis auf das Komplement jeder kompakten Menge ohne Löcher, die das zugehörige Fernfeld trägt, fortsetzen. Andererseits können wir wie im ersten Teil des Beweises Quellen mit beliebig großem Träger konstruieren, die ein gegebenes Fernfeld ausstrahlen. Wir konstruieren nun \glqq{}minimale\grqq{} Träger.
+\begin{lem}\label{lem: zusammenhang kompakte mengen beschränkte zusammenhangskomponente}
+	Seien \(M_1\) und \(M_2\) kompakte Mengen, die ein Fernfeld \(u^\infty\) tragen. Falls \(\R^3\setminus M_1\), \(\R^3\setminus M_2\) und \(\R^3\setminus(M_1\cup M_2)\) keine beschränkte Zusammenhangskomponente haben, dann trägt auch \(M_1\cap M_2\) das Fernfeld \(u^\infty\).\vspace{2mm}
+\end{lem}
+\begin{proof}
+	Seien \(u_1\) und \(u_2\) die eindeutig bestimmten Lösungen von \(\Delta u_\ell+k^2u_\ell=0\) in \(\R^3\setminus M_\ell\) mit Fernfeld \(u^\infty\), vgl. Lemma \ref{lem: M trägt fernfeld gdw es ex eind glatte lsg von HG in M^c}. Für alle \(\varepsilon>0\) sei \(\phi_\varepsilon\in\CC^\infty(\R^3)\), mit
+	\begin{equation*}
+		\phi_\varepsilon=
+		\begin{cases}
+			1,&\te{ in }\R^3\setminus U_\varepsilon(M_1\cap M_2),\\
+			0,&\te{ in }M_1\cap M_2.
+		\end{cases}
+	\end{equation*}
+	(Glätte \(\chi_{M_1\cap M_2}\) und betrachte \(1-\widetilde{\chi}_{M_1\cap M_2}\)). Dann ist
+	\begin{equation*}
+		v_\varepsilon(x)\coloneqq
+		\begin{cases}
+			\phi_\varepsilon(x)u_1(x),&\te{ für }x\in\R^3\setminus M_1,\\
+			\phi_\varepsilon(x)u_2(x),&\te{ für }x\in\R^3\setminus M_2,\\
+			0,&\te{ für }x\in M_1\cap M_2,
+		\end{cases}
+	\end{equation*}
+	wohldefiniert, da nach Rellichs Lemma und der Analytizität von \(u_\ell\) in \(\R^3\setminus M_\ell\) die Lösungen \(u_1\) und \(u_2\) in \(\R^3\setminus(M_1\cup M_2)\) übereinstimmen. Es ist \(\Delta v_\varepsilon+k^2 v_\varepsilon=0\) in \(\R^3\setminus(M_1\cup M_2)\), und \(f_\varepsilon\coloneqq(\Delta+k^2)v_\varepsilon\) strahlt das Fernfeld \(u^\infty\) aus (wegen \(v_\varepsilon=u_1=u_2\) in \(\R^3\setminus U_\varepsilon(M_1\cup M_2)\)).
+\end{proof}
+\begin{satz}
+	Sei \(u^\infty=Gf\) für ein \(f\in\Lc^2(\R^3)\). Dann ist
+	\begin{equation}
+		\label{konvexer quellträger von u^infty}
+		\csupp(u^\infty)\coloneqq\bigcap_{\substack{D\subset\R^3\te{ konvex, kompakt}\\ D\te{ trägt }u^\infty}}D,
+	\end{equation}
+	(\glqq{}konvexer Quellträger von \(u^\infty\)\grqq{}) die kleinste konvexe Menge, die \(u^\infty\) trägt. Insbesondere ist \(\csupp(u^\infty)\) eine Teilmenge jeder konvexen kompakten Menge, die \(u^\infty\) trägt.
+\end{satz}
+\begin{proof}
+	Um zu zeigen, dass \(\csupp(u^\infty)\) das Fernfeld \(u^\infty\) trägt, zeigen wir zuerst, dass es zu jedem \(\varepsilon>0\) eine endliche Kollektion kompakter konvexer Mengen \(D_1,\ldots,D_N\) gibt, die \(u^\infty\) tragen, sodass
+	\begin{equation*}
+		U_\varepsilon\big(\csupp(u^\infty)\big)\supset\bigcap_{n=1}^ND_n.
+	\end{equation*}
+	Da der Durchschnitt konvexer kompakter Mengen konvex ist und das Komplement der Vereinigung zweier konvexer kompakter Mengen zusammenhängend ist, folgt die Behauptung dann aus Lemma \ref{lem: zusammenhang kompakte mengen beschränkte zusammenhangskomponente}.\vspace{1mm}
+	
+	Sei \(D_0\) eine konvexe kompakte Menge, die \(u^\infty\) trägt (existiert nach Voraussetzung). Dann ist
+	\begin{equation*}
+		\csupp(u^\infty)=\hspace{-8mm}\bigcap_{\substack{D\subset\R^3\te{ konvex, kompakt}\\ D\te{ trägt }u^\infty}}\hspace{-8mm}(D\cap D_0),
+	\end{equation*}
+	also
+	\begin{equation*}
+		D_0\setminus\csupp(u^\infty)=\hspace{-8mm}\bigcup_{\substack{D\subset\R^3\te{ konvex, kompakt}\\ D\te{ trägt }u^\infty}}\hspace{-8mm}\big(D_0\setminus(D\cap D_0)\big),
+	\end{equation*}
+	und damit
+	\begin{equation*}
+		D_0\setminus U_\varepsilon\big(\csupp(u^\infty)\big)\subset \hspace{-8mm}\bigcup_{\substack{D\subset\R^3\te{ konvex, kompakt}\\ D\te{ trägt }u^\infty}}\hspace{-8mm}\big(D_0\setminus(D\cap D_0)\big).
+	\end{equation*}
+	Da \(D_0\setminus\big( U_\varepsilon(\csupp(u^\infty))\big)\) kompakt ist und \(D_0\setminus(D\cap D_0)\) offen (relativ zu \(D_0\)) ist, gibt es eine endliche Teilüberdeckung \(D_0\setminus U_\varepsilon\big(\csupp(u^\infty)\big)\subset\bigcup_{n=1}^N\big(D_0\setminus(D_n\cap D_0)\big)\), also gilt
+	\begin{equation*}
+		 U_\varepsilon\big(\csupp(u^\infty)\big)\supset\bigcap_{n=1}^N(D_n\cap D_0)=\bigcap_{n=0}^ND_n.
+	\end{equation*}
+\end{proof}
+\begin{counter bem plain}
+	Der konvexe Quellträger eines nichttrivialen Fernfelds kann nicht leer sein. Sonst gäbe es zwei kompakte konvexe Mengen, die \(u^\infty\) tragen, aber disjunkt sind, und wie im Beweis von Lemma \ref{lem: zusammenhang kompakte mengen beschränkte zusammenhangskomponente} folgt daraus, dass die ausgestrahlte Welle zu einer ganzen Lösung fortgesetzt werden kann, die nichttriviales Fernfeld \(u^\infty\) hätte. Widerspruch!
+\end{counter bem plain}
+%Um den konvexen Quellträger numerisch zu approximieren, betrachten wir die Fourierreihenentwicklung des Fernfelds:
+Als nächstes leiten wir ein Verfahren zur Berechnung von \(\csupp(u^\infty)\) her: Sei \(u^\infty=Gf\) für ein \(f\in \Lc^2(\R^3)\). Dann gibt es insb. ein \(R>0\), sodass \(\support(f)\subset B_R(0)\), d.h. \(u^\infty=G_Rf\restrict{B_R(0)}\).
+
+Frage: Wie kann man zu bel. \(R>0\) entscheiden, ob \(u^\infty\in\Ran(G_R)\) ist?
+\begin{lem}\label{lem: fernfeld als fourierreihe dargestellt}
+	Sei \(f\in\Lc^2(\R^3)\) mit \(\support(f)\subset B_R(0)\) und \(u^\infty\coloneqq Gf\in L^2(\SS^2)\) das ausgestrahlte Fernfeld. Dann ist
+	\begin{equation}
+		\label{ausgestrahltes fernfeld iqp}
+		u^\infty(\widehat{x})=\sum_{n=0}^\infty\sum_{m=-n}^na_n^mY_n^m(\widehat{x}),\qquad\widehat{x}\in\SS^2,
+	\end{equation}
+	mit
+	\begin{equation*}
+		a_n^m=-(-\ii)^n\int_{\R^3}f(y)j_n(k|y|)\overline{Y_n^m(\widehat{y})}\dy.
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	Wie im Beweis von Satz \ref{satz: SVD} (SVD) folgt mit der Funk-Hecke-Formel, dass
+	\begin{align*}
+		\scalLtwoStwo{u^\infty}{Y_n^m} = a_n^m
+		&=\int_{\SS^2}u^\infty(\widehat{x})\overline{Y_n^m(\widehat{x})}\ds(\widehat{x})\\
+		&=-\frac{1}{4\pi}\int_{B_R(0)}f(y)\overline{\int_{\SS^2}\e^{\ii k\widehat{x}\cdot y}Y_n^m(\widehat{x})\ds(\widehat{x})}\dy\\
+		&=-(-\ii)^n\int_{B_R(0)}f(y)j_n(k|y|)\overline{Y_n^m(\widehat{y})}\dy.
+	\end{align*}
+\end{proof}
+Das Picardkriterium liefert:
+\begin{cor}
+	Ein Fernfeld \(u^\infty\) wird von einer Quelle \(f\in\Lc^2(\R^3)\) mit \(\support(f)\subset B_R(0)\) ausgestrahlt genau dann, wenn
+	\begin{equation*}
+		\sum_{n=0}^\infty\sum_{m=-n}^n\Big|\frac{a_n^m}{\sigma_n^m(kR)}\Big|^2<\infty,
+	\end{equation*}
+	wobei \(a_n^m\) die Fourierkoeffizienten von \(u^\infty\) aus Lemma \ref{lem: fernfeld als fourierreihe dargestellt} bezeichnen.
+\end{cor}
+Man kann also (zumindest theoretisch) anhand des Fernfelds \(u^\infty\) für jeden Ball \(B_R(0)\) entscheiden, ob es eine Quelle mit Träger in \(B_R(0)\) gibt, die dieses Fernfeld ausstrahlt. Da \(u^\infty(\widehat{x})=\widehat{f}(k\widehat{x})\), \(\widehat{x}\in\SS^2\), ist, folgt für das Fernfeld \(u_p^\infty\) der um \(-p\in\R^3\) verschobenen Quelle \(f(\cdot+p)\), dass 
+\begin{equation}
+	\label{fernfeld der um -p verschobenen quelle}
+	\begin{aligned}
+		u_p^\infty(\widehat{x})&=-\frac{1}{4\pi}\int_{\R^3}\e^{-\ii k\widehat{x}\cdot y}f(y+p)\dy\\
+		&=\e^{\ii k\widehat{x}\cdot p}\cdot\Big(-\frac{1}{4\pi}\int_{\R^3}\e^{-\ii k\widehat{x}\cdot z}f(z)\dz\Big)\\
+		&=\e^{\ii k\widehat{x}\cdot p}u^\infty(\widehat{x}).
+	\end{aligned}
+\end{equation}
+Für \(p\in\R^3\) ist \(\support(f)\subset B_R(p)\) genau dann, wenn \(\support\big(f(\cdot+p)\big)\subset B_R(0)\).
+\begin{cor}\label{kor: wann wird fernfeld von quelle ausgestrahlt? analogon picard}
+	Ein Fernfeld \(u^\infty\) wird von einer Quelle \(f\in\Lc^2(\R^3)\) mit Träger in \(B_R(p)\) ausgestrahlt genau dann, wenn
+	\begin{equation}
+		\label{picard kriterium für fernfeld um p verschoben}
+		\sum_{n=0}^\infty\sum_{m=-n}^n\Big|\frac{a_n^m(p)}{\sigma_n^m(kR)}\Big|^2<\infty,
+	\end{equation}
+	wobei \(a_n^m(p)\) die Fourierkoeffizienten von \(u_p^\infty\) aus \eqref{fernfeld der um -p verschobenen quelle} bezeichnen.
+\end{cor}
+Da \eqref{picard kriterium für fernfeld um p verschoben} numerisch schwierig zu überprüfen ist, behilft man sich wie folgt:\vspace{1.5mm}
+
+\noindent Falls \(\support(f)\subset B_R(0)\) ist,
+\begin{equation*}
+	|a_n^m|= \Big|\int_{B_R(0)}f(y)j_n(k|y|)\overline{Y_n^m(\widehat{y})}\dy\Big|,
+\end{equation*}
+und der Betrag der sphärischen Besselfunktion \(|j_n(k\rho)|\) verhält sich für \(n\gtrsim k\rho\) wie
+\begin{equation*}
+	|j_n(k\rho)|
+	\sim\frac{(k\rho)^n}{1\cdot3\cdot\ldots\cdot(2n+1)}
+	\leq\frac{(k\rho)^n}{\big((2n+1)!\big)^\frac{1}{2}}
+	\sim\frac{(k\rho)^n\e^{\frac{2n+1}{2}}}{\big(2\pi(2n+1)\big)^\frac{1}{4}(2n+1)^\frac{2n+1}{2}}
+	\leq\frac{1}{c_n}\Big(\frac{k\rho\e}{2n}\Big)^n,
+\end{equation*}
+mit \(c_n\coloneqq\big(2\pi(2n+1)\big)^\frac{1}{4}\), d.h. er fällt exponentiell ab. Für \(n\lesssim k\rho\) hingegen sind diese Beträge \glqq{}relativ gleichmäßig groß\grqq{}.\vspace{18mm}
+
+
+Man kann also den Übergang von glm. groß zu exponentiell abfallend in den Fourierkoeffizienten \(a_n^m\) (siehe Lemma \ref{lem: fernfeld als fourierreihe dargestellt}) verwenden, um den kleinsten Radius \(R>0\), sodass \(B_R(0)\) das Fernfeld \(u^\infty\) trägt, abzuschätzen. Nach Verschieben der Quelle (bzw. des Ursprungs) wie in Korollar \ref{kor: wann wird fernfeld von quelle ausgestrahlt? analogon picard}, kann man das auch für beliebige Bälle um \(p\neq0\) machen.
+\begin{alg}
+	Betrachte einen Filter \(P\) von Punkten in \(\R^3\).
+	
+	\noindent\texttt{for \(p\in P\) do}
+	\begin{itemize}
+		\item Verschiebe den Ursprung nach \(p\), d.h. berechne \(u_p^\infty\) gemäß \eqref{fernfeld der um -p verschobenen quelle},
+		\item Schätze den Radius \(R_p\) des kleinsten Balls um \(p\), der \(u_p^\infty\) trägt:
+		\begin{itemize}
+			\item Plotte den Absolutbetrag der Fourierkoeffizienten \(a_n^m(p)\).
+			\item Finde Index \(n_p\) am Übergang zum exponentiellen Abfall
+		\end{itemize}
+	\end{itemize}
+	\texttt{end for}
+	
+	Erhalte
+	\begin{equation*}
+		\csupp(u^\infty)\subset\bigcap_{p\in P}B_{R_p}(p),\qquad\te{ wobei }R_p=\frac{n_p}{k}.
+	\end{equation*}\vspace{20mm}
+\end{alg}
+\begin{counter bem plain}\
+	\begin{enumerate}[label=(\roman*)]
+		\item Die Bornsche Näherung ersetzt das Streuproblem \eqref{helmholtzgleichung dp}-\eqref{SAB direktes problem} durch das Quellproblem
+		\begin{equation*}
+			\Delta u_b+k^2u_b=f+(1-n^2)(u^i-Vf),\qquad\text{ in }\R^3\text{ \& SAB.}
+		\end{equation*}
+		Dementsprechend ist %das Fernfeld \(u^b-u^i\) gegeben durch (Vgl. Kapitel 4)
+		\begin{equation*}
+			u_b^\infty(\widehat{x})=-\frac{1}{4\pi}\int_{\R^3}\e^{-\ii k\widehat{x}\cdot y}f(y)\dy-\frac{k^2}{4\pi}\int_{\R^3}\big(1-n^2(y)\big)(u^i-Vf)(y)\e^{-\ii k\widehat{x}\cdot y}\dy,
+		\end{equation*}
+		und speziell für \(f=0\) reduziert sich das (wegen \(u^i(x)=\e^{\ii kx\cdot d}\)) zu
+		\begin{equation}
+			\label{system von gleichungen für vereinfachtes fernfeld der bornschen näherung}
+			u_b^\infty(\widehat{x})=-\frac{k^2}{4\pi}\int_{\R^3}\big(1-n^2(y)\big)\e^{\ii k(d-\widehat{x})\cdot y}\dy.
+		\end{equation}
+		D.h. man muss wiederum \glqq{}nur\grqq{} eine (schlechtgestellte) lineare Integralgleichung erster Art lösen, um \(1-n^2\) und damit \(n^2\) aus \(u_b^\infty\) zu rekonstruieren. 
+%		Man kann hier (im Gegensatz zum IQP) mehrere Primärwellen \(u^i(d_\ell,k_m)\) für \(1\leq\ell\leq L\) und \(1\leq m\leq M\) betrachten und dementsprechend ein System von Gleichungen wie in \eqref{system von gleichungen für vereinfachtes fernfeld der bornschen näherung} mit
+%		\begin{equation*}
+%			u_b^\infty(\widehat{x},d_\ell,k_m)=-\frac{k_m^2}{4\pi}\int_{\R^3}\big(1-n^2(y)\big)\e^{\ii k_m(d_\ell-\widehat{x})\cdot y}\dy,
+%		\end{equation*}
+%		für verschiedene Einfallsrichtungen \(d_\ell\in\SS^2\) und Wellenzahlen \(k_m>0\) lösen, um \(n^2\) zu rekonstruieren. Die Bornsche Näherung ist allerdings nur dann ein gutes Modell, wenn \((kR)^2\|1-n^2\|_\infty\ll1\) ist (Vgl. \eqref{fehler bornsche näherung in supremumsnorm})
+		Im Gegensatz zum IQP kann jetzt aber zusätzlich \(u^i\) variiert werden. Sei zB.
+		\begin{equation*}
+			u^i(x;d)\coloneqq\e^{\ii kx\cdot d},\qquad x\in\R^3,d\in\SS^2,
+		\end{equation*}
+		eine eben Welle mit Ausbreitungsrichtung \(d\). Damit erhält man ein System von Integralgleichungen
+		\begin{equation*}
+			u_b^\infty(\widehat{x};d)=-\frac{k^2}{4\pi}\int_{\R^3}\e^{-\ii k\widehat{x}\cdot y} (1-n^2)(y) u^i(y;d)\dy,\qquad\widehat{x}\in\SS^2,
+		\end{equation*}
+		für alle \(d\in\SS^2\).
+		
+		\item Auch im allgemeinen Fall kann man das Streuproblem \eqref{helmholtzgleichung dp}-\eqref{SAB direktes problem} als Quellproblem auffassen:
+		\begin{equation*}
+			\Delta u^s+k^2u^s=f+k^2(1-n^2)u\qquad\te{ \& SAB}.
+		\end{equation*}
+		Man kann zeigen (mit dem Prinzip der eindeutigen Fortsetzbarkeit), dass \(\support\big((1-n^2)u\big)=\support(1-n^2)\), d.h. der zugehörige konvexe Quellträger \(\csupp(u^\infty)\) beschreibt tatsächlich den Brechungsindex und die Quelle.
+	\end{enumerate}
+\end{counter bem plain}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

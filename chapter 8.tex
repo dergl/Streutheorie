@@ -1,0 +1,33 @@
+\setcounter{subsection}{7}
+\setcounter{section}{8}
+\setcounter{mydef}{0}
+\setcounter{equation}{0}
+
+\subsection{Das inverse Streuproblem}
+Für den Rest der Vorlesung betrachten wir den Spezialfall, dass \(f\equiv0\) ist, d.h., dass keine Quellen in \(B_R(0)\) vorliegen. Das \rec{direkte Streuproblem} besteht also darin, für gegebene
+\begin{enumerate}[label=(\roman*)]
+	\item \(n^2=1+\kontrast\in L^\infty(\R^3)\), \(\;\RE(n^2)>0\), \(\;\IM(n^2)\geq0\) fast überall, \(\;\support(\kontrast)\subset B_R(0)\) für ein \(R>0\)\hfill(Brechungsindex bzw. Kontrast)
+	\item \(k\in\R\), \(k>0\),\hfill(Wellenzahl)
+	\item \(u^i(x;d)=\e^{\ii kx\cdot d}\), \(d\in\SS^2\),\hfill(ebene Welle, Primärwelle)
+\end{enumerate}
+die zugehörige schwache Lösung \(u\in\Hloc^1(\R^3)\) von
+\begin{equation}
+	\label{direktes streuproblem}
+	\begin{aligned}
+		\Delta u+k^2n^2u&=0,&\te{ in }\R^3,\hfil\\
+		u&=u^i+u^s,&\te{ in }\R^3,\\
+		\frac{\p u^s}{\p r}(x)-\ii ku^s(x)&=o(r^{-1}),&\te{ für }r=|x|\to\infty,
+	\end{aligned}
+\end{equation}
+zu bestimmen (Vgl. \eqref{schwache lösung definition} und Korollar \ref{kor: direktes streuproblem hat eindeutige schwache lösung}). Wie in Satz \ref{satz: wie sieht schwache lsg des direkten streuproblems aus? und fernfeld?} gezeigt, hat \(u^s\) das asymptotische Verhalten
+\begin{equation}
+	\label{asymptotisches verhalten von u^s (DP)}
+	u^s(x;d)=\frac{\e^{\ii k|x|}}{|x|}u^\infty(\widehat{x};d)+\OO(|x|^{-2}),\qquad|x|\to\infty,
+\end{equation}
+wobei das Fernfeld \(u^\infty\) gegeben ist durch
+\begin{equation}
+	u^\infty(\widehat{x};d)=\frac{k^2}{4\pi}\int_{\R^3}\kontrast(y)u(y)\e^{-\ii k\widehat{x}\cdot y}\dy.
+\end{equation}
+Im Folgenden schreiben wir häufig \(u^i(x;d), u(x;d),u^s(x;d)\) und \(u^\infty(\widehat{x};d)\), um die Abhängigkeit dieser Größen von der Einfallsrichtung \(d\in\SS^2\) zu beschreiben.\vspace{1.5mm}
+
+Das \rec{inverse Streuproblem} besteht nun darin, den Brechungsindex \(n^2\) bzw. \(\kontrast=n^2-1\) aus Beobachtungen \(u^\infty(\widehat{x};d)\) für alle \(\widehat{x},d\in\SS^2\) zu rekonstruieren (d.h. unendlich viele Beobachtungen und Einfallsrichtungen). Dieses Problem ist nichtlinear, da \(n^2\) nichtlinear von \(u\) abhängt.

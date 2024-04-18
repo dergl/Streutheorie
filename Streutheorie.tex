@@ -1,0 +1,89 @@
+%% These are lecture notes of the lecture "Streutheore", read by Prof. Dr. Thomas Griesmaier at KIT in Summer 2023
+%% author: Raphael Adalid Braun
+%% email: raphael.adalidbraun@web.de
+%% creation date: ??
+
+
+
+\documentclass{article} % format: article
+
+
+\include{packages} % packages
+
+\include{commands} % new commands, renewed commands, new MathOperators
+
+\include{theorems} % theorem style, new types of theorems (proposition, corollary, ...)
+
+
+\numberwithin{equation}{section}
+
+%\makeindex[columns=3, title=Alphabetical Index,intoc] % for index pages	
+\titleformat*{\section}{\LARGE\bfseries}
+\titleformat*{\subsection}{\Large\bfseries}
+\titleformat*{\subsubsection}{\large\bfseries}
+
+
+\begin{document}
+	
+\include{titlepage} % title page
+
+
+\newpage % empty page before the table of contents
+\thispagestyle{empty} % no page number displayed
+\hbox{} % necessary to have the blank page
+\newpage
+\thispagestyle{empty} % no page number displayed
+\tableofcontents % create the table of contents
+\newpage
+\thispagestyle{empty} % no page number displayed
+\hbox{}
+\newpage
+\setcounter{page}{1}
+%\chapter{test}
+
+\include{chapter 1}
+%\newpage\hbox{}\newpage
+\checkoddpage
+\ifoddpage \newpage\hbox{}\newpage \else \hbox{}\newpage\fi
+\include{chapter 2}
+\checkoddpage
+\ifoddpage \newpage\hbox{}\newpage \else \hbox{}\newpage\fi
+\include{chapter 3}
+%\checkoddpage
+%\ifoddpage \newpage\hbox{}\newpage \else \hbox{}\newpage\fi
+\newpage % checkoddpage broken here
+\include{chapter 4}
+\checkoddpage
+\ifoddpage \newpage\hbox{}\newpage \else \hbox{}\newpage\fi
+\include{chapter 5}
+\checkoddpage
+\ifoddpage \newpage\hbox{}\newpage \else \hbox{}\newpage\fi
+\include{chapter 6}
+%\checkoddpage
+%\ifoddpage \newpage\hbox{}\newpage \else \hbox{}\newpage\fi
+\newpage % \checkoddpage broken
+\include{chapter 7}
+\newpage
+%\checkoddpage
+%\ifoddpage \newpage\hbox{}\newpage \else \hbox{}\newpage\fi
+\include{chapter 8}
+\checkoddpage
+\ifoddpage \newpage\hbox{}\newpage \else \hbox{}\newpage\fi
+\include{chapter 9}
+%\checkoddpage
+%\ifoddpage \newpage\hbox{}\newpage \else \hbox{}\newpage\fi
+\newpage
+\include{chapter 10}
+\checkoddpage
+\ifoddpage \newpage\hbox{}\newpage \else \hbox{}\newpage\fi
+\include{chapter 11}
+%\checkoddpage
+%\ifoddpage \newpage\hbox{}\newpage \else \hbox{}\newpage\fi
+\newpage
+\include{chapter 12}
+%\checkoddpage
+%\ifoddpage \newpage\hbox{}\newpage \else \hbox{}\newpage\fi
+\newpage
+\include{chapter 13}
+	
+\end{document}

@@ -1,0 +1,358 @@
+\setcounter{subsection}{9}
+\setcounter{section}{10}
+\setcounter{mydef}{0}
+\setcounter{equation}{0}
+
+\subsection{Eindeutigkeit von Lösungen des inversen Problems}
+Wir gehen der Frage nach, ob der Brechungsindex \(n^2=n^2(x)\) durch die Fernfelder \(u^\infty(\,\cdot\,,d)\) für alle \(d\in\SS^2\) eindeutig bestimmt wird. Dazu seien \(n_1^2,n_2^2\in L^\infty(\R^3)\) mit \(\support(n_j^2-1)\subset B_R(0)\), \(j=1,2\), und wir nehmen an, dass die zugehörigen Fernfelder \(u_1^\infty(\,\cdot\,,d), u_2^\infty(\,\cdot\,,d)\) für alle \(d\in\SS^2\) übereinstimmen. Wir wollen zeigen, dass dann \(n_1^2=n_2^2\) ist.\vspace{1.5mm}
+
+Zur Vorbereitung schauen wir uns die Bornsche Näherung (Vgl. Kapitel 4) an: Angenommen
+\begin{equation*}
+	u_{1,b}^\infty(\widehat{x};d)=u_{2,b}^\infty(\widehat{x};d),\qquad\te{ für alle }x\in\SS^2\te{ und ein }d\in\SS^2.
+\end{equation*}
+Dann ist \(v_b\coloneqq u_{1,b}^\infty(\widehat{x};d)-u_{2,b}^\infty(\widehat{x};d)=0\) das Fernfeld der Lösung des Quellproblems
+\begin{equation*}
+	\Delta v_b^s+k^2v_b^s=k^2(n_2^2-n_1^2)u^i(\,\cdot\,;d),\qquad\te{ in }\R^3\te{ und SAB gilt.}
+\end{equation*}
+Wie wir in Kapitel 7 gezeigt haben, reicht das nicht aus, um zu zeigen, dass \(n_2^2-n_1^2=0\) ist. (\(k^2(n_2^2-n_1^2)u^i(\,\cdot\,;d)\) kann eine nicht-ausstrahlende Quelle sein.)\vspace{1.5mm}
+
+Sei also
+\begin{equation*}
+	u_{1,b}^\infty(\widehat{x};d)=u_{2,b}^\infty(\widehat{x};d),\qquad\te{ für alle }\widehat{x},d\in\SS^2.
+\end{equation*}
+Dann folgt aus der Darstellung des Fernfeld in der Bornapproximation (vgl. letzte Seite von Kapitel 4), dass
+\begin{equation*}
+	(\widehat{1-n_1^2})\big(k(\widehat{x}-d)\big)=\widehat{(1-n_2^2)}\big(k(\widehat{x}-d)\big),\qquad\te{ für alle }\widehat{x},d\in\SS^2,
+\end{equation*}
+d.h. die Fouriertransformationen von \((1-n_1^2)\) und \((1-n_2^2)\) stimmen auf \(\{k(\widehat{x}-d)\mid\widehat{x},d\in\SS^2\}\) überein, d.h. in einem Ball \(B_{2k}(0)\) um \(0\) mit Radius \(2k\). Da \((1-n_1^2)\) und \((1-n_2^2)\) kompakten Träger haben, sind deren Fouriertransformationen \((\widehat{1-n_1^2})\) und \((\widehat{1-n_2^2})\) analytisch, damit folgt wegen der eindeutigen Fortsetzbarkeit analytischer Funktionen, dass \(\widehat{1-n_1^2}=\widehat{1-n_2^2}\) in ganz \(\R^3\). Anwenden der inversen Fouriertransformation ergibt
+\begin{equation*}
+	n_1^2=n_2^2,\qquad\te{ in }\R^3.
+\end{equation*}
+D.h. in der Bornschen Näherung reicht die Kenntnis von \(\{u_b^\infty(\widehat{x};d)\mid\widehat{x},d\in\SS^2\}\) (theoretisch) aus, um den Brechungsindex \(n^2\) zu rekonstruieren. Ähnliche Argumente zeigen, dass die Kenntnis von \(u_b^\infty(\widehat{x};d)\) für alle \(\widehat{x}\in\SS^2\), ein \(d\in\SS^2\) und alle \(k\in(k_-,k_+)\subset(0,\infty)\) ausreichen, um \(n^2\) zu rekonstruieren.\vspace{1.5mm}
+
+Nun betrachten wir den allg. Fall. Wir zeigen zunächst, dass für festes \(n^2\in L^\infty(\R^3)\), \(\support(1-n^2)\subset B_R(0)\), die Lösungen \(u(\,\cdot\,;d)\), \(d\in\SS^2\), des Streuproblems dicht im Raum aller Lösungen der Helmholtzgleichung in \(B_R(0)\) liegen. Dazu brauchen wir noch ein Resultat über die Fortsetzbarkeit von \(\H^1\)-Funktionen.
+\begin{satz}[Fortsetzungssatz]\label{satz: fortsetzungssatz}
+	Sei \(\Omega\subset\R^3\) ein beschränktes \(\CC^1\)-Gebiet. Für jedes offene \(V\subset\R^3\) mit \(\overline{\Omega}\subset V\) existiert ein stetiger linearer Fortsetzungsoperator
+	\begin{equation*}
+		\func{E}{\H^1(\Omega)}{\H^1(\R^3)},\quad\te{ mit }\quad Eu=u\te{ f.ü. in }\Omega\quad\te{ und }\quad\support(Eu)\subset V.
+	\end{equation*}
+\end{satz}
+\begin{proof}
+	Da \(\CC^\infty(\overline{\Omega})\subset \H^1(\Omega)\) dicht ist (Satz \ref{satz: dichtesatz cinfty in H1 auf Abschluss von omega}) betrachten wir zuerst \(u\in\CC^\infty(\overline{\Omega})\) und zeigen anschließend die Behauptung für allgemeines \(u\in\H^1(\Omega)\) mit einem Dichteargument. Weiterhin genügt es, zuerst eine lokale Fortsetzung in einer Umgebung eines Randpunktes \(x_0\in\p\Omega\) zu konstruieren und diese lokalen Fortsetzungen dann mit Hilfe eines Kompaktheitsarguments und einer Zerlegung der Eins zusammenzusetzen.\vspace{1.5mm}
+	
+	Sei \(u\in\CC^\infty(\overline{\Omega})\), \(x_0\in\p\Omega\) und \(B_r(x_0)\) und \(\gamma\) eine Umbegung und eine Funktion wie in Definition \ref{def: parametrisierung des randes}. Die Funktion
+	\begin{equation*}
+		\Phi\colon(x_1,x_2,x_3)\mapsto (y_1,y_2,y_3)\coloneqq\big(x_1,x_2,x_3-\gamma(x_1,x_2,x_3)\big),
+	\end{equation*}
+	und ihre Inverse
+	\begin{equation*}
+		\Psi\colon(y_1,y_2,y_3)\mapsto (x_1,x_2,x_3)\coloneqq\big(y_1,y_2,y_3+\gamma(y_1,y_2,y_3)\big),
+	\end{equation*}
+	sind \(\CC^1\) und \(\Phi\) zieht den Rand \(\p\Omega\) lokal um \(x_0\) flach, d.h.
+	\begin{equation*}
+		\Phi\big(B_r(x_0)\cap\Omega\big)=\Phi\big(B_r(x_0)\big)\cap\{y\mid y_3>0\}.
+	\end{equation*}
+	Die transformierte Funktion \(u^\Psi\coloneqq u\circ\Psi\) kann in einer Kugel \(B_\rho\big(\Phi(x_0)\big)\subset\Phi\big(B_r(x_0)\big)\) fortgesetzt werden durch
+	\begin{equation*}
+		v^\Psi(y)\coloneqq
+		\begin{cases}
+			u^\Psi(y),&y_3>0,\\
+			-3u^\Psi(y_1,y_2,-y_3)+4u^\Psi(y_1,y_2,-\tfrac{y_3}{2}),&y_3<0.
+		\end{cases}
+	\end{equation*}
+	Man prüft leicht nach, dass \(v^\Psi\in\CC^1\big(B_\rho\big(\Phi(x_0)\big)\big)\) ist. Rücktransformation liefert \(v\coloneqq v^\Psi\circ\Phi\in\CC^1(U_{x_0})\), wobei \(U_{x_0}\coloneqq\Psi\big(B_\rho\big(\Phi(x_0)\big)\big)\) eine Umgebung von \(x_0\) ist. Die Funktion \(v\) ist eine lokale Fortsetzung von \(u\), da für \(x\in U_{x_0}\cap\Omega\) gilt
+	\begin{equation*}
+		\Phi(x)\in B_\rho(x_0)\cap\{y\mid y_3>0\}\eqqcolon B_\rho^+\big(\Phi(x_0)\big),
+	\end{equation*}
+	und daher
+	\begin{equation*}
+		v(x)=v^\Psi\big(\Phi(x)\big)=u^\Psi\big(\Phi(x)\big)=u(x),\qquad\te{ für alle }x\in U_{x_0}\cap\Omega.
+	\end{equation*}
+	Die Funktionen \(\Phi\) und \(\Psi\) und die Umgebung \(U_{x_0}\) hängen nicht von \(u\) ab, und die Abbildungen
+	\begin{equation*}
+		u\mapsto u^\Psi\mapsto v^\Psi\mapsto v,
+	\end{equation*}
+	sind linear und stetig bzgl.
+	\begin{equation*}
+		\H^1(U_{x_0}\cap\Omega)\to \H^1\big(B_\rho^+\big(\Phi(x_0)\big)\big)\to\H^1\big(B_\rho\big(\Phi(x_0)\big)\big)\to\H^1(U_{x_0}).
+	\end{equation*}
+	Wie in Satz \ref{satz: fortsetzungssatz} können wir aufgrund der Kompaktheit von \(\p\Omega\) nun endlich viele \(x_{0,1},\ldots,x_{0,m}\in\p\Omega\) und Umgebungen \(U_{x_{0,1}},\ldots,U_{x_{0,m}}\) wie oben konstruiert werden, die \(\p\Omega\) überdecken. Mit einer glatten Zerlegung der Eins können so die lokalen Fortsetzungen zu einer (stetig und linearen) globalen FOrtsetzung von \(\H^1(\Omega)\) nach \(\H^1(O)\) für eine offene Umgebung \(O\) von \(\overline{\Omega}\) zusammengesetzt werden. Durch Multiplikation mit einer glatten Abschneidefunktion erhalten wir eine stetige Abbildung \(\func{E}{\H^1(\Omega)}{\H^1(\R^3)}\) mit \(\support(Eu)\subset O\cap V\) für alle \(u\in\H^1(\Omega)\).
+\end{proof}
+\begin{lem}\label{lem: dichtheit von span u(.,d) in H|B_R(0)}
+	Sei \(n^2\in L^\infty(\R^3)\) mit \(\support(1-n^2)\subset B_R(0)\) und \(u(\,\cdot\,;d)\) die Lösung des Streuproblems \eqref{direktes streuproblem} zu \(u^i(x;d)=\e^{\ii kx\cdot d}\). Sei \(\rho>R\) und
+	\begin{equation*}
+		H\coloneqq\big\{v\in\H^1\big(B_\rho(0)\big)\mid\Delta v+k^2n^2v=0\te{ in }B_\rho(0)\big\},
+	\end{equation*}
+	wobei die Helmholtzgleichung im schwachen Sinn
+	\begin{equation*}
+		\int_{B_\rho(0)}\nabla v\cdot\nabla\psi-k^2n^2v\psi\dx=0,\qquad\te{ für alle }\psi\in\H_0^1\big(B_\rho(0)\big),
+	\end{equation*}
+	zu verstehen ist. Dann ist
+	\begin{equation*}
+		\spann\big\{u(\,\cdot\,;d)\restrict{B_R(0)}\mid d\in\SS^2\big\},
+	\end{equation*}
+	dicht in \(H\restrict{B_R(0)}\) bzgl. der Norm \(\|\,\cdot\,\|_{L^2(B_R(0))}\).
+\end{lem}
+\begin{proof}
+	Sei \(v\in\overline{H\restrict{B_R(0)}}^{\|\cdot\|_{L^2(B_R(0))}}\) so, dass
+	\begin{equation*}
+		\scaltwobro{v}{u(\,\cdot\,;d)}=\int_{B_R(0)}v(x)\overline{u(x;d)}\dx=0,\qquad\te{ für alle }d\in\SS^2.
+	\end{equation*}
+	Aus der Lippmann-Schwinger-Gleichung \eqref{lippmann schwinger gleichung} folgt, dass
+	\begin{equation*}
+		u(\,\cdot\,;d)=(I+T)^{-1}u^i(\,\cdot\,;d),
+	\end{equation*}
+	wobei der Integraloperator \(T\) wie im Beweis von Satz \ref{satz: existenz von lösungen des DP bei eindeutigkeit} definiert ist. Daraus folgt
+	\begin{equation}
+		\label{herleitung zur adjungierten gleichung}
+		0=\bigscaltwobro{v}{(I+T)^{-1}u^i(\,\cdot\,;d)}=\bigscaltwobro{(I+T^\ast)^{-1}v}{u^i(\,\cdot\,;d)},\qquad\te{ für alle }d\in\SS^2.
+	\end{equation}
+	Setze \(w\coloneqq(I+T^\ast)^{-1}v\), dann ist \(w\in L^2\big(B_R(0)\big)\) und \(w\) erfüllt die \rec{adjungierte Gleichung}
+	\begin{equation*}
+		v(x)=w(x)+k^2\big(1-\overline{n^2(x)}\big)\int_{B_R(0)}\overline{\Phi(x-y)}w(y)\dy,\qquad x\in B_R(0).
+	\end{equation*}
+	Wir definieren ein Volumenpotential
+	\begin{equation*}
+		W(x)\coloneqq\int_{B_R(0)}\overline{w(y)}\Phi(x-y)\dy,
+	\end{equation*}
+	dann ist nach Satz \ref{satz: w ist schwache lösung von helmholtz mit rhs -S} \(W\in\Hloc^1(\R^3)\) und \(W\) löst
+	\begin{equation*}
+		\Delta W+k^2W=-\overline{w},\qquad\te{ in }\R^3\te{ und die SAB gilt,}
+	\end{equation*}
+	im schwachen Sinn, d.h.
+	\begin{equation}
+		\label{volumenpotential zur adjungierten gleichung in schwacher form eingesetzt}
+		\int_{R^3}\nabla W\cdot\nabla\psi-k^2W\psi\dx=\int_{B_R(0)}\overline{w}\psi\dx,\qquad\te{ für alle }\psi\in\Hc^1(\R^3).
+	\end{equation}
+	Das zugehörige Fernfeld \(W^\infty\) verschwindet, da
+	\begin{equation*}
+		\overline{W^\infty(d)}=\frac{1}{4\pi}\int_{B_R(0)}w(y)\e^{\ii kd\cdot y}\dy=\frac{1}{4\pi}\scaltwobro{w}{u^i(\,\cdot\,;-d)}=0.
+	\end{equation*}
+	Mit Rellichs Lemma (vgl. Satz \ref{satz: rellichs lemma}) folgt \(W=0\) in \(\R^3\setminus B_R(0)\).\vspace{1.5mm}
+	
+	Sei nun \((v_j)_j\subset H\) mit \(v_j\restrict{B_R(0)}\to v\) in \(L^2\big(B_R(0)\big)\). Dann ist
+	\begin{equation}
+		\label{beweis dichtheit von span u(.,d) in H|B_R(0) 1}
+		\int_{B_R(0)}\overline{v}v_j\dx=\int_{B_R(0)}\overline{w}v_j\dx+k^2\int_{B_R(0)}(1-n^2)Wv_j\dx,\qquad\te{ für alle }j\in\N.
+	\end{equation}
+	Da \(v_j\in\H^1\big(B_\rho(0)\big)\) für alle \(\psi\in\H_0^1\big(B_\rho(0)\big)\) die Gleichung
+	\begin{equation}
+		\label{beweis dichtheit von span u(.,d) in H|B_R(0) 2}
+		\int_{B_\rho(0)}\nabla v_j\cdot\nabla\psi-k^2v_j\psi\dx=-k^2\int_{B_R(0)}(1-n^2)v_j\psi\dx,
+	\end{equation}
+	erfüllt, und da \(W\) außerhalb von \(B_R(0)\) verschwindet, gilt \eqref{beweis dichtheit von span u(.,d) in H|B_R(0) 2} auch für \(\psi=W\). Nach Satz \ref{satz: fortsetzungssatz} können wir \(v_j\) zu einer Funktion \(V_j\in\Hc^1(\R^3)\) fortsetzen und wir können \(\psi=V_j\) in \eqref{volumenpotential zur adjungierten gleichung in schwacher form eingesetzt} wählen. Die linken Seiten dieser Gleichungen stimmen überein, und daher ist
+	\begin{equation*}
+		-k^2\int_{B_R(0)}(1-n^2)v_jW\dx=\int_{B_R(0)}\overline{w}v_j\dx.
+	\end{equation*}
+	Die Gleichung \eqref{beweis dichtheit von span u(.,d) in H|B_R(0) 1} liefert nun
+	\begin{equation*}
+		\int_{B_R(0)}\overline{v}v_j\dx=0,\qquad\te{ für alle }j\in\N.
+	\end{equation*}
+	Für \(j\to\infty\) folgt \(\|v\|_{L^2(B_R(0))}=0\), also \(v\restrict{B_R(0)}=0\).
+\end{proof}
+Im nächsten Lemma zeigen wir eine Orthogonalitätsbeziehung zwischen Lösungen der Helmholtzgleichung und der Differenz der Brechungsindizes.
+\begin{lem}\label{lem: orthogonalitätsbeziehung zwischen brechungsindizes}
+	Seien \(n_1^2,n_2^2\in L^\infty(\R^3)\) zwei Brechungsindizes mit \(\support(n_j^2-1)\subset B_R(0)\), \(j=1,2\), sodass für die zugehörigen Fernfelder \(u_1^\infty(\widehat{x};d)=u_2^\infty(\widehat{x};d)\) für alle \(\widehat{x},d\in\SS^2\) gilt. Dann ist
+	\begin{equation}
+		\label{orthogonalitätsbeziehung zwischen brechungsindizes}
+		\int_{B_R(0)}v_1(x)v_2(x)\big(n_1^2(x)-n_2^2(x)\big)\dx=0,
+	\end{equation}
+	für alle Lösungen \(v_j\in\H^1\big(B_\rho(0)\big)\) der Helmholtzgleichung
+	\begin{equation*}
+		\Delta v_j+k^2n_j^2v_j=0,\qquad\te{ in }B_\rho(0),\quad j=1,2,\;\te{ wobei }\rho>R.
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	Sei \(v_1\) eine Lösung von \(\Delta v_1+k^2n_1^2v_1=0\) in \(B_\rho(0)\). Mit dem Dichteresultat aus Lemma \ref{lem: dichtheit von span u(.,d) in H|B_R(0)} genügt es, die Behauptung für \(v_2\coloneqq u_2(\,\cdot\,;d)\) mit beliebigem \(d\in\SS^2\) zu zeigen. Setze
+	\begin{equation*}
+		u\coloneqq u_1(\,\cdot\,;d)-u_2(\,\cdot\,;d)=u_1^s(\,\cdot\,;d)-u_2^s(\,\cdot\,;d).
+	\end{equation*}
+	Da
+	\begin{equation*}
+		u_1^\infty(\,\cdot\,;d)-u_2^\infty(\,\cdot\,;d)=0,
+	\end{equation*}
+	folgt mit Rellichs Lemma (vgl. Satz \ref{satz: rellichs lemma}), dass \(u\equiv0\) in \(\R^3\setminus B_R(0)\). Außerdem erfüllt \(u\) die Gleichung
+	\begin{equation*}
+		\Delta u+k^2n_1^2u=k^2(n_2^2-n_1^2)u_2(\,\cdot\,;d)=k^2(n_2^2-n_1^2)v_2,
+	\end{equation*}
+	bzw.
+	\begin{equation*}
+		\int_{\R^3}\nabla u\cdot\nabla\psi-k^2n_1^2u\psi\dx=-k^2\int_{B_R(0)}(n_2^2-n_1^2)v_2\psi\dx,\qquad\te{ für alle }\psi\in\Hc^1(\R^3).
+	\end{equation*}
+	Das Integral auf der linken Seite kann auf \(B_R(0)\) eingeschränkt werden, da \(u\) außerhalb von \(B_R(0)\) verschwindet. Wir setzen \(\psi=\phi v_1\) für eine Abschneidefunktion \(\phi\in\Cc^\infty(\R^3)\) mit \(\phi=1\) in \(B_R(0)\) und \(\support(\phi)\subset B_\rho(0)\). Also gilt
+	\begin{equation*}
+		k^2\int_{B_R(0)}(n_1^2-n_2^2)v_1v_2\dx=\int_{B_R(0)}\nabla u\cdot \nabla v_1-k^2u_1^2uv_2\dx=0,
+	\end{equation*}
+	und die rechte Seite verschwindet, da \(v_1\) die schwache Lösung von \(\Delta v_1+k^2n_1^2v_1=0\) in \(B_\rho(0)\) ist und \(u\restrict{B_\rho(0)}\in\H_0^1\big(B_\rho(0)\big)\) mit \(\support(u)\subset\overline{B_R(0)}\) ist.
+\end{proof}
+\begin{satz}\label{satz: existenz der lsg für die helmholtzgleichung mit u_z in B_rho}
+	Sei \(\rho>0\) und \(n^2\in L^\infty\big(B_\rho(0)\big)\), sodass \(\support(1-n^2)\subset B_\rho(0)\). Dann gibt es \(T>0\) und \(C>0\), sodass für alle \(z\in\C^3\) mit \(z\cdot z=0\) und \(|z|\geq T\) eine Lösung \(u_z\in\H^1\big(B_\rho(0)\big)\) der Differentialgleichung
+	\begin{equation}
+		\label{helmholtzgleichung mit u_z in B_rho(0)}
+		\Delta u_z+k^2n^2u_z=0,\qquad\te{ in }B_\rho(0),
+	\end{equation}
+	der Form
+	\begin{equation}
+		\label{lösung der helmholtzgleichung mit u_z in B_rho(0)}
+		u_z(x)=\e^{z\cdot x}\big(1+v_z(x)\big),\qquad x\in B_\rho(0),
+	\end{equation}
+	existiert, wobei \(v_z\) die Abschätzung
+	\begin{equation}
+		\label{abschätzung des teils v_z der lösung der helmholtzgleichung mit u_z in B_rho(0)}
+		\|v_z\|_{L^2(B_\rho(0))}\leq\frac{C}{|z|},\qquad\te{ für alle }z\in\C^3\te{ mit }z\cdot z=0\te{ und }|z|\geq T,
+	\end{equation}
+	erfüllt.
+\end{satz}
+\begin{proof}
+	Zuerst konstruieren wir \(v_z\) nur für \(z=t\widehat{e}\), wobei \(\widehat{e}=(1,\ii,0)\in\C^3\) und \(t>0\) hinreichend groß sei. Dann behandeln wir den allgemeinen Fall durch Rotation der Geometrie.
+	
+	Sei \(z=t\widehat{e}\) für ein \(t>0\). Nach Reskalierung können wir o.B.d.A. annehmen, dass \(B_\rho(0)\subset Q\coloneqq[-\pi,\pi]^3\subset\R^3\) (vgl. Beweis von Satz \ref{satz: prinzip der eindeutigen Fortsetzbarkeit}). Mit dem Ansatz
+	\begin{equation*}
+		u(x)=\e^{t\widehat{e}\cdot x}\big(1+\e^{-\tfrac{\ii}{2}x_1}w_t(x)\big),
+	\end{equation*}
+	und entsprechend
+	\begin{equation*}
+		\phi(x)\coloneqq\e^{-t\widehat{e}\cdot x+\tfrac{\ii}{2}x_2}\psi(x),\qquad\te{ für alle }\psi\in\Cc^\infty(Q),
+	\end{equation*}
+	folgt
+	\begin{align*}
+		\nabla u(x)&=\e^{t\widehat{e}\cdot x}(t\widehat{e}+t\widehat{e}\e^{-\tfrac{\ii}{2}x_1}w_t(x)-\frac{\ii}{2}\begin{pmatrix}1\\0\\0\end{pmatrix}\e^{-\tfrac{\ii}{2}x_1}w_t(x)+\e^{-\tfrac{\ii}{2}x_1}\nabla w_t(x)),\\
+		\nabla\phi(x)&=\e^{-t\widehat{e}\cdot x+\tfrac{\ii}{2}x_1}(-t\widehat{e}+\frac{\ii}{2}\begin{pmatrix}1\\0\\0\end{pmatrix})\psi(x) + \e^{-t\widehat{e}\cdot x+\tfrac{\ii}{2}x_1}\nabla\psi(x).
+	\end{align*}
+	Es soll gelten, dass
+	\begin{align*}
+		0&\overset{!}{=}\int_Q\nabla u\nabla\phi-k^2n^2u\phi\dx\\
+		&=\int_Q\e^{\tfrac{\ii}{2}x_1}\frac{\ii}{2}t\psi+\e^{\tfrac{\ii}{2}x_1}t\widehat{e}\nabla\psi+t\frac{\ii}{2}w_t\psi+t\widehat{e}\cdot(\nabla\psi) w_t\\
+		&\quad+\frac{\ii}{2}tw_t\psi+\frac{1}{4}w_t\psi-\frac{\ii}{2}\begin{pmatrix}1\\0\\0\end{pmatrix}\cdot(\nabla\psi)w_t-t\widehat{e}\cdot(\nabla w_t)\psi\\
+		&\quad+\frac{\ii}{2}\psi\begin{pmatrix}1\\0\\0\end{pmatrix}\cdot\nabla w_t
+		+\nabla w_t\cdot\psi-k^2n^2(\e^{\tfrac{\ii}{2}x_1}\psi+w_t\psi)\dx\\
+		&=\int_Q\nabla w_t\cdot\nabla\psi+(-2t\widehat{e}\psi+\ii\begin{pmatrix}1\\0\\0\end{pmatrix}\psi)\cdot\nabla w_t+(\ii t+\frac{1}{4})\psi w_t\\
+		&\quad-k^2n^2(\e^{\tfrac{\ii}{2}x_1}+w_t)\psi \dx,\qquad\te{ für alle }\psi\in\Cc^\infty(Q).
+	\end{align*}
+	D.h. \(w_t\) muss die Gleichung
+	\begin{equation*}
+		\Delta w_t+(2t\widehat{e}-ip)\cdot\nabla w_t-(\ii t+\tfrac{1}{4})w_t=-k^2n^2w_t-k^2n^2\e^{\tfrac{\ii}{2}x_1},
+	\end{equation*}
+	in \(Q\) erfüllen, wobei \(p\coloneqq(1,0,0)\in\R^3\). (Eine ähnliche Transformation haben wir bereits im Beweis von Satz \ref{satz: prinzip der eindeutigen Fortsetzbarkeit} gesehen.)
+	
+	Wir bestimmen nun eine \(2\pi\)-periodische Lösung dieser Gleichung. Da sie von der Form \eqref{eind. lösung w im schwachen sinn} (mit \(\alpha=\tfrac{1}{4}\)) ist, können wir Lemma \ref{lem: eind. lösung w im schwachen sinn}, insbesondere den Lösungsoperator \(L_t\), verwenden um die Lösung darzustellen:
+	\begin{equation}
+		\label{2pi periodische lösung mithilfe des lösungsoperators L_t}
+		w_t=L_t\big(-k^2n^2w_t-k^2n^2\e^{\tfrac{\ii}{2}x_1}\big),\qquad\te{ in }Q.
+	\end{equation}
+	Definiert man \(\widetilde{n}^2\coloneqq k^2n^2\e^{\tfrac{\ii}{2}x_1}\), so liest sich \eqref{2pi periodische lösung mithilfe des lösungsoperators L_t} als
+	\begin{equation*}
+		w_t+k^2L_t(n^2w_t)=L_t\widetilde{n}^2,\qquad\te{ in }Q,
+	\end{equation*}
+	oder äquivalent
+	\begin{equation*}
+		(I+K_t)w_t=L_t\widetilde{n}^2,\qquad\te{ in }Q.
+	\end{equation*}
+	Für große \(t\) ist \(K_t\colon w\mapsto k^2L_t(n^2w)\) eine Kontraktion, da
+	\begin{equation*}
+		\|K_tw\|_{L^2(Q)}=k^2\|L_t(n^2w)\|_{L^2(Q)}\overset{\te{\scriptsize Lemma \ref{lem: eind. lösung w im schwachen sinn}}}{\leq}\frac{k^2}{t^2}\|n^2w\|_{L^2(Q)}\leq\frac{k^2\|n^2\|_\infty}{t}\|w\|_{L^2(Q)}.
+	\end{equation*}
+	Für \(t>0\) groß existiert also eine eindeutige Lösung \(w_t\) von \eqref{2pi periodische lösung mithilfe des lösungsoperators L_t}. Diese Lösung hängt stetig von der rechten Seite ab, d.h. es existiert ein \(C>0\), sodass
+	\begin{equation*}
+		\|w_t\|_{L^2(Q)}\leq C\|L_t\widetilde{n}^2\|_{L^2(Q)}\leq\frac{Ck^2}{t}\|n^2\|_\infty,\qquad\te{ für alle }t\geq T,
+	\end{equation*}
+	und ein \(T>0\) groß genug. Damit haben wir den Satz für \(z=t\widehat{e}\) gezeigt.\vspace{2.5mm}
+	
+	Sei nun \(z\in\C^3\) beliebig mit \(z\cdot z=0\) und \(|z|\geq T\), dann gilt
+	\begin{equation*}
+		|\RE(z)|=|\IM(z)|\qquad\te{ und }\qquad\RE(z)\cdot\IM(z)=0.
+	\end{equation*}
+	Schreiben wir \(z=t(\widehat{a}+\ii\widehat{b})\) mit \(\widehat{a},\widehat{b}\in\SS^2\), \(t>0\) und \(\widehat{a}\cdot\widehat{b}=0\), und definieren \(\widehat{c}\coloneqq\widehat{a}\times\widehat{b}\), sowie \(R\coloneqq\big[\widehat{a},\,\widehat{b},\,\widehat{c}\big]\in\R^{3\times 3}\) (orthogonal), dann ist \(z=tR\widehat{e}\), also \(R^\transpose z=t\widehat{e}\).
+	
+	Die Substitution \(x\mapsto Rx\) transformiert die Helmholtzgleichung \eqref{helmholtzgleichung mit u_z in B_rho(0)} zu
+	\begin{equation*}
+		\Delta w(x)+k^2n^2(Rx)w(x)=0,\qquad\te{ in }B_\rho(0),
+	\end{equation*}
+	wobei \(w(x)\coloneqq u(Rx)\), \(x\in B_\rho(0)\). Der erste Teil des Beweises liefert nun die Existenz einer Lösung
+	\begin{equation*}
+		w(x)=\e^{t\widehat{e}\cdot x}\big(1+\e^{-\tfrac{\ii}{2}x_1}w_t(x)\big),
+	\end{equation*}
+	wobei \(\|w_t\|_{L^2(Q)}\leq\frac{C}{t}\) für \(t\geq T\) ist. Für \(u(x)\coloneqq w(R^\transpose x)\) folgt, dass
+	\begin{align*}
+		u(x)&=\e^{t\widehat{e}\cdot R^\transpose x}\big(1+\e^{-\tfrac{\ii}{2}\widehat{a}\cdot x}w_t(R^\transpose x)\big)\\
+		&=\e^{z\cdot x}\big(1+\e^{-\tfrac{\ii}{2}\widehat{a}\cdot x}w_t(R^\transpose x)\big).
+	\end{align*}
+	Damit ist der Satz auch für den allgemeinen Fall gezeigt.
+\end{proof}
+Wir wenden Satz \ref{satz: existenz der lsg für die helmholtzgleichung mit u_z in B_rho} nun an um zu zeigen, dass Produkte \(v_1v_2\) von Lösungen der Helmholtzgleichung \(\Delta v_j+k^2n_jv_j=0\) auf einem beschränkten Gebiet \(\Omega\subset\R^3\) einen dichten Unterraum von \(L^2(\Omega)\) aufspannen.
+\begin{satz}\label{satz: span von produkten von lösungen ist dicht in L2 BR0}
+	Seien \(n_1^2,n_2^2\in L^\infty(\R^3)\) mit \(\support(1-n_j^2)\subset B_R(0)\), \(j=1,2\). Dann ist
+	\begin{equation*}
+		\spann\big\{(v_1v_2)\restrict{B_R(0)}\mid v_j\in\H^1\big(B_\rho(0)\big)\te{ löst }\Delta v_j+k^2n_j^2v_j=0\te{ in }B_\rho(0) \te{ (mit }\rho>R\te{)}\big\},
+	\end{equation*}
+	dicht in \(L^2\big(B_R(0)\big)\).
+\end{satz}
+\begin{proof}
+	Sei \(g\in L^\infty\big(B_R(0)\big)\) mit
+	\begin{equation*}
+		g\perp^{L^2}\spann\big\{(v_1v_2)\restrict{B_R(0)}\mid v_j\in\H^1\big(B_\rho(0)\big)\te{ löst }\Delta v_j+k^2n_j^2v_j=0\te{ in }B_\rho(0)\big\},
+	\end{equation*}
+	d.h. insbesondere
+	\begin{equation}
+		\label{orthogonalitätsrelation: mittelwert von gv1v2 für zwei lösungen vj der HG ist 0}
+		\int_{B_R(0)}gv_1v_2\dx=0,
+	\end{equation}
+	für alle Lösungen \(v_j\in\H^1\big(B_\rho(0)\big)\) von \(\Delta v_j+k^2n_j^2v_j=0\) in \(B_\rho(0)\), \(j=1,2\). Wegen \(\big(L^1(B_R(0))\big)'=L^\infty\big(B_R(0)\big)\) genügt es zu zeigen, dass dann \(g=0\) ist.\vspace{1.5mm}
+	
+	Sei \(y\in\R^3\setminus\{0\}\) und \(\alpha>0\). Wähle \(\widehat{a}\in\SS^2\) und \(b\in\R^3\), sodass \(|b|^2=|y|^2+\alpha^2\) und \(\{y,\widehat{a},b\}\) paarweise orthogonal sind. Setze
+	\begin{equation*}
+		z_1\coloneqq\frac{1}{2}b-\frac{\ii}{2}(y+\alpha\widehat{a})\qquad\te{ und }\qquad z_2\coloneqq-\frac{1}{2}b-\frac{\ii}{2}(y-\alpha\widehat{a}).
+	\end{equation*}
+	Dann ist
+	\begin{equation*}
+		z_j\cdot z_j=\frac{|b|^2}{4}-\frac{|y|^2+\alpha^2}{4}=0\qquad\te{ und }\qquad|z_j|^2=\frac{1}{4}(|b|^2+|y|^2+\alpha^2)\geq\frac{\alpha^2}{4},\quad\te{ für }j=1,2.
+	\end{equation*}
+	Außerdem ist \(z_1+z_2=-\ii y\). Wir wenden nun Satz \ref{satz: existenz der lsg für die helmholtzgleichung mit u_z in B_rho} mit \(z=z_j\) auf die Gleichung \(\Delta v_j+k^2n_j^2v_j=0\) in \(B_\rho(0)\) an. Setzen wir die Lösung \(u_j(x)=\e^{z_j\cdot x}\big(1+v_{z_j}(x)\big)\) aus \eqref{lösung der helmholtzgleichung mit u_z in B_rho(0)} in die Orthogonalitätsrelation \eqref{orthogonalitätsrelation: mittelwert von gv1v2 für zwei lösungen vj der HG ist 0} ein, so folgt
+	\begin{align*}
+		0&=\int_\Omega\e^{z_1\cdot x}\big(1+v_{z_1}(x)\big)\e^{z_2\cdot x}\big(1+v_{z_2}(x)\big)g(x)\dx\\
+		&=\int_\Omega\e^{-\ii y\cdot x}\big(1+v_{z_1}(x)+v_{z_2}(x)+v_{z_1}(x)v_{z_2}(x)\big)g(x)\dx.
+	\end{align*}
+	Nach Satz \ref{satz: existenz der lsg für die helmholtzgleichung mit u_z in B_rho} gibt es \(T>0\) und \(C>0\), sodass
+	\begin{equation*}
+		\|v_{z_j}\|_{L^2(\Omega)}\leq\frac{C}{|z_j|}\leq\frac{2C}{\alpha},\qquad\te{ für alle }\alpha\geq T.
+	\end{equation*}
+	Cauchy-Schwarz liefert für \(\alpha\to\infty\), dass
+	\begin{equation*}
+		\int_\Omega\e^{-\ii y\cdot x}g(x)\dx=0.
+	\end{equation*}
+	Da \(y\in\R^3\setminus\{0\}\) beliebig war, folgt, dass die Fouriertransformation von \(g\) auf ganz \(\R^3\setminus\{0\}\) verschwindet, also ist \(g=0\).
+\end{proof}
+\begin{satz}
+	Seien \(n_1^2,n_2^2\in L^\infty(\R^3)\) mit \(\support(1-n_j^2)\subset B_R(0)\). Seien \(u_1^\infty(\,\cdot\,;d)\) und \(u_2^\infty(\,\cdot\,;d)\) die zugehörigen Fernfelder zu einer ebenen Welle mit \(d\in\SS^2\) als Primärfeld. Falls
+	\begin{equation*}
+		u_1^\infty(\widehat{x};d)=u_2^\infty(\widehat{x};d),\qquad\te{ für alle }\widehat{x},d\in\SS^2,
+	\end{equation*}
+	dann ist \(n_1^2=n_2^2\) in \(\R^3\).
+\end{satz}
+\begin{proof}
+	Kombiniere Lemma \ref{lem: orthogonalitätsbeziehung zwischen brechungsindizes} mit Satz \ref{satz: span von produkten von lösungen ist dicht in L2 BR0}.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

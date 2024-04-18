@@ -1,0 +1,233 @@
+\subsection{Das Prinzip der eindeutigen Fortsetzbarkeit und Eindeutigkeit von Lösungen des direkten Problems}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\arabic{subsection}}
+\setcounter{subsection}{6}
+\setcounter{section}{6}
+\setcounter{mydef}{0}
+\setcounter{equation}{0}
+
+\subsubsection*{Sobolevräume periodischer Funktionen}
+Betrachte den Würfel \(Q=(-\pi,\pi)^3\subset\R^3\). Aus dem Satz von Stone-Weierstraß und der Dichtheit von \(\CC(\overline{Q})\subset L^2(Q)\) folgt, dass 
+\begin{equation*}
+	\Bigg\{x\mapsto\frac{1}{(2\pi)^\frac{3}{2}}\e^{\ii\ell\cdot x}\,\Big\lvert\,\ell\in\Z^3\Bigg\},
+\end{equation*}
+eine Orthonormalbasis von \(L^2(Q)\) ist. Damit kann jedes \(v\in L^2(Q)\) in eine Fourierreihe
+\begin{equation}
+	\label{entwicklung in fourierreihe}
+	v(x)=\sum_{\ell\in\Z^3}v_\ell\e^{\ii\ell\cdot x},\qquad x\in Q,
+\end{equation}
+mit Koeffizienten
+\begin{equation}
+	\label{entwicklung in fourierreihe: koeffizienten}
+	v_\ell=\frac{1}{(2\pi)^3}\int_Qv(y)\e^{-\ii\ell\cdot y}\dy,\qquad\ell\in\Z^3,
+\end{equation}
+entwickelt werden. Die Reihe in \eqref{entwicklung in fourierreihe} konvergiert im \(L^2\)-Sinn und die Parseval-Identität liefert
+\begin{equation*}
+	(2\pi)^3\sum_{\ell\in\Z^3}|v_\ell|^2=\int_Q|v(y)|^2\dy.
+\end{equation*}
+Insbesondere ist \(L^2(Q)\) der Abschluss des Raums der trigonometrischen Polynome unter der \(L^2\)-Norm oder äquivalent bzgl. 
+\begin{equation*}
+	\|v\|_{\Lper^2(Q)}\coloneqq(2\pi)^\frac{3}{2}\Big(\sum_{\ell\in\Z^3}|v_\ell|^2\Big)^\frac{1}{2}.
+\end{equation*}
+Sei \(w(x)=\sum_{|\ell|_1\leq m}w_\ell\e^{\ii\ell\cdot x}\) ein trigonometrisches Polynom. Dann ist \(\nabla w(x)=\sum_{|\ell|_1\leq m}\ii\ell w_\ell\e^{\ii\ell\cdot x}\) und \((2\pi)^3\|\nabla w\|_{L^2(Q)}^2=(2\pi)^3\sum_{|\ell|_1\leq m}|\ell|^2|w_\ell|^2\), also
+\begin{equation*}
+	\|w\|_{\H^1(Q)}^2=(2\pi)^3\sum_{|\ell|_1\leq m}\big(1+|\ell|^2\big)|w_\ell|^2.
+\end{equation*}
+Wir definieren \(\Hper^1(Q)\) als Vervollständigung des Raums der trigonometrischen Polynome unter der \(\H^1(Q)\)-Norm oder äquivalent bzgl.
+\begin{equation*}
+	\|w\|_{\Hper^1(Q)}\coloneqq(2\pi)^\frac{3}{2}\Big(\sum_{\ell\in\Z^3}(1+|\ell|^2)|w_\ell|^2\Big)^\frac{1}{2}.
+\end{equation*}
+Insbesondere folgt aus Theorem \ref{thm: meyers and serrin}, dass \(\Hper^1(Q)\subset\H^1(Q)\). Für alle \(w\in\Hper^1(Q)\) ist \(w(x)=\sum_{\ell\in\Z^3}w_\ell\e^{\ii\ell\cdot x}\) wohldefiniert und für alle \(m\in\N\), \(\varphi\in\Cc^\infty(Q)\) gilt
+\begin{figure}[!h]
+	\centering
+	\begin{tikzpicture}
+		\node at (0,1){\(\bigintsss_Q \Big(\sum_{|\ell|_1\leq m}w_\ell\e^{\ii\ell\cdot x}\Big)\nabla\varphi\dx
+			=-\bigintsss_Q\Big(\sum_{|\ell|_1\leq m}(\ii\ell)w_\ell\e^{\ii\ell\cdot x}\Big)\varphi\dx\)};
+		
+		\node at (1.2,-1.6){\(\bigintsss_Qw\nabla\varphi\dx
+			=-\bigintsss_Q\underbrace{\Big(\sum_{\ell\in\Z^3}(\ii\ell)w_\ell\e^{\ii\ell\cdot x}\Big)}_{\in L^2(Q)\te{, da }w\in\Hper^1(Q)}\varphi\dx\)};
+		
+%		\node at (0,-1.5){\(\underbrace{abc}_{\in L^2(Q)\te{, da }w\in\Hper^1(Q)}\)}
+		
+		
+		\draw[thick,-{latex[scale=3.0]}] (-1.5, 0.7)--(-1.5,-0.7);
+		\draw[thick,-{latex[scale=3.0]}] (1.8,0.7)--(1.8,-0.7);
+		
+		\node at (-2.2,0){\small \(m\rarr\infty\)};
+		\node at (2.5,0){\small \(m\rarr\infty\)};
+	\end{tikzpicture}
+\end{figure}\\
+Damit folgt
+\begin{equation}
+	\label{darstellung von gradient von Hper^1 (ist in L^2)}
+	\nabla w(x)= \sum_{\ell\in\Z^3}\ii\ell w_\ell\e^{\ii\ell\cdot x},\qquad \nabla w\in L^2(Q),
+\end{equation}
+also \(\nabla w\) ist schwache Ableitung von \(w\).
+Durch Auswerten der Fourierreihe kann \(w\in\Hper^1(Q)\) \(2\pi\)-periodisch auf \(\R^3\) fortgesetzt werden \(\big(\)d.h. \(w(x+2\pi\ell)=w(x)\) für alle \(\ell\in\Z^3\) und \(x\in\R^3\big)\). Ist umgekehrt \(v\in\H^1(Q)\) \(2\pi\)-periodisch (am Rand),
+\begin{align*}
+	|v_\ell|&=\Big|\int_Qv(y)\e^{-\ii\ell\cdot y}\dy\Big|\\
+	&=\Big|\int_Qv(y)\Big(-\frac{1}{\ii\ell_m}\Big)\frac{\p}{\p y_m}\e^{-\ii\ell\cdot y}\dy\Big|\\
+	&=\frac{1}{|\ell_m|}\Big|\int_Q\underbrace{\Big(\frac{\p}{\p y_m}v(y)\Big)}_{\in L^2(Q)}\e^{-\ii\ell\cdot y}\dy\Big|,
+\end{align*}
+also ist \(\ell v_\ell\in\ell^2(\Z^3)\) und somit \(v\in\Hper^1(Q)\).
+\begin{lem}\label{lem: eind. lösung w im schwachen sinn}
+	Sei \(p\in\R^3\), \(\alpha\in\R\) und \(\widehat{e}=(1,\ii,0)\in\C^3\). Dann gibt es für alle \(t>0\) und \(g\in L^2(Q)\) eine eindeutige Lösung \(w=w_t(g)\in\Hper^1(Q)\) der Gleichung
+	\begin{subequations}
+		\label{eind. lösung w im schwachen sinn}
+		\begin{align}
+			\Delta w+(2t\widehat{e}-\ii p)\cdot\nabla w-(\ii t+\alpha)w=g,\qquad\te{ in }\R^3,\\
+			\shortintertext{im schwachen Sinn, d.h. sodass}
+			\label{eind. lösung w im schwachen sinn b}
+			\int_Q\nabla w\cdot\nabla\psi+\big(t\widehat{e}-\tfrac{1}{2}\ii p\big)\cdot\big(w\nabla\psi-\psi\nabla w\big)+(\ii t+\alpha)w\psi\dx=-\int_Qg\psi\dx,
+		\end{align}
+	\end{subequations}
+	für alle \(\psi\in\Hper^1(Q)\). Die Lösung erfüllt die Abschätzung
+	\begin{equation*}
+		\|w\|_{L^2(Q)}\leq\frac{1}{t}\|g\|_{L^2(Q)},\qquad\te{ für alle }g\in L^2(Q),\,t>0.
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	Entwickelt man
+	\begin{equation*}
+		w(x)=\sum_{\ell\in\Z^3}w_\ell\e^{\ii\ell\cdot x}\qquad\te{ und }\qquad g(x)=\sum_{\ell\in\Z^3}g_\ell\e^{\ii\ell\cdot x},
+	\end{equation*}
+	mit Koeffizienten gegeben durch \eqref{entwicklung in fourierreihe: koeffizienten}, und wählt \(\psi(x)=\e^{-\ii\ell\cdot x}\) in \eqref{eind. lösung w im schwachen sinn b}, so folgt mit \eqref{darstellung von gradient von Hper^1 (ist in L^2)}, dass für alle \(\ell\in\Z^3\)
+	\begin{align*}
+		|\ell|^2w_\ell+\big(t\widehat{e}-\tfrac{1}{2}\ii p\big)\cdot(-\ii\ell w_\ell-\ii\ell w_\ell)+(\ii t+\alpha)w_\ell&=-g_\ell\\
+		\Lolrarr\,\;w_\ell\big(-|\ell|^2+\ii\ell\cdot(2t\widehat{e}-\ii p)-(\ii t+\alpha)\big)&=\;g_\ell.
+	\end{align*}
+	Da
+	\begin{align*}
+		\big|-|\ell|^2+\ii\ell\cdot(2t\widehat{e}-\ii p)-(\ii t+\alpha)\big|
+		&\geq\big|\IM\big(-|\ell|^2+\ii\ell\cdot(2t\widehat{e}-\ii p)-(\ii t+\alpha)\big)\big|\\
+		&=|2t\ell_1-t|\\
+		&=t|2\ell_1-1|\geq t\qquad\te{ für alle }\ell\in\Z^3,\,t>0,
+	\end{align*}
+	ist der Operator \(\func{L_t}{L^2(Q)}{L^2(Q)}\),
+	\begin{equation}
+		\label{definition operator L_t}
+		\big(L_tg\big)(x)\coloneqq\sum_{\ell\in\Z^3}\frac{g_\ell}{-|\ell|^2+\ii\ell\cdot(2t\widehat{e}-\ii p)-(\ii t+\alpha)}\e^{\ii\ell\cdot x} =\sum_{\ell\in\Z^3}w_\ell\e^{\ii\ell\cdot x},
+	\end{equation}
+	wohldefiniert und beschränkt mit \(\|L_t\|\leq\frac{1}{t}\) für alle \(t>0\). Um zu zeigen, dass \(w\coloneqq L_tg\) die Gleichung \eqref{eind. lösung w im schwachen sinn} erfüllt, sei \(\psi\in\Hper^1(Q)\), \(\psi(x)=\sum_{\ell\in\Z^3}\psi_\ell\e^{-\ii\ell\cdot x}\). Dann ist
+	\begin{align*}
+		&\int_Q\nabla w\cdot\nabla\psi+\big(t\widehat{e}-\tfrac{1}{2}\ii p\big)\cdot\big(w\nabla\psi-\psi\nabla w\big)+(\ii t+\alpha)w\psi\dx\\
+		&=(2\pi)^3\sum_{\ell\in\Z^3}\big[|\ell|^2-\ii\ell\cdot(2t\widehat{e}-\ii p)+(\ii t+\alpha)\big]w_\ell\psi_\ell\\
+		&\overset{\eqref{definition operator L_t}}{=}-(2\pi)^3\sum_{\ell\in\Z^3}g_\ell\psi_\ell\\
+		&=-\int_Qg(x)\psi(x)\dx.
+	\end{align*}
+\end{proof}
+Das Lemma liefert also einen beschränkten linearen Lösungsoperator \(\func{L_t}{L^2(Q)}{L^2(Q)}\), \(g\mapsto w_t(g)\) für \eqref{eind. lösung w im schwachen sinn} mit \(\|L_t\|\leq\frac{1}{t}\) für alle \(t>0\).
+\begin{satz}[Prinzip der eindeutigen Fortsetzbarkeit]\label{satz: prinzip der eindeutigen Fortsetzbarkeit}
+	Sei \(n^2\in L^\infty(\R^3)\) mit \(n^2(x)=1\) für \(|x|\geq R\) und \(u\in\Hloc^1(\R^3)\) eine schwache Lösung der Helmholtzgleichung \(\Delta u+k^2n^2u=0\) in \(\R^3\), sodass \(u(x)=0\) für \(|x|\geq\widetilde{R}\), wobei \(\widetilde{R}>R\). Dann ist \(u\equiv0\) in \(\R^3\).
+\end{satz}
+\begin{proof}
+	Sei \(\widehat{e}=(1,\ii,0)\in\C^3\), \(\rho\coloneqq\frac{2\widetilde{R}}{\pi}\), und
+	\begin{equation*}
+		w_t(x)=\exp\big(\tfrac{\ii}{2}x_1-t\widehat{e}\cdot x\big)u(\rho x),\qquad\; x\in Q=(-\pi,\pi)^3,
+	\end{equation*}
+	für ein \(t>0\). Da \(w_t(x)=0\) für alle \(|x|\geq\frac{\pi}{2}\), d.h. insbesondere in einer Umgebung von \(\p Q\) kann \(w_t\) zu einer \(2\pi\)-periodischen Funktion fortgesetzt werden (auf \(\R^3\)). Setze \(p=(1,0,0)\), \(\widetilde{n}^2(x)=n^2(\rho x)\) für fast alle \(x\in(-\pi,\pi)^3\). Dann ist
+	\begin{equation*}
+		u(x)=\exp\Big(-\frac{\ii}{2}\frac{x_1}{\rho}+t\widehat{e}\cdot\frac{x}{\rho}\Big)w_t\Big(\frac{x}{\rho}\Big),
+	\end{equation*}
+	und wir definieren
+	\begin{equation*}
+		\phi(x)\coloneqq\exp\Big(+\frac{\ii}{2}\frac{x_1}{\rho}-t\widehat{e}\cdot\frac{x}{\rho}\Big)\psi\Big(\frac{x}{\rho}\Big),
+	\end{equation*}
+	wobei \(\psi\in\CC^1(\overline{Q})\), \(\support(\psi)\subset Q\). Damit folgt (mit der Produktregel aus Lemma \ref{lem: produktregel}), dass
+	\begin{align*}
+		\nabla u(x)&=\frac{1}{\rho}\exp\Big(-\frac{\ii}{2}\frac{x_1}{\rho} + t\widehat{e}\cdot\frac{x}{\rho}\Big)\nabla w_t\Big(\frac{x}{\rho}\Big)
+			+w_t\Big(\frac{x}{\rho}\Big)\Big(-\frac{\ii}{2}\frac{p}{\rho}+t\frac{\widehat{e}}{\rho}\Big)\exp\Big(-\frac{\ii}{2}\frac{x_1}{\rho}+t\widehat{e}\cdot\frac{x}{\rho}\Big),\\
+		\nabla \phi(x)&=\frac{1}{\rho}\exp\Big(+\frac{\ii}{2}\frac{x_1}{\rho}-t\widehat{e}\cdot\frac{x}{\rho}\Big)\nabla \psi\Big(\frac{x}{\rho}\Big)
+			+\psi\Big(\frac{x}{\rho}\Big)\Big(+\frac{\ii}{2}\frac{p}{\rho}-t\frac{\widehat{e}}{\rho}\Big)\exp\Big(+\frac{\ii}{2}\frac{x_1}{\rho}-t\widehat{e}\cdot\frac{x}{\rho}\Big).
+	\end{align*}
+	Einsetzen in \eqref{schwache lösung definition} liefert
+	\begin{align*}
+		0&=\int_{\R^3}\nabla u\cdot\nabla\phi-k^2n^2u\phi\dx\\
+		&=\int_{B_{\widetilde{R}}(0)}\frac{1}{\rho^2}\Big[\nabla w_t\Big(\frac{x}{\rho}\Big)\cdot\nabla\psi\Big(\frac{x}{\rho}\Big)+\big(-\tfrac{\ii}{2}p+t\widehat{e}\big)\cdot\Big(w_t\Big(\frac{x}{\rho}\Big)\nabla\psi\Big(\frac{x}{\rho}\Big)-\psi\Big(\frac{x}{\rho}\Big)\nabla w_t\Big(\frac{x}{\rho}\Big)\Big)\\
+		&\qquad\qquad+\big(\tfrac{1}{4}+\ii t\big)w_t\Big(\frac{x}{\rho}\Big)\psi\Big(\frac{x}{\rho}\Big)-\rho^2k^2\widetilde{n}^2\Big(\frac{x}{\rho}\Big)w_t\Big(\frac{x}{\rho}\Big)\psi\Big(\frac{x}{\rho}\Big)\Big]\dx\\
+		&\overset{\scriptsize x=z\rho}{=}
+		\int_Q\nabla w_t(z)\cdot\nabla\psi(z)+\big(-\tfrac{\ii}{2}p+t\widehat{e}\big)\cdot\big(w_t(z)\nabla\psi(z)-\psi(z)\nabla w_t(z)\big)\\
+		&\qquad\qquad+\big(\tfrac{1}{4}+\ii t\big)w_t(z)\psi(z)-\rho^2k^2\widetilde{n}^2(z)w_t(z)\psi(z)\dz.
+	\end{align*}
+	Da \(w_t\) in einer Umgebung von \(\p Q\) verschwindet, gilt die Gleichung sogar für alle \(\psi\in\Hper^1(Q)\) (Vgl. Lemma \ref{lem: ableitung in faltung reinziehen für mollifier}),
+	\begin{equation}
+		\label{prinzip der eind. fortsetzbarkeit beweis}
+		\Delta w_t+(2t\widehat{e}-\ii p)\cdot \nabla w_t-(\ii t+\tfrac{1}{4})w_t=\rho^2k^2\widetilde{n}^2w_t,
+	\end{equation}
+	im schwachen Sinn, vgl. \eqref{eind. lösung w im schwachen sinn b}. Lemma \ref{lem: eind. lösung w im schwachen sinn} liefert einen linearen Lösungsoperator \(\func{L_t}{L^2(Q)}{L^2(Q)}\) mit \(\|L_t\|\leq\frac{1}{t}\), sodass \eqref{prinzip der eind. fortsetzbarkeit beweis} äquivalent ist zu
+	\begin{equation*}
+		w_t=\rho^2k^2L_t(\widetilde{n}^2w_t).
+	\end{equation*}
+	Damit folgt
+	\begin{equation*}
+		\|w_t\|_{L^2(Q)}\leq\frac{1}{t}\rho^2k^2\|\widetilde{n}^2w_t\|_{L^2(Q)}\leq\frac{\rho^2k^2\|n^2\|_\infty}{t}\|w_t\|_{L^2(Q)},\qquad\te{ für alle }t>0,
+	\end{equation*}
+	also \(w_t=0\) f.ü. in \(Q\) für \(t>0\) hinreichend groß und damit \(u=0\) f.ü. in \(\R^3\).
+\end{proof}
+\begin{satz}[Eindeutigkeit von Lösungen des direkten Streuproblems]\label{satz: eindeutigkeit von Lösungen des direkten Streuproblems}
+	Das direkte Streuproblem \eqref{helmholtzgleichung dp}-\eqref{SAB direktes problem} hat höchstens eine (schwache) Lösung, d.h. falls \(u\in\Hloc^1(\R^3)\) eine schwache Lösung von \eqref{helmholtzgleichung dp}-\eqref{SAB direktes problem} ist mit \(u^i=0\) und \(f=0\) in \(\R^3\), dann ist \(u=0\) in \(\R^3\).
+\end{satz}
+\begin{proof}
+	Sei \(u^i=0\) und \(f=0\) in \(\R^3\). Dann erfüllt \(u=u^s\) die Ausstrahlungsbedingung, d.h.
+	\begin{equation}
+		\label{eindeutigkeit von lösungen des DP: beweis}
+		\OO\Big(\frac{1}{r^2}\Big)
+		=\int_{|x|=r}\Big|\frac{\p u}{\p r}-\ii ku\Big|^2\ds(x)
+		=\int_{|x|=r}\Big|\frac{\p u}{\p r}\Big|^2+k^2|u|^2\ds(x)+2k\IM\int_{|x|=r}u\frac{\p\overline{u}}{\p r}\ds(x),
+	\end{equation}
+	für \(r\) groß genug. Sei nun \(r>R\) groß und \(\phi_r\in\Cc^\infty(\R^3)\) eine Abschneidefunktion, sodass \(\phi_r(x)=1\) für alle \(x\in B_{2r}(0)\). Aus Theorem \ref{thm: regularität} folgt, dass \(u\) und \(\phi_ru\) in \(\R^3\setminus \overline{B_R(0)}\) glatt sind. Für \(\psi\coloneqq u\phi_r\in\Hc^1(\R^3)\) liefert \eqref{schwache lösung definition}, dass
+	\begin{align*}
+		0&=\int_{\R^3}\nabla\overline{ u}\cdot\nabla\psi-k^2\overline{n^2}\overline{u}\psi\dx\\
+		&=\int_{\R^3\setminus B_r(0)}\nabla\overline{u}\cdot\nabla\psi\dx+\int_{B_r(0)}\nabla\overline{u}\cdot\nabla\psi\dx-k^2\int_{R^3}\overline{n^2u}\psi\dx\\
+		&\overset{\scriptsize\eqref{greenscher satz 2}}{=}-\int_{\R^3\setminus B_r(0)}\psi\underbrace{\Delta\overline{u}}_{=-k^2\overline{n}^2\overline{u}}-\int_{\p B_r(0)}\underbrace{\psi}_{=u}\frac{\p\overline{u}}{\p \normal}\ds-k^2\int_{\R^3}\overline{n^2}\overline{u}\psi\dx+\int_{B_r(0)}\nabla\overline{u}\cdot\underbrace{\nabla\psi}_{=\nabla u}\dx\\
+		&=-\int_{\p B_r(0)}u\frac{\p\overline{u}}{\p\normal}\ds+\int_{B_r(0)}|\nabla u|^2\ds-k^2\int_{B_r(0)}\overline{n^2}|u|^2\dx.
+	\end{align*}
+	Also gilt
+	\begin{equation*}
+		\IM\int_{\p B_r(0)}u\frac{\p \overline{u}}{\p\normal}\ds=k^2\int_{B_r(0)}\IM(n^2)|u|^2\dx\geq0.
+	\end{equation*}
+	Einsetzen in \eqref{eindeutigkeit von lösungen des DP: beweis} liefert für \(r\to\infty\)
+	\begin{equation*}
+		0\geq\limsup_{r\to\infty}\int_{\p B_r(0)}\Big|\frac{\p u}{\p\normal}\Big|^2+k^2|u|^2\ds\geq0,
+	\end{equation*}
+	daraus folgt
+	\begin{equation*}
+		\lim_{r\to\infty}\int_{|x|=r}|u|^2\ds(x)=0,
+	\end{equation*}
+	mit Satz \ref{satz: rellichs lemma} (Rellichs Lemma) \(u=0\) in \(\R^3\setminus\overline{B_R(0)}\) und schließlich mit Satz \ref{satz: prinzip der eindeutigen Fortsetzbarkeit} \(u=0\) in \(\R^3\).
+\end{proof}
+\begin{cor}\label{kor: direktes streuproblem hat eindeutige schwache lösung}
+	Seien \(n^2,k,f\) und \(u^i\) wie am Anfang von Abschnitt II eingeführt. Dann hat das direkte Streuproblem \eqref{helmholtzgleichung dp}-\eqref{SAB direktes problem} eine eindeutige schwache Lösung \(u\in\Hloc^1(\R^3)\).
+\end{cor}
+\begin{proof}
+	Kombiniere Satz \ref{satz: existenz von lösungen des DP bei eindeutigkeit} und Satz \ref{satz: eindeutigkeit von Lösungen des direkten Streuproblems}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

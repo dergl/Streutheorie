@@ -1,0 +1,268 @@
+
+\subsection{Kugelflächenfunktionen, sphärische Besselfunktionen und Rellichs Lemma}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\arabic{subsection}}
+\setcounter{subsection}{5}
+\setcounter{section}{5}
+\setcounter{mydef}{0}
+\setcounter{equation}{0}
+
+Eine \bol{Kugelflächenfunktion} von Ordnung \(n\) ist die Einschränkung eines harmonischen homogenen Polynoms, d.h.
+\begin{equation*}
+	f(x)=\sum_{|\alpha|=n}a_\alpha x^\alpha,\qquad\Delta f=0,
+\end{equation*}
+auf die Einheitssphäre \(\SS^2\). Man kann zeigen, dass es genau \(2n+1\) linear unabhängige Kugelflächenfunktionen vom Grad \(n\) gibt. In Kugelkoordinaten \((r,\theta, \phi)\) ist
+\begin{equation*}
+	\Delta=\frac{1}{r^2}\Big[\frac{\p}{\p r}\Big(r^2\frac{\p}{\p r}\Big)+\underbrace{ \frac{1}{\sin(\theta)}\frac{\p}{\p\theta}\Big(\sin(\theta)\frac{\p}{\p\theta}\Big)+\frac{1}{\sin^2(\theta)}\frac{\p^2}{\p\phi^2} }_{\eqqcolon\Delta_{\SS^2}}\Big].
+\end{equation*}
+Homogene Polynome sind von der Form
+\begin{equation*}
+	H_n=r^nY_n(\theta,\phi),
+\end{equation*}
+und \(\Delta H_n=0\) genau dann, wenn
+\begin{equation}
+	\label{wann sind homogene polynome harmonisch}
+	n(n+1)Y_n+\frac{1}{\sin(\theta)}\frac{\p}{\p\theta}\Big(\sin(\theta)\frac{\p Y_n}{\p\theta}\Big)+\frac{1}{\sin^2(\theta)}\frac{\p^2Y_n}{\p\phi^2}=n(n+1)Y_n+\Delta_{\SS^2}Y_n=0.
+\end{equation}
+Für zwei homogene harmonische Polynome \(H_n\) und \(H_m\) ergibt die Greensche Formel \eqref{greenscher satz 3}, dass
+\begin{equation*}
+	0=\int_{B_1(0)}\overline{H}_m\Delta H_n-H_n\Delta\overline{H}_m\dx=\int_{\SS^2}\overline{H}_m\frac{\p H_n}{\p r}-H_n\frac{\p\overline{H}_m}{\p r}\dx=(n-m)\int_{\SS^2}\overline{Y}_mY_n\dx,
+\end{equation*}
+also folgt mit \eqref{wann sind homogene polynome harmonisch}
+\begin{equation}
+	\int_{\SS^2}\overline{Y}_mY_n\dx=0,\qquad\te{ falls }n\neq m.
+\end{equation}
+Um Kugelflächenfunktionen zu konstruieren, die nur von \(\theta\) abhängen, betrachte \(x,y\in\R^3\) mit \(r\coloneqq|x|<|y|=1\), bezeichne mit \(\theta\) den Winkel zwischen \(x\) und \(y\) und setze \(t=\cos\theta\). Damit erhält man durch Taylorentwicklung
+\begin{equation}
+	\label{konstruktion von kugelflächenfkt 1}
+	\frac{1}{|x-y|}=\frac{1}{\sqrt{1-2tr+r^2}}=\sum_{n=0}^\infty P_n(t)r^n,
+\end{equation}
+mit Koeffizienten \(P_n(t)\), die noch zu bestimmen sind. Schreibe
+\begin{equation*}
+	\frac{1}{\sqrt{1-2tr+r^2}}=\frac{1}{\sqrt{1-r\e^{\ii\theta}}\sqrt{1-r\e^{-\ii\theta}}},
+\end{equation*}
+und beachte, dass
+\begin{equation}
+	\label{konstruktion von kugelflächenfkt 2}
+	\frac{1}{\sqrt{1-r\e^{\pm\ii\theta}}}=1+\sum_{n=1}^\infty\frac{1\cdot3\cdot\ldots\cdot(2n-1)}{2\cdot4\cdot\ldots\cdot(2n)}r^n\e^{\pm\ii n\theta},
+\end{equation}
+(schreibe \(z=r\e^{\pm\ii\theta}\leadsto\) Taylor) für \(0\leq r\leq r_0<1\) (inklusive aller gliedweisen Ableitungen) absolut und gleichmäßig konvergiert (und damit auch das Produkt). Daraus folgt, dass ebenso \eqref{konstruktion von kugelflächenfkt 1} absolut und gleichmäßig konvergent ist für \(0\leq r\leq r_0\).\vspace{1mm}
+
+Setzt man \(\theta=0\) in \eqref{konstruktion von kugelflächenfkt 2}, erhält man eine Majorante \(r\mapsto(1-r)^{-\frac{1}{2}}\) und daher ist die geometrische Reihe \(r\mapsto(1-r)^{-1}\) eine Majorante für \eqref{konstruktion von kugelflächenfkt 1}, d.h.
+\begin{equation}
+	\label{Abschätzung der Pn}
+	|P_n(t)|\leq1,\qquad-1\leq t\leq1,\,n=0,1,2,\ldots.
+\end{equation}
+Differentieren von \eqref{konstruktion von kugelflächenfkt 1} bzgl. \(r\), Multiplizieren mit \((1-2rt+r^2)\) und einsetzen von \(\eqref{konstruktion von kugelflächenfkt 1}\) (links) und Koeffizientenvergleich liefert die Rekursionsformel
+\begin{equation}
+	\label{rekursionsformel für Pn}
+	(n+1)P_{n+1}(t)-(2n+1)tP_n(t)+nP_{n-1}(t)=0,\qquad n=1,2,\ldots.
+\end{equation}
+Direkt aus \eqref{konstruktion von kugelflächenfkt 1} folgt \(P_0(t)=1\), \(P_1(t)=t\) und deshalb sind die \(P_n\) Polynome vom Grad \(n\) die sogenannten \rec{Legendre-Polynome} (aus Numerik 1 bekannt). Sie erfüllen
+\begin{equation*}
+	\int_{-1}^1P_n(t)P_m(t)\dt=\frac{2}{2n+1}\delta_{mn},\qquad m,n=0,1,2,\ldots,
+\end{equation*}
+und die \(P_n\) sind gerade Funktionen falls \(n\) gerade, bzw. ungerade Funktionen falls \(n\) ungerade.\vspace{1mm}
+
+Da die linke Seite von \eqref{konstruktion von kugelflächenfkt 1} harmonisch in \(x\) ist, folgt durch gliedweises Anwenden des \(\Delta\)-Operators in Kugelkoordinaten auf die Reihe rechts, dass
+\begin{equation*}
+	\sum_{n=0}^\infty\Big(\frac{1}{\sin(\theta)}\frac{\p}{\p\theta}\sin(\theta)\frac{\p P_n(\cos(\theta))}{\p\theta}+n(n+1)P_n(\cos(\theta))\Big)r^{n-2}=0.
+\end{equation*}
+Durch Koeffizientenvergleich folgt, dass die \(P_n\) die \rec{Legendre-Differentialgleichung}
+\begin{equation}
+	\label{legendre DGL}
+	(1-t^2)P_n''(t)-2tP_n'(t)+n(n+1)P_n(t)=0,\qquad n=0,1,2,\ldots,
+\end{equation}
+erfüllen, und dass das homogene Polynom \(r^nP_n\big(\cos(\theta)\big)\) vom Grad \(n\) harmonisch ist. Daher ist \(P_n\big(\cos(\theta)\big)\) eine Kugelflächenfunktion von Ordnung \(n\).\vspace{1mm}
+
+Als Nächstes betrachten wir  Kugelflächenfunktionen der Form
+\begin{equation*}
+	Y_n^m(\theta,\phi)=f\big(\cos(\theta)\big)\e^{\ii m\phi}.
+\end{equation*}
+Dann erfüllt \(Y_n^m\) \eqref{wann sind homogene polynome harmonisch}, falls \(f\) die \rec{assoziierte Legendre-Differentialgleichung}
+\begin{equation}
+	\label{assoziierte legendre DGL}
+	(1-t^2)f''(t)-2tf'(t)+\Big(n(n+1)-\frac{m^2}{1-t^2}\Big)f(t)=0,
+\end{equation}
+erfüllt. Differenziert man \eqref{legendre DGL} \(m\)-mal, dann folgt für die \(m\)-te Ableitung \(g\) von \(P_n\), dass diese die Gleichung
+\begin{equation*}
+	(1-t^2)g''(t)-2(m+1)tg'(t)+(n-m)(n+m+1)g(t)=0,
+\end{equation*}
+erfüllt. Daraus folgt, dass die \rec{assoziierten Legendre-Funktionen}
+\begin{equation}
+	\label{assoziierte legendre fkten}
+	P_n^m(t)\coloneqq (1-t^2)^\frac{m}{2}\frac{\dd^mP_n}{\dd t^m}(t),\qquad m=0,1,\ldots,n,
+\end{equation}
+die Gleichung \eqref{assoziierte legendre DGL} erfüllen. Wir zeigen noch, dass \(r^nY_n^m(\theta,\phi)=r^nP_n^m\big(\cos(\theta)\big)\e^{\ii m\phi}\) homogene Polynome vom Grad \(n\) sind:\vspace{1mm}
+
+Die Rekursion \eqref{rekursionsformel für Pn} und \eqref{assoziierte legendre fkten} zeigen, dass
+\begin{equation*}
+	P_n^m\big(\cos(\theta)\big)=\sin^m(\theta)u_n^m\big(\cos(\theta)\big),
+\end{equation*}
+wobei \(u_n^m\) ein Polynom vom Grad \(n-m\) ist, das gerade (ungerade) ist, falls \(n-m\) gerade (ungerade) ist. In Kugelkoordinaten ist \(r^m\sin^m(\theta)\e^{\ii m\phi}=(x_1+\ii x_2)^m\), also
+\begin{equation*}
+	r^nY_n^m(\theta,\phi)=(x_1+\ii x_2)^mr^{n-m}u_n^m\big(\cos(\theta)\big).
+\end{equation*}
+Für \(n-m\) gerade ist
+\begin{equation*}
+	r^{n-m}u_n^m\big(\cos(\theta)\big)=r^{n-m}\sum_{k=0}^{\frac{1}{2}(n-m)}a_k\cos^{2k}(\theta)=\sum_{k=0}^{\frac{1}{2}(n-m)}a_kx_3^{2k}(x_1^2+x_2^2+x_3^2)^{\frac{1}{2}(n-m)-k},
+\end{equation*}
+ein homogenes Polynom vom Grad \(n-m\). Analog folgt das für \(n-m\) ungerade, also sind \(r^nY_n^m(\theta,\phi)\) harmonische homogene Polynome vom Grad \(n\).
+\begin{satz}\label{satz: kugelflächenfkten sind vollst ONS von L^2(S^2)}
+	Die Kugelflächenfunktionen
+	\begin{equation*}
+		Y_n^m(\theta,\phi)\coloneqq\sqrt{\frac{2n+1}{4\pi}\frac{(n-|m|)!}{(n+|m|)!}}P_n^{|m|}\big(\cos(\theta)\big)\e^{\ii m\phi},
+	\end{equation*}
+	mit \(m=-n,\ldots,n\) und \(n=0,1,2,\ldots\) bilden ein vollständiges Orthonormalsystem von \(L^2(\SS^2)\).
+\end{satz}
+\begin{proof}
+	Siehe Colton \& Kress (1998), p. 25.
+\end{proof}
+
+\subsubsection*{Sphärische Besselfunktionen}
+Wir suchen Lösungen der Helmholtzgleichung \(\Delta u+k^2u=0\) der Form
+\begin{equation*}
+	u(x)=f\big(k|x|\big)Y_n(\widehat{x}),
+\end{equation*}
+wobei \(Y_n\) eine Kugelflächenfunktion der Ordnung \(n\) ist. Aus \eqref{wann sind homogene polynome harmonisch} folgt, dass \(\Delta u+k^2u=0\) genau dann, wenn
+\begin{equation*}
+	\frac{\p}{\p r}\Big(r^2\frac{\p u}{\p r}\Big)+\Delta_{\SS^2}u+k^2r^2u=0,
+\end{equation*}
+was wiederum äquivalent zur Lösung der \rec{sphärischen Besselgleichung}
+\begin{equation}
+	\label{sphärische Besselgleichung}
+	t^2f''(t)+2tf'(t)+\big(t^2-n(n+1)\big)f(t)=0,\qquad (t=kr),
+\end{equation}
+ist. Die Funktionen
+\begin{align}
+	\label{lsg der sphärischen besselgleichung 1}
+	j_n(t)&\coloneqq\sum_{p=0}^\infty\frac{(-1)^pt^{n+2p}}{2^pp!1\cdot3\cdot\ldots\cdot(2n+2p+1)},\\
+	\label{lsg der sphärischen besselgleichung 2}
+	y_n(t)&\coloneqq-\frac{(2n)!}{2^nn!}\sum_{p=0}^\infty\frac{(-1)^pt^{p-n-1}}{2^pp!(-2n+1)(-2n+3)\cdot\ldots\cdot(-2n+2p-1)},
+\end{align}
+\(n=0,1,2\ldots\) sind Lösungen der sphärischen Besselgleichung \eqref{sphärische Besselgleichung}. Die Funktion \(j_n\) ist analytisch in \(\R\) und \(y_n\) ist analytisch in \(\R\setminus\{0\}\) (Quotientenkriterium). Die Funktionen \(j_n\) und \(y_n\) heißen \rec{sphärische Bessel-} und \rec{sphärische Neumannfunktionen}. Die Linearkombination
+\begin{equation*}
+	h_n^{(1,2)}\coloneqq j_n\pm\ii y_n,
+\end{equation*}
+heißen \rec{sphärische Hankelfunktionen} erster und zweiter Art. Differenzieren von \eqref{lsg der sphärischen besselgleichung 1} und \eqref{lsg der sphärischen besselgleichung 2} zeigt, dass \(f_n=j_n,y_n\) die Formel
+\begin{equation}
+	\label{ableiten der hankelfkten}
+	f_{n+1}(t)=-t^n\frac{\dd}{\dd t}\big(t^{-n}f_n(t)\big),\qquad n=0,1,2,\ldots,
+\end{equation}
+erfüllen. Für \(n=0\) ergibt sich 
+\begin{equation*}
+	j_0(t)=\frac{\sin(t)}{t},\qquad y_0(t)=-\frac{\cos(t)}{t},\qquad\te{ also }\quad h_0^{(1,2)}(t)=\frac{\e^{\pm\ii t}}{\pm\ii t}.
+\end{equation*}
+Aus dieser Gleichung und \eqref{ableiten der hankelfkten} folgt mit Induktion, dass
+\begin{equation*}
+	h_n^{(1)}(t)=(-\ii)^n\frac{\e^{\ii t}}{\ii t}\Big(1+\sum_{p=1}^n\frac{a_{pn}}{t^p}\Big),\qquad h_n^{(2)}(t)=\ii^n\frac{\e^{-\ii t}}{-\ii t}\Big(1+\sum_{p=1}^n\frac{\overline{a_{pn}}}{t^p}\Big),
+\end{equation*}
+mit komplexen Koeffizienten \(a_{1n},\ldots,a_{nn}\). Es gilt also
+\begin{equation}
+	\label{ableitung der hankelfkten}
+	\begin{aligned}
+		h_n^{(1,2)}(t)&=\frac{1}{t}\e^{\pm\ii(t-\frac{n\pi}{2}-\frac{\pi}{2})}\Big(1+\OO\Big(\frac{1}{t}\Big)\Big),\qquad&t\rarr\infty,\\
+		\big(h_n^{(1,2)}\big)'(t)&=\frac{1}{t}\e^{\pm\ii(t-\frac{n\pi}{2})}\Big(1+\OO\Big(\frac{1}{t}\Big)\Big),&t\rarr\infty.
+	\end{aligned}
+\end{equation}
+\begin{satz}
+	Sei \(Y_n\) eine Kugelflächenfunktion von Ordnung \(n\). Dann ist
+	\begin{equation*}
+		u_n(x)=j_n\big(k|x|\big)Y_n(\widehat{x}),
+	\end{equation*}
+	eine ganze Lösung der Helmholtzgleichung \(\Delta u+k^2u=0\) in \(\R^3\) und
+	\begin{equation*}
+		v_n(x)=h_n^{(1)}(k|x|)Y_n(\widehat{x}),
+	\end{equation*}
+	ist eine ausstrahlende Lösung der Helmholtzgleichung in \(\R^3\setminus\{0\}\).
+\end{satz}
+\begin{proof}
+	Da \(j_n(kr)=k^nr^nw_n(r^2)\) mit einer analytischen Funktion \(\func{w_n}{\R}{\R}\) ist und da \(r^nY_n(\widehat{x})\) ein homogenes Polynom in \(x_1,x_2,x_3\) ist, ist \(j_n(kr)Y_n(\widehat{x})\) regulär in \(x=0\), d.h. \(u_n\) löst die Helmholtzgleichung in \(0\). Dass \(v_n\) die Ausstrahlungsbedingung erfüllt, folgt aus \eqref{ableitung der hankelfkten}.
+\end{proof}
+\begin{satz}[Rellichs Lemma]\label{satz: rellichs lemma}
+	Sei \(u\in\CC^2\big(\R^3\setminus \overline{B_R(0)}\big)\) eine Lösung der Helmholtzgleichung \(\Delta u+k^2u=0\) in \(\R^3\setminus \overline{B_R(0)}\), sodass
+	\begin{equation}
+		\label{rellichs lemma gleichung}
+		\lim_{r\to\infty}\int_{|x|=r}|u(x)|^2\ds(x)=0.
+	\end{equation}
+	Dann ist \(u=0\) in \(\R^3\setminus \overline{B_R(0)}\).
+\end{satz}
+\begin{proof}
+	Für hinreichend großes \(|x|\) kann nach Satz \ref{satz: kugelflächenfkten sind vollst ONS von L^2(S^2)} die Lösung \(u\) auf \(\p B_r(0)\), \(r>R\), in eine Fourierreihe
+	\begin{equation*}
+		u(x)=\sum_{n=0}^\infty\sum_{m=-n}^na_n^m(|x|)Y_n^m(\widehat{x}),\qquad\quad\widehat{x}=\frac{x}{|x|},
+	\end{equation*}
+	entwickelt werden. Die Koeffizienten sind gegeben durch
+	\begin{equation}
+		\label{rellichs lemma beweis: koeffizienten FR}
+		a_n^m(r)=\int_{\SS^2}u(r\widehat{x})\overline{Y_n^m(\widehat{x})}\ds(\widehat{x}),
+	\end{equation}
+	und erfüllen die \rec{Parsevalsche Identität}
+	\begin{equation*}
+		\int_{|x|=r}|u(x)|^2\ds(x)=\int_{\SS^2}|u(r\widehat{x})|^2r^2\ds(\widehat{x})=r^2\sum_{n=0}^\infty\sum_{m=-n}^n|a_n^m(r)|^2.
+	\end{equation*}
+	Aus \eqref{rellichs lemma gleichung} folgt, dass
+	\begin{equation}
+		\label{rellichs lemma beweis: abfall koeffizienten}
+		\lim_{r\to\infty}r^2|a_n^m(r)|^2=0,\qquad\te{ für alle }m,n.
+	\end{equation}
+	Da \(\Delta u+k^2u=0\) in \(\R^3\setminus B_R(0)\), folgt mit \eqref{wann sind homogene polynome harmonisch}
+	\begin{align*}
+		\frac{\dd^2a_n^m}{\dd r^2}(r)+\frac{2}{r}\frac{\dd a_n^m}{\dr}(r)
+		&=\frac{1}{r^2}\Big(\frac{\p}{\p r}\Big(r^2\frac{\p a_n^m(r)}{\p r}\Big)\Big)\\
+		&\overset{\scriptsize\eqref{rellichs lemma beweis: koeffizienten FR}}{=}
+		\int_{\SS^2}\frac{1}{r^2}\Big(\frac{\p}{\p r}\Big(r^2\frac{\p u(r\widehat{x})}{\p r}\Big)\Big)\overline{Y_n^m(\widehat{x})}\ds(\widehat{x})\\
+		&=\int_{\SS^2}\Big(-k^2u(r\widehat{x})-\frac{\Delta_{\SS^2}}{r^2}u(r\widehat{x})\Big)\overline{Y_n^m(\widehat{x})}\ds(\widehat{x})\\
+		\te{\scriptsize Greensche Formel für \(\Delta_{\SS^2}\) auf \({\SS^2}\)}
+		&=-k^2\int_{\SS^2}u(r\widehat{x})\overline{Y_n^m(\widehat{x})}\ds(\widehat{x}) - \int_{\SS^2}u(r\widehat{x})\frac{\Delta_{\SS^2}}{r^2}\overline{Y_n^m(\widehat{x})}\ds(\widehat{x})\\
+		&=-k^2\int_{\SS^2}u(r\widehat{x})\overline{Y_n^m(\widehat{x})}\ds(\widehat{x}) - \int_{\SS^2}u(r\widehat{x})\frac{-n(n+1)}{r^2}\overline{Y_n^m(\widehat{x})}\ds(\widehat{x})\\
+		&\overset{\scriptsize\eqref{rellichs lemma beweis: koeffizienten FR}}{=}
+		-\Big(k^2-\frac{n(n+1)}{r^2}\Big)a_n^m(r),
+	\end{align*}
+	d.h.
+	\begin{equation*}
+		r^2\frac{\dd^2a_n^m}{\dd r^2}(r)+2r\frac{\dd a_n^m}{\dd r}(r)+\big(k^2r^2-n(n+1)\big)a_n^m(r)=0.
+	\end{equation*}
+	Vergleiche mit \eqref{sphärische Besselgleichung},
+	\begin{equation*}
+		a_n^m(r)=\alpha_n^mh_n^{(1)}(kr) + \beta_n^mh_n^{(2)}(kr),
+	\end{equation*}
+	wobei \(\alpha_n^m,\beta_n^m\in\C\) konstant sind. Zusammen mit \eqref{rellichs lemma beweis: abfall koeffizienten} und \eqref{ableitung der hankelfkten} folgt \(\alpha_n^m=\beta_n^m=0\) für alle \(m,n\) und damit \(u=0\) in \(\R^3\setminus B_R(0)\).
+\end{proof}
+\begin{satz}
+	Sei \(u\in\CC^2\big(\R^3\setminus \overline{B_R(0)}\big)\) eine ausstrahlende Lösung der Helmholtzgleichung \(\Delta u+k^2u=0\) in \(\R^3\setminus B_R(0)\), deren Fernfeld \(u^\infty\) verschwindet. Dann ist \(u=0\) in \(\R^3\setminus B_R(0)\).
+\end{satz}
+\begin{proof}
+	Aus \eqref{definition und satz in kapitel 2 gleichung} folgt, dass
+	\begin{align*}
+		\int_{|x|=r}|u(x)|^2\ds(x)&=\int_{|x|=1}|u(r\widehat{x})|^2r^2\ds(\widehat{x})\\
+		\te{\scriptsize \eqref{definition und satz in kapitel 2 gleichung} }&=\int_{|x|=1}\Big|\frac{\e^{\ii kr}}{r}u^\infty(\widehat{x})+\OO\Big(\frac{1}{r^2}\Big)\Big|^2r^2\ds(\widehat{x})\\
+		&=\int_{|x|=1}|u^\infty(\widehat{x})|^2\ds(\widehat{x})+\OO\Big(\frac{1}{r}\Big)\\
+		&=\OO\Big(\frac{1}{r}\Big)\qquad\qquad\te{ für }r\to\infty.
+	\end{align*}
+	Damit impliziert \(u^\infty=0\), dass \(u\) die Voraussetzungen von Rellichs Lemma erfüllt, also gilt \(u=0\) in \(\R^3\setminus B_R(0)\).
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

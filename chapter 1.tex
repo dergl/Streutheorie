@@ -1,0 +1,250 @@
+\renewcommand\thesection{\Roman{section}}
+\section{Einleitung}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\arabic{subsection}}
+
+\subsection{Physikalischer Hintergrund}
+
+Wir untersuchen direkte und inverse Streuprobleme für zeitharmonische, akustische Wellen in einem 3-dimensionalen Raum mit räumlich beschränkten Streukörpern und Schallquellen. Zunächst leiten wir ein linearisiertes Modell für die Ausbreitung von akustischen Wellen her, indem wir das Ganze als fluiddynamisches Problem auffassen. Wir bezeichnen mit
+\begin{itemize}
+	\item \(v(x,t)\in\R^3\) die Geschwindigkeit,
+	\item \(p(x,t)\in\R\) den Druck,
+	\item \(\rho(x,t)\in\R\) die Dichte,
+\end{itemize}
+des Fluid in \(x\in\R^3\) zur Zeit \(t\in\R\).
+
+\paragraph{Massenerhaltung:} Betrachte ein glatt berandetes Gebiet \(G\subset\R^3\) und sei \(\normal\) das äußere Einheitsnormalenfeld an \(\partial G\). Dann beschreibt \(\big(\normal\cdot(\rho v)\big)(x,t)\) die Masse, die \(G\) pro Zeiteinheit durch ein infinitesimal kleines Flächenelement \(\ds\) im Punkt \(x\in\partial G\) zur Zeit \(t\) verlässt.
+\begin{equation*}
+	\underbrace{-\frac{\dd}{\dt}}_{\te{Masseverlust}}\underbrace{\int_G\rho\dx}_{\te{Gesamtmasse}}=\int_{\partial G}\normal\cdot(\rho v)\ds=\int_G\divv(\rho v)\dx.
+\end{equation*}
+Da \(G\) beliebig war, folgt
+\begin{equation}
+	\label{Massenerhaltung}
+	\frac{\dd\rho}{\dt}+\divv(\rho v)=0,
+\end{equation}
+(\rec{Massenerhaltung}).
+
+\paragraph{Impulserhaltung:} Sei \(G\) wieder wie eben. Die Kraft, die auf \(G\) wirkt, sei gegeben durch
+\begin{equation*}
+	S=\underbrace{-\int_{\partial G}\rho\normal\ds}_{\te{Druck von außen}}+\underbrace{\int_Gg\dx}_{\te{äußeres Kraftfeld}}-\underbrace{\int_G\gamma\rho v\dx}_{\substack{\te{linearer, viskoser}\\\te{Dämpfungsterm}}}.
+\end{equation*}
+Bezeichnet man mit \(m\coloneqq\rho v\) die (3-dim.) Impulsdichte, so folgt für \(i\in\{1,2,3\}\):
+\begin{equation*}
+	\begin{aligned}
+		\underbrace{-\frac{\dd}{\dt}\underbrace{\int_Gm_i\dx}_{\te{Gesamtimpuls}}}_{\te{Impulsänderung in }G}
+		&=\underbrace{\int_{\partial G}\normal\cdot(m_iv)\ds}_{\te{Impulsfluss}}-\underbrace{S_i}_{\te{Kräfte}}\\
+		&=\int_{\partial G}(\normal\cdot v)m_i\ds+\int_{\partial G}p\normal_i\ds-\int_Gg_i\dx+\int_G\gamma m_i\dx\\
+		&=\int_{\partial G}(m_iv+pe_i)\cdot\normal\ds-\int_Gg_i\dx+\int_G\gamma m_i\dx\\
+		&=\int_G\divv(m_iv+pe_i)\dx -\int_Gg_i\dx+\int_G\gamma m_i\dx.
+	\end{aligned}
+\end{equation*}
+Da \(G\) beliebig war, folgt wiederum
+\begin{equation*}
+	\frac{\dd m_i}{\dt}+\divv(m_iv)+\frac{\partial p}{\partial x_i}-g_i+\gamma m_i=0,\;\;\;\;\;i\in\{1,2,3\}.
+\end{equation*}
+Einsetzen von \(m=\rho v\) und \(\eqref{Massenerhaltung}\) liefert
+\begin{equation*}
+	0=v_i\frac{\partial\rho}{\partial t}+\rho\frac{\partial v_i}{\partial t}+(\rho v_i)\divv v+\big((\nabla\rho)v_i+\rho\nabla v_i\big)\cdot v+\frac{\partial p}{\partial x_i}-g_i+\gamma \rho v_i.
+\end{equation*}
+Daraus ergibt sich die \rec{Euler-Gleichung}
+\begin{equation}
+	\label{Eulergleichung}
+	\frac{\partial v}{\partial t}+\gamma v+(v\cdot\nabla)v+\frac{1}{\rho}\nabla p=\frac{1}{\rho}g,
+\end{equation}
+mit \(v\cdot\nabla=\sum_{i=1}^3v_i\frac{\partial}{\partial x_i}\), also
+\begin{equation*}
+	(v\cdot\nabla)v=
+	\begin{pmatrix}
+		v\cdot\nabla v_1\\
+		v\cdot\nabla v_2\\
+		v\cdot\nabla v_3
+	\end{pmatrix}.
+\end{equation*}
+
+\paragraph{Annahme:} Der Druck \(p\) hängt nur von der Dichte \(\rho\) ab (isentrope gase) (\rec{Zustandsgleichung})
+\begin{equation}
+	\label{Zustandsgleichung}
+	p = p(\rho).
+\end{equation}
+Das nichtlineare System \eqref{Massenerhaltung}-\eqref{Zustandsgleichung} beschreibt die Ausbreitung von Schallwellen. Da Schallwellen in der Regel durch kleine Druckänderungen verursacht werden macht es Sinn, ein um einen stationären Zustand
+\begin{equation*}
+	\tag{konstant}
+	v_0=0,\;\;\;\rho=\rho_0,\;\;\;p=p_0=p(\rho_0),
+\end{equation*}
+linearisiertes Modell zu betrachten.
+
+\paragraph{Ansatz:}
+\begin{align*}
+	v(x,t)&=\varepsilon v_1(x,t)+\OO(\varepsilon^2),\\
+	p(x,t)&=p_0+\varepsilon p_1(x,t)+\OO(\varepsilon^2),\\
+	\rho(x,t)&=\rho_0+\varepsilon\rho_1(x,t)+\OO(\varepsilon^2),\\
+	g(x,t)&=\varepsilon g_1(x,t)+\OO(\varepsilon^2).
+\end{align*}
+Einsetzen in \eqref{Massenerhaltung}-\eqref{Zustandsgleichung} liefert (unter Vernachlässigung der Terme der Ordnung \(\OO(\varepsilon^2)\)):
+\begin{align*}
+	\frac{\partial \rho_1}{\partial t}+\divv(\rho_0v_1)&=0,\\
+	\frac{\partial v_1}{\partial t}+\gamma v_1+\frac{1}{\rho_0}\nabla p_1&=\frac{1}{\rho_0}g_1,\\
+	p_1&={\frac{\partial p}{\partial\rho}(\rho_0)}\rho_1\eqqcolon c^2\rho_1,
+\end{align*}
+wobei \(c^2(x)\coloneqq\frac{\p p}{\p\rho}(\rho_0)\) die Schallgeschwindigkeit bezeichnet.
+Differenzieren der letzten Gleichung erlaubt, \(v_1\) und \(\rho_1\) zu eliminieren:
+\begin{equation*}
+	\frac{\partial p_1}{\partial t} = c^2\frac{\partial \rho_1}{\partial t}=-c^2\divv(\rho_0v_1),
+\end{equation*}
+und damit
+\begin{align*}
+	\frac{\partial ^2p_1}{\partial t^2}&=-c^2\divv\big(\rho_0\frac{\partial v_1}{\partial t}\big)\\
+	&=-c^2\divv\Big(\rho_0\Big(\frac{1}{\rho_0}g_1-\gamma v_1-\frac{1}{\rho_0}\nabla p_1\Big)\Big)\\
+	&=-c^2\divv(g_1)-c^2\gamma\frac{\partial \rho_1}{\partial t}+c^2\Delta p_1\\
+	&=-c^2\divv(g_1)-\gamma\frac{\partial p_1}{\partial t}+c^2\Delta p_1.
+\end{align*}
+Hier wurden Terme, die Ableitungen von \(\gamma\) enthalten, vernachlässigt. Daraus ergibt sich die \rec{Wellengleichung}
+\begin{equation}
+	\label{Wellengleichung}
+	\frac{\partial^2p_1}{\partial t^2}(x,t)+\gamma\frac{\partial p_1}{\partial t}(x,t)-c^2(x)\Delta p_1(x,t)=-c^2(x)\divv(g_1)(x,t).
+\end{equation}
+Als nächstes nehmen wir an, dass \(p_1\) und \(\divv g_1\) zeitharmonisch sind, d.h., dass
+\begin{equation}
+	\label{p1 und div g1 zeitharmonisch}
+	p_1(x,t)=\RE\big(u(x)\e^{-\ii\omega t}\big),\;\;\;\;\;\divv g_1(x,t)=\RE\big(f(x)\e^{-\ii\omega t}\big),
+\end{equation}
+wobei \(\omega>0\) die Frequenz genannt wird und die komplexwertigen Funktionen \(u\) und \(f\) nur von der Ortsvariable \(x\) abhängen. Einsetzen von \eqref{p1 und div g1 zeitharmonisch} in \eqref{Wellengleichung} liefert, dass
+\begin{equation}
+	\label{einsetzen von (p1 und div g1 zeitharmonisch) in (Wellengleichung)}
+	\Delta u(x)+\frac{\omega^2}{c^2}\Big(1+\frac{\ii\gamma}{\omega}\Big)u(x)=f(x),\;\;\;\;\;x\in\R^3,
+\end{equation}
+d.h. \(u\) löst die 3-dimensionale Helmholtzgleichung. 
+
+\eqref{einsetzen von (p1 und div g1 zeitharmonisch) in (Wellengleichung)} beschreibt Ausbreitung zeitharmonischer akustischer Wellen mit kleiner Amplitude in einem (nicht zu stark) inhomogenen Medium. Wir werden oft ein homogenes, nicht absorbierendes Referenzmedium (zB. Luft) mit \(c=c_0\) konstant und \(\gamma=0\) betrachten. Dafür definieren wir die \bol{Wellenzahl}
+\begin{equation*}
+	\kk\coloneqq\frac{\omega}{c_0}>0,
+\end{equation*}
+und den \bol{Brechungsindex}
+\begin{equation*}
+	\n^2(x)\coloneqq\frac{c_0^2}{c^2(x)}\Big(1+\frac{\ii\gamma}{\omega}\Big).
+\end{equation*}
+Damit vereinfacht sich \eqref{einsetzen von (p1 und div g1 zeitharmonisch) in (Wellengleichung)} zu
+\begin{equation}
+	\label{erste helmholtzgleichung}
+	\Delta u+\kk^2\n^2u=f\;\;\;\te{ in }\R^3.
+\end{equation}
+Wir nehmen immer an, dass \(\n^2- 1\) und \(f\) kompakten Träger haben, d.h. dass wir es nur mit räumlich beschränkten Quellen und Streukörpern zu tun haben. Insbesondere existiere ein \(R>0\), sodass
+\begin{equation*}
+	\Delta u+k^2u=0\;\;\;\te{ in }\R^3\setminus\overline{B_R(0)}.
+\end{equation*}
+\begin{bsp}\label{kapitel 1 erstes beispiel}
+	Sei \(f\equiv0\) \(n=n(r)\) und \(u=u(r)\), \(r=|x|\), radialsymmetrische Lösung von \(\Delta u+k^2u=0\) in \(\R^3\setminus\{0\}\). Der Laplace-Operator in Kugelkoordinaten lautet
+	\begin{equation*}
+		\Delta=\frac{1}{r^2}\frac{\partial}{\partial r}\Big(r^2\frac{\partial }{\partial r}\Big)+\frac{1}{r^2\sin^2(\theta)}\frac{\partial^2}{\partial \phi^2}+\frac{1}{r^2\sin(\theta)}\frac{\partial}{\partial \theta}\Big(\sin(\theta)\frac{\partial }{\partial \theta}\Big),
+	\end{equation*}
+	d.h. \(u=u(r)\) erfüllt \eqref{erste helmholtzgleichung} genau dann, wenn
+	\begin{equation*}
+		\frac{1}{r^2}\big(r^2u'(r)\big)'+k^2n^2(r)u(r)=0,
+	\end{equation*}
+	also
+	\begin{equation}
+		\label{beispiel 1.1, gleichung 1}
+		u''(r)+\frac{2}{r}u'(r)+k^2n^2(r)u(r)=0\;\;\;\;\te{ für }r>0.
+	\end{equation}
+	Substituiert man \(u(r)=\frac{v(r)}{r}\), dann folgt
+	\begin{equation*}
+		u'=\frac{v'}{r}-\frac{v}{r^2},\;\;\;\;u''=\frac{v''}{r}-\frac{2v'}{r^2}+\frac{2v}{r^3},
+	\end{equation*}
+	und damit
+	\begin{equation}
+		\label{beispiel 1.1, gleichung 2}
+		v''-\frac{2v'}{r}+\frac{2v}{r^2}+\frac{2v'}{r}-\frac{2v}{r^2}+k^2n^2(r)v(r)=0.
+	\end{equation}
+	Im einfachsten Fall \(n^2(r)\equiv1\) sind zwei linear unabhängige Lösungen von \eqref{beispiel 1.1, gleichung 2} gegeben durch
+	\begin{equation*}
+		v^+(r)=\e^{\ii kr},\;\;\;\;v^-(r)=\e^{-\ii kr},\;\;\;r>0,
+	\end{equation*}
+	d.h.
+	\begin{equation*}
+		u^+(r)=\frac{\e^{\ii k|x|}}{|x|},\;\;\;\;u^-(r)=\frac{\e^{-\ii k|x|}}{|x|},\;\;\;|x|>0,
+	\end{equation*}
+	sind zwei linear unabhängige Lösungen von \eqref{beispiel 1.1, gleichung 1}. Die zugehörigen Lösungen der zeitabhängigen Gleichung sind
+	\begin{equation*}
+		p_1^\pm(x,t)=\RE\big(\e^{-\ii\omega t}u^\pm(x)\big)=\RE\left(\frac{\e^{\ii k(\pm|x|-ct)}}{|x|}\right)=\frac{\cos\big(k(|x|\mp ct)\big)}{|x|},
+	\end{equation*}
+	wobei
+	\begin{equation*}
+		\begin{aligned}
+			p_1^+&\hat{=}\te{ nach außen laufende Kugelwelle,}\\
+			p_1^-&\hat{=}\te{ nach innen laufende Kugelwelle.}
+		\end{aligned}
+	\end{equation*}\vspace{3cm}
+	
+	Da \(p_1^-\) unphysikalisch ist, wählen wir \(p_1^+\) als \rec{die} Lösung aus. Für \(u^\pm\) bedeutet das, wegen
+	\begin{equation*}
+		\frac{\partial u^\pm}{\partial |x|}=\pm\ii k\frac{\e^{\pm\ii k|x|}}{|x|}-\frac{\e^{\pm\ii k|x|}}{|x|^2}=\pm\ii k u^\pm-\frac{u^\pm}{|x|},
+	\end{equation*}
+	dass die physikalisch relevante Lösung \(u^+\) durch
+	\begin{equation*}
+		\frac{\partial u^\pm}{\partial |x|}\mp\ii ku^\pm=\OO(|x|^{-2}),
+	\end{equation*}
+	von \(u^-\) unterschieden werden kann.
+\end{bsp}
+\begin{definition}[Sommerfeldsche Ausstrahlungsbedingung]
+	Sei \(u\in\CC^2(\R^3\setminus\overline{B_R(0)})\) eine Lösung von
+	\begin{equation*}
+		\Delta u+k^2u=0,\;\;\;\;\;\te{ in }\R^3\setminus\overline{B_R(0)}.
+	\end{equation*}
+	Dann erfüllt \(u\) die \bol{Sommerfeldsche Ausstrahlungsbedingung} (\hypertarget{SAB}{SAB}), falls
+	\begin{equation}
+		\label{sommerfeld ausstrahlungsbedingung}
+		\lim_{r\rarr\infty}r\Big(\frac{\partial u}{\partial r}(x)-\ii ku(x)\Big)=0,\;\;\;\;r=|x|,
+	\end{equation}
+	wobei der Grenzwert gleichmäßig bezüglich \(\widehat{x}=\frac{x}{|x|}\in\SS^2\) angenommen wird.
+\end{definition}
+\begin{bem}
+	Da wir die Helmholtzgleichung in einem unbeschränkten Gebiet betrachten, können keine Randbedingungen vorgeschrieben werden, wie dies für elliptische Gleichungen in beschränkten Gebieten üblich ist. Die \SAB entspricht einer Randbedingung \glqq{}im Unendlichen\grqq{}.
+	
+	Für eine Herleitung der \SAB im ein- und zweidimensionalen Fall anhand von Kausalitätsüberlegungen für die Wellengleichung siehe [Sylvester09].
+\end{bem}
+\begin{bsp}[ebene Wellen]
+	Weitere spezielle Lösungen von \(\Delta u+k^2u=0\) in \(\R^3\) sind sogenannte \rec{ebene Wellen}
+	\begin{equation}
+		\label{ebene wellen}
+		u(x)=\e^{\ii kx\cdot d},\;\;\;\;x\in\R^3,
+	\end{equation}
+	mit Ausbreitungsrichtung \(d\in\SS^2\). Die zugehörige zeitabhängige Welle ist
+	\begin{equation*}
+		p_1(x,t)=\RE\big(\e^{-\ii\omega t}\e^{\ii kx\cdot d}\big)=\cos(kx\cdot d-\omega t).
+	\end{equation*}
+	Wellenlänge \(\lambda k=2\pi\Lrarr\lambda=\frac{2\pi}{k}\Lrarr\lambda=\frac{2\pi c_0}{\omega}\). Ebene Wellen erfüllen \SAB  \rec{nicht} gleichmäßig für \(\widehat{x}\in\SS^2\), da
+	\begin{equation*}
+		\frac{\partial u}{\partial r}(x)-\ii ku(x)=\ii k(d\cdot \widehat{x}-1)u(x),
+	\end{equation*}
+	und da \(|u(x)|=|\e^{\ii kd\cdot x}|=1\), konvergiert das nur für \(d\cdot\widehat{x}=1\) gegen Null.\vspace{2mm}
+	
+	Die Lösung von \eqref{erste helmholtzgleichung} wird im Folgenden als \bol{direktes Problem} bezeichnet. Das \bol{inverse Problem} besteht darin, Information über Schallquellen und Streuobjekte anhand von ausgestrahlter Wellen bzw. gestreuter Wellen (außerhalb von \(B_R(0)\), der alle Streukörper und Quellen enthält) zu rekonstruieren.\vspace{2mm}
+	
+	In diesem Zusammenhang macht es auch Sinn, die Streukörper von außen zu \glqq{}beleuchten\grqq{} um Messdaten zu generieren (active sensing vs. passive sensing). Betrachte dazu ein \rec{Primärfeld} \(u^i\), sodass
+	\begin{equation}
+		\label{primärfeld ui in bsp}
+		\Delta u^i+k^2u^i=0\;\;\;\;\te{ in }\R^3.
+	\end{equation}
+	Bezeichne mit \(u\) die Lösung von \eqref{erste helmholtzgleichung} in Gegenwart von \(u^i\), die durch \(u^i\) verursacht wird, also
+	\begin{equation*}
+		\tag{Gesamtfeld}
+		\Delta u+k^2n^2u=f,\;\;\;\;\;\te{ in }\R^3,
+	\end{equation*}
+	dann nennt man
+	\begin{equation*}
+		u^s\coloneqq u-u^i
+	\end{equation*}
+	das \rec{gestreute Feld} (das durch Streuung von \(u^i\) an den Streuobjekten \(n^2\neq1\) und durch \(f\) verursacht wird). \(u^s\) löst
+	\begin{equation*}
+		\begin{aligned}
+			\Delta u^s+k^2n^2u^s&=\Delta(u-u^i)+k^2n^2(u-u^i)\\
+			&=f-\Delta u^i-k^2n^2u^i\\
+			&=f-\Delta u^i-k^2u^i+k^2(1-n^2)u^i\\
+			&=f-k^2(n^2-1)u^i,\;\;\;\;\;\;\te{ in }\R^3.
+		\end{aligned}
+	\end{equation*}
+	Um die physikalisch sinnvolle (kausale) Lösung auszuwählen, soll \(u^s\) die \SAB  erfüllen.
+\end{bsp}
+
+
+

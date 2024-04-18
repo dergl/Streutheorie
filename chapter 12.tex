@@ -1,0 +1,495 @@
+\setcounter{subsection}{11}
+\setcounter{section}{12}
+\setcounter{mydef}{0}
+\setcounter{equation}{0}
+
+\subsection{Faktorisierungsmethode}
+Wir besprechen nun ein Verfahren, um \(\support(1-n^2)\) anhand von \(u^\infty(\widehat{x};d)\), gegeben für alle \(\widehat{x},d\in\SS^2\), d.h. anhand des Fernfeldoperators \(F\) zu bestimmen.
+
+\paragraph{Annahmen:}
+Es existieren endlich viele Gebiete \(D_1,\ldots,D_M\), sodass \(\overline{D}_\ell\cap\overline{D}_m=\emptyset\) für \(\ell\neq m\) und \(\R^3\setminus(\overline{D_1\cup\ldots\cup D_M})\) zusammenhängend ist. Außerdem sei \(n^2\in L^\infty(\R^3)\) reell-wertig, sodass \(n^2=1\) in \(\R^3\setminus(\overline{D_1\cup\ldots\cup D_M})\) und \(n^2-1\geq c_0>0\) in \(D\coloneqq\bigcup_{m=1}^MD_m\).\vspace{2mm}
+
+Zuerst leiten wir wie in Kapitel 11 eine Faktorisierung des Fernfeldoperators her. Dazu schreiben wir \(\kontrast\coloneqq n^2-1\) und wir wiederholen die Helmholtzgleichung \eqref{direktes streuproblem} für das gestreute Feld
+\begin{equation}
+	\label{wiederholung helmholtzgleichung für gestreutes feld}
+	\Delta u^s+k^2n^2u^s=k^2(1-n^2)u^i=-k^2\kontrast u^i,\qquad\te{ in }\R^3,\qquad\te{ und die SAB.}
+\end{equation}
+Das ist ein Spezialfall der Gleichung
+\begin{equation}
+	\label{allgemeine hg für rhs -qf}
+	\Delta v+k^2n^2v=-\kontrast f,\qquad\te{ in }\R^3\quad\te{ und SAB,}
+\end{equation}
+für \(f\in L^2(D)\). Diese Gleichung hat nach Korollar \ref{kor: direktes streuproblem hat eindeutige schwache lösung} eine eindeutig bestimmte schwache Lösung \(v\in\Hloc^1(\R^3)\) (vgl. \eqref{schwache lösung definition}). Das zugehörige Fernfeld \(v^\infty\in L^2(\SS^2)\) hängt stetig von \(\kontrast f\in L^2(D)\) ab. Damit definieren wir einen stetigen linearen Operator
+\begin{equation}
+	\label{definition operator G}
+	\func{G}{L^2(D)}{L^2(\SS^2)},\qquad Gf=v^\infty.
+\end{equation}
+Außerdem sei \(S^\ast\) der adjungierte Operator zu
+\begin{equation}
+	\label{operator S}
+	\func{S}{L^2(D)}{L^2(D)},\qquad\big(S\psi\big)(x)\coloneqq\frac{1}{\kontrast(x)}\psi(x)-k^2\int_D\psi(y)\Phi(x-y)\dy.
+\end{equation}
+Die Funktion
+\begin{equation*}
+	w(x)\coloneqq\int_D\psi(y)\Phi(x-y)\dy,\qquad x\in D,
+\end{equation*}
+ist ein Volumenpotential, also ist \(w\in\Hloc^1(\R^3)\) und erfüllt (für \(\psi\in L^2(D)\)) nach Satz \ref{satz: w ist schwache lösung von helmholtz mit rhs -S}
+\begin{equation}
+	\label{starke formulierung hg mit rhs -psi und SAB}
+	\Delta w+k^2w=-\psi,\qquad\te{ in }\R^3\te{ (schwach) und SAB.}
+\end{equation}
+\begin{satz}\label{satz: faktorisierung von F}
+	Seien \(G\) und \(S\) wie in \eqref{definition operator G} und \eqref{operator S}. Dann ist
+	\begin{equation}
+		\label{faktorisierung von F}
+		F=4\pi k^2GS^\ast G^\ast.
+	\end{equation}
+\end{satz}
+\begin{proof}
+	Aus \eqref{wiederholung helmholtzgleichung für gestreutes feld} und \eqref{definition operator G} folgt, dass
+	\begin{equation*}
+		u^\infty(\,\cdot\,;d)=k^2Gu^i(\,\cdot\,;d).
+	\end{equation*}
+	Definieren wir \(\func{\Hfunc}{L^2(\SS^2)}{L^2(D)}\),
+	\begin{equation}
+		\label{definition operator curly H}
+		\big(\Hfunc g\big)(x)\coloneqq\int_{\SS^2}g(d)\e^{\ii kx\cdot d}\ds(d)=\int_{\SS^2}g(d)u^i(x;d)\ds(d),\qquad x\in D,
+	\end{equation}
+	so folgt (durch Superposition), dass
+	\begin{equation*}
+		\big(Fg\big)(\widehat{x})=\int_{\SS^2}g(d)u^\infty(\widehat{x};d)\ds(d),\qquad\widehat{x}\in\SS^2,
+	\end{equation*}
+	das Fernfeld der Lösung von \eqref{wiederholung helmholtzgleichung für gestreutes feld} mit Primärfeld \(\Hfunc g\) ist. Damit gilt \(Fg=k^2G\Hfunc g\).\vspace{1mm}
+	
+	Nun betrachte die Adjungierte \(\func{\Hfunc^\ast}{L^2(D)}{L^2(\SS^2)}\) von \(\Hfunc\),
+	\begin{equation*}
+		\big(\Hfunc^\ast\psi\big)(\widehat{x})=\int_D\psi(y)\e^{-\ii k\widehat{x}\cdot y}\dy,\qquad \widehat{x}\in\SS^2.
+	\end{equation*}
+	Aus dem asymptotischen Verhalten der Fundamentallösung \eqref{lemma zur SAB in kapitel 2} folgt, dass \(\Hfunc^\ast\psi=4\pi w^\infty\), wobei \(w^\infty\) das Fernfeld von
+	\begin{equation*}
+		w(x)=\int_D\psi(y)\Phi(x-y)\dy,\qquad x\in\R^3,
+	\end{equation*}
+	ist. Da \(w\in\Hloc^1(\R^3)\) die Gleichung \eqref{starke formulierung hg mit rhs -psi und SAB} löst, folgt
+	\begin{equation*}
+		\Delta w+k^2n^2w=-\psi+k^2(n^2-1)w=-\kontrast\Big(\frac{1}{\kontrast}\psi-k^2w\Big).
+	\end{equation*}
+	Also gilt
+	\begin{equation*}
+		\Hfunc^\ast\psi=4\pi w^\infty=4\pi G\Big(\frac{1}{\kontrast}\psi-k^2w\Big)=4\pi GS\psi,\qquad\te{ für alle }\psi\in L^2(D),
+	\end{equation*}
+	und damit
+	\begin{equation*}
+		\Hfunc^\ast=4\pi GS,\qquad\te{ bzw. }\qquad\Hfunc=4\pi S^\ast G^\ast.
+	\end{equation*}
+	Wir schließen
+	\begin{equation*}
+		F=k^2G\Hfunc=4\pi k^2GS^\ast G^\ast.
+	\end{equation*}
+\end{proof}
+\begin{satz}\label{satz: charakterisierung phi_z vzgl ran(G) bzw z in D}
+	Für \(z\in\R^3\) sei \(\phi_z\in L^2(\SS^2)\) definiert durch
+	\begin{equation*}
+		\phi_z(\widehat{x})\coloneqq\e^{-\ii k \widehat{x}\cdot z},\qquad\widehat{x}\in\SS^2.
+	\end{equation*}
+	Dann ist
+	\begin{equation*}
+		\phi_z\in\Ran(G)\Lolrarr z\in D.
+	\end{equation*}
+\end{satz}
+\begin{proof}\
+	\begin{enumerate}
+		\item[\glqq{}\(\Rightarrow\)\grqq{}]
+			Sei \(z\in D\). Wähle \(\varepsilon>0\) so, dass \(B_\varepsilon(z)\subset D\) und \(\varphi\in\CC^\infty(\R^3)\) so, dass \(\varphi(x)=0\) in \(B_{\frac{\varepsilon}{2}}(z)\) und \(\varphi(x)=1\) in \(\R^3\setminus B_\varepsilon(z)\). Dann ist
+			\begin{equation*}
+				v(x)\coloneqq4\pi\varphi(x)\Phi(x-z),\qquad x\in\R^3,
+			\end{equation*}
+			eine \(\CC^\infty\)-Funktion, die außerhalb von \(B_\varepsilon(z)\) mit \(4\pi\Phi(\cdot -z)\) übereinstimmt. Nach \eqref{beweis lemma kapitel 2} stimmt das Fernfeld von \(v\) mit \(\phi_z\) überein, d.h. \(\phi_z=v^\infty=Gf\in\Ran(G)\) mit
+			\begin{equation*}
+				f=-\frac{1}{\kontrast}(\Delta v+k^2n^2v),\qquad\te{ in }D.
+			\end{equation*}
+		\item[\glqq{}\(\Leftarrow\)\grqq{}]
+			Nun sei \(z\notin\overline{D}\). Angenommen \(\phi_z\in\Ran(G)\), d.h. \(\phi_z=Gf\) für ein \(f\in L^2(D)\). Sei \(v\in\Hloc^1(\R^3)\) die zugehörige Lösung von \eqref{allgemeine hg für rhs -qf}. Da \(\phi_z\) (das Fernfeld von \(4\pi\Phi(\cdot-z)\)) und \(Gf\) übereinstimmen, folgt mit Rellichs Lemma und analytischer Fortsetzung, dass \(4\pi\Phi(\cdot-z)=v\) in \(\R^3\setminus(\overline{D}\cup\{z\})\). Falls \(z\notin\overline{D}\), dann ist \(v\) glatt in \(z\), während \(4\pi\Phi(\cdot-z)\) dort eine Singularität hat. Widerspruch!
+	\end{enumerate}
+	Falls \(z\in\partial D\), wähle einen Kegel
+	\begin{equation*}
+		K(z)\coloneqq\{z+re\mid e\cdot\theta>\delta,0<r<R\},
+	\end{equation*}
+	mit \(K(z)\subset\R^3\setminus\overline{D}\). Sei \(v\in\Hloc^1(\R^3)\) wie in Schritt 2. Dann \(v\restrict{K(z)}\in\H^1\big(K(z)\big)\), aber
+	\begin{equation*}
+		\|4\pi\Phi(\cdot-z)\|_{\H^1(K_\varepsilon(z))}\to\infty,\qquad\te{ für }\varepsilon\to0,
+	\end{equation*}
+	wobei \(K_\varepsilon(z)\coloneqq\{z+re\mid e\cdot\theta>\delta,\varepsilon<r<R\}\) (da \(\nabla\Phi(\cdot-z)\) eine Singularität von Ordnung \(2\) in \(z\) hat). Wie in Schritt 2 folgt, dass \(v=4\pi\Phi(\cdot-z)\) in \(\R^3\setminus\overline{D}\). Widerspruch, da \(v\restrict{K(z)}=\Phi(\cdot-z)\restrict{K(z)}\).
+\end{proof}
+Das Bild \(\Ran(G)\) des Operators \(G\) beschreibt also \(D\) eindeutig. Ziel ist nun, \(\Ran(G)\) durch die gegebenen Daten \(F\) zu beschreiben.
+\begin{satz}\label{satz: eigenschaften von S}
+	Sei \(S\) wie in \eqref{operator S}.
+	\begin{enumerate}[label=(\alph*)]
+		\item\label{satz: eigenschaften von S a} Sei \(\func{S_0}{L^2(D)}{L^2(D)}\), \(S_0\psi\coloneqq\frac{1}{\kontrast}\psi\). Dann ist \(S_0\) beschränkt, selbstadjungiert und koerzitiv:
+		\begin{equation*}
+			\scalLtwoD{S_0\psi}{\psi}\geq\frac{1}{\|\kontrast\|_{L^\infty(D)}} \|\psi\|_{L^2(D)}^2,\qquad\te{ für alle }\psi\in L^2(D).
+		\end{equation*}
+		\item\label{satz: eigenschaften von S b} Die Differenz \(\func{S-S_0}{L^2(D)}{L^2(D)}\) ist kompakt.
+		\item\label{satz: eigenschaften von S c} \(\func{S}{L^2(D)}{L^2(D)}\) ist ein Isomorphismus.
+		\item\label{satz: eigenschaften von S d} Es gilt \(\IM\scalLtwoD{S\psi}{\psi}\leq0\) für alle \(\psi\in L^2(D)\).
+		\item\label{satz: eigenschaften von S e} Falls \(k\) kein (verallgemeinerter) Transmissionseigenwert ist (siehe unten), gilt sogar
+		\begin{equation*}
+			\IM\scalLtwoD{S\psi}{\psi}<0,\qquad\te{ für alle }\psi\in\overline{\Ran(G^\ast)}^{L^2(D)}\te{ mit }\psi\neq0.
+		\end{equation*}
+	\end{enumerate}
+\end{satz}
+\begin{proof}\
+	\begin{enumerate}[label=(\alph*)]
+		\item Folgt sofort durch Nachrechnen. Man verwendet, dass \(\|\kontrast\|_{L^\infty(D)}\geq c_0>0.\)
+		\item Da \(S-S_0\) ein Integraloperator mit quadratintegrablem Kern ist, folgt die Behauptung aus Lemma \ref{lem: kompakter integraloperator}.
+		\item Nach (a) und (b) genügt es, die Injektivität von \(S\) zu zeigen. Angenommen \(S\psi=0\) in \(D\), dann löst \(\varphi\coloneqq\frac{1}{\kontrast}\psi\)
+		\begin{equation*}
+			\varphi-k^2\int_D\kontrast(y)\varphi(y)\Phi(\cdot-y)\dy=0,\qquad\te{ in }D,
+		\end{equation*}
+		d.h. \(\varphi\) löst die homogene Lippmann-Schwinger-Gleichung \eqref{lippmann schwinger gleichung}. Wegen Satz \ref{satz: lippmann schwinger} und der Eindeutigkeit von Lösungen zum direkten Streuproblem (Satz \ref{satz: eindeutigkeit von Lösungen des direkten Streuproblems}) folgt \(\varphi=0\) und damit \(\psi=0\).
+		\item Sei \(\psi\in L^2(D)\) und setze \(f\coloneqq \psi-k^2\kontrast w\restrict{D}\), wobei \(w\in\Hloc^1(\R^3)\) gegeben ist durch \(w\coloneqq V\psi\) (Volumenpotential). Dann ist \(S\psi=\frac{1}{\kontrast}f\). Da \(\Delta w+k^2w=-\psi\) in \(\R^3\), folgt
+		\begin{equation*}
+			\Delta w+k^2n^2w=-\psi+k^2\kontrast w\restrict{D}=-f,\qquad\te{ in }\R^3,
+		\end{equation*}
+		und damit folgt
+		\begin{equation}
+			\label{beweis injektivität operator S}
+			\begin{aligned}
+				\scalLtwoD{S\psi}{\psi}
+				& = \int_D\frac{1}{\kontrast}f(\overline{f}+k^2\kontrast\overline{w})\dx\\
+				& = \int_D\frac{1}{\kontrast}|f|^2\dx + k^2\int_Df\overline{w}\dx.
+			\end{aligned}
+		\end{equation}
+		Sei nun \(\rho>0\) groß genug, sodass \(D\subset B_\rho(0)\). Wähle \(\varphi\in\Cc^\infty(\R^3)\), sodass \(\varphi=1\) für \(|x|\leq\rho\). Einsetzen von \(\varphi\overline{w}\) als Testfunktion in die schwache Formulierung von \(\Delta w+k^2n^2w = -f\) in \(\R^3\) gibt
+		\begin{align*}
+			\int_Df\overline{w}\dx
+			&=\int_{\R^3}\nabla w\cdot\nabla(\varphi\overline{w})-k^2n^2\varphi|w|^2\dx\\
+			&=\int_{|x|\leq\rho}|\nabla w|^2-k^2n^2|w|^2\dx
+			 +\int_{|x|>\rho}\nabla w\cdot\nabla(\varphi\overline{w})-k^2\varphi|w|^2\dx.
+		\end{align*}
+		Einsetzen in \eqref{beweis injektivität operator S} liefert für den Imaginärteil, dass 
+		\begin{equation*}
+			\IM\scalLtwoD{S\psi}{\psi}=k^2\IM\int_{|x|>\rho}\nabla w\cdot\nabla(\varphi\overline{w}) - k^2\varphi|w|^2\dx.
+		\end{equation*}
+		Da \(w\) in \(\R^3\setminus B_\rho(0)\) glatt ist und die Helmholtzgleichung \(\Delta w+k^2w=0\) erfüllt, folgt mit der Greenschen Formel \eqref{greenscher satz 2}, dass
+		\begin{align*}
+			\IM\scalLtwoD{S\psi}{\psi}
+			&=-k^2\IM\int_{|x|>\rho}\varphi\overline{w}(\Delta w+k^2w)\dx 
+			- k^2\IM\int_{|x|=\rho}\overline{w}\frac{\p w}{\p\normal}\ds\\
+			&=-k^2\IM\int_{|x|=\rho}\overline{w}\frac{\p w}{\p\normal}\ds.
+		\end{align*}
+		(Kein weiteres Randintegral, da \(\varphi\) kompakten Träger hat). Da nach \eqref{SAB in lemma in kapitel 2} und \eqref{lemma zur SAB in kapitel 2} \(w(x)=\OO(|x|^{-1})\) und \(\frac{\p w}{\p\normal}(x)=\ii kw(x)+\OO(|x|^{-2})\) ist, folgt
+		\begin{equation*}
+			\IM\scalLtwoD{S\psi}{\psi}=-k^3\int_{|x|=\rho}|w|^2\ds+\OO(\rho^{-1}).
+		\end{equation*}
+		Für \(\rho\to\infty\) folgt mit der Definition des Fernfeldes, dass
+		\begin{equation*}
+			\IM\scalLtwoD{S\psi}{\psi}=-k^3\int_{\SS^2}|w^\infty|^2\ds\leq0.
+		\end{equation*}
+	
+	
+		\item Sei nun \(\psi\in\overline{\Ran(G^\ast)}^{L^2(D)}\), sodass \(\IM\scalLtwoD{S\psi}{\psi}=0\) und setze wieder \(w\coloneqq V\psi\), also \(w^\infty=0\). Mit Rellichs Lemma und der eindeutigen Fortsetzbarkeit folgt \(w=0\) in \(\R^3\setminus D\). Betrachte \(\eta\in\Hloc^1(\R^3)\), sodass
+		\begin{align*}
+				\Delta \eta+k^2n^2\eta&=0,&\te{in }\R^3,\\
+				\eta&=\Hfunc g+\eta^s,&\te{in }\R^3,\\
+				\frac{\p \eta^s}{\p\normal}+\ii k\eta^s&=\OO(r^{-2}),&\te{(anderes Vorzeichen!).}
+		\end{align*}
+		Also gilt \(\Delta \eta+k^2\eta=-k^2\kontrast \eta\) und \(\Delta \eta^s+k^2\eta^s=-k^2\kontrast \eta\), damit folgt \(\eta=\Hfunc g+k^2V^\ast(\kontrast \eta)\) bzw. \(\big(\frac{1}{\kontrast}I-k^2V^\ast\big)(\kontrast \eta)=\Hfunc g\), d.h.
+		\begin{equation*}
+			G^\ast g=\frac{1}{4\pi}(S^\ast)^{-1}\Hfunc g=\frac{1}{4\pi}\Big(\frac{1}{\kontrast}I-k^2V^\ast\Big)^{-1}\Hfunc g=\frac{1}{4\pi}\kontrast \eta.
+		\end{equation*}
+		Nun ist laut Annahme \(\psi\in\overline{\Ran(G^\ast)}^{L^2(D)}\), also existiert eine Folge \((\psi_j)_j\subset\Ran(G^\ast)\), sodass \(\psi_j\to\psi\) in \(L^2(D)\). Setze \(\eta_j\coloneqq\frac{1}{\kontrast}\psi_j\), (es gilt \(\Delta \eta_j+k^2n^2\eta_j=0\) in \(\R^3\)), \(w_j\coloneqq V\psi_j\) und \(\widetilde{w}_j\coloneqq \frac{1}{k^2}\eta_j-w_j\). Dann gilt
+		\begin{align*}
+			\Delta\widetilde{w}_j+k^2\widetilde{w}_j & = -\kontrast \eta_j+\psi_j = 0,&\qquad\te{in }D,\\
+			\widetilde{w}_j\lorarr&\frac{1}{k^2} \eta-w\eqqcolon\widetilde{w},&\qquad\te{in }L^2(D),\\
+			\Delta w+k^2n^2w & =-\psi+k^2\kontrast w = -k^2\kontrast\Big(\frac{1}{k^2}\eta-w\Big) = -k^2\kontrast\widetilde{w},&\qquad\te{in }\R^3,
+		\end{align*}
+		außerdem löst \((u_j,\widetilde{w}_j)\) mit \(u_j \coloneqq\widetilde{w}_j-w\) das Problem
+		\begin{align*}
+			\Delta \widetilde{w}_j +k^2\widetilde{w}_j &=0,&\hspace{-1cm}\te{ in }D, \qquad\qquad\quad & u_j=\widetilde{w}_j,&\hspace{-1cm}\te{ auf }\p D\\
+			\Delta u_j+k^2n^2u_j & =\underbrace{k^2\kontrast(\widetilde{w}_j-\widetilde{w})}_{\to0\te{ für }j\to\infty}, & \hspace{-1cm}\te{ in }D, \qquad\qquad\quad  & \frac{\p u_j}{\p\normal} =\frac{\p\widetilde{w}_j}{\p\normal},&\hspace{-1cm}\te{ auf }\p D
+		\end{align*}
+		\paragraph{Annahme:} \(k^2\) ist kein (verallg.) innerer Transmissionseigenwert, d.h. es gibt kein nichttriviales \((w,\widetilde{w})\in\H_0^1(D)\times L^2(D)\) mit einer Folge \(\widetilde{w}_j\to\widetilde{w}\) in \(L^2(D)\), sodass \(\Delta\widetilde{w}_j+k^2\widetilde{w}_j=0\) in \(D\) und \(\Delta w+k^2n^2w=-k^2\kontrast\widetilde{w}\) und \(\frac{\p w}{\p\normal}\restrict{\p D}=0\). Also ist \(w\equiv0\) in \(D\) und damit auch \(\psi=-\Delta w-k^2w=0\) in \(D\).
+	\end{enumerate}
+\end{proof}
+Im Folgenden nehmen wir an, dass \(k^2\) \rec{kein} (verallg.) innerer Transmissionseigenwert ist. Dann ist nach Satz \ref{satz: lösungen der (in)homogenen integralgleichungen} der Fernfeldoperator \(F\) injektiv und nach Satz \ref{satz: F ist normal und S unitär} ist \(F\) normal. Außerdem ist \(F\) kompakt (weil Integraloperator mit \(L^2\)-Kern). Der Spektralsatz für kompakte normale Operatoren garantiert die Existenz einer ONB \((\psi_j)_{j\in\N}\subset L^2(\SS^2)\) aus Eigenvektoren von \(F\) mit zugehörigen Eigenwerten \((\lambda_j)_{j\in\N}\subset\C\). Da nach Satz \ref{satz: F ist normal und S unitär} der Operator \(S=I+\frac{\ii k}{2\pi}F\) unitär ist, folgt wegen
+\begin{equation*}
+	\scalLtwoStwo{Sw}{Sw}=\scalLtwoStwo{w}{S^\ast Sw}=\scalLtwoStwo{w}{w},\qquad\te{ für alle }w\in L^2(\SS^2),
+\end{equation*}
+dass die Eigenwerte von \(S\) auf dem Einheitskreis liegen (in \(\C\)) und damit die Eigenwerte von \(F\) auf einem Kreis vom Radius \(\frac{2\pi}{k}\) um \(\frac{2\pi\ii}{k}\) liegen. Der Operator \(F\) kann also zerlegt werden
+\begin{equation}
+	\label{zerlegung operator F mit spektralsatz}
+	F\psi=\sum_{j=1}^\infty\lambda_j\scalLtwoStwo{\psi}{\psi_j}\psi_j,\qquad\psi\in L^2(\SS^2).
+\end{equation}
+Daher hat \(F\) noch eine weitere Faktorisierung
+\begin{equation}
+	\label{weitere zerlegung von F}
+	F=(F^\ast F)^\frac{1}{4}R(F^\ast F)^{\frac{1}{4}},
+\end{equation}
+wobei der selbstadjungierte Operator \(\func{(F^\ast F)^\frac{1}{4}}{L^2(\SS^2)}{L^2(\SS^2)}\) und der (Signum-)Operator \(\func{R}{L^2(\SS^2)}{L^2(\SS^2)}\) (von \(F\)) definiert sind durch
+\begin{align}
+	\label{definition (F*F)^0.25}
+	(F^\ast F)^\frac{1}{4}\psi & \coloneqq\sum_{j=1}^\infty\sqrt{|\lambda_j|}\scalLtwoStwo{\psi}{\psi_j}\psi_j, & \psi\in L^2(\SS^2),\\
+	\label{definition R}
+	R\psi & \coloneqq\sum_{j=1}^\infty\frac{\lambda_j}{|\lambda_j|}\scalLtwoStwo{\psi}{\psi_j}\psi_j, & \psi\in L^2(\SS^2).
+\end{align}
+Es folgt also, dass
+\begin{equation}
+	\label{kurze beweisrechnung für weitere zerlegung von F}
+	F = 4\pi k^2GS^\ast G^\ast =(F^\ast F)^\frac{1}{4}R(F^\ast F)^\frac{1}{4}.
+\end{equation}
+Wir zeigen nun, dass aus \eqref{kurze beweisrechnung für weitere zerlegung von F} folgt, dass \(\Ran(G)=\Ran\big((F^\ast F)^\frac{1}{4}\big)\) ist.
+\begin{lem}\label{lem: charakterisierung bild von G (= bild (F*F)^0.25)}
+	Seien \(X,Y\) Hilberträume und \(\func{F}{X}{X}\), \(\func{G}{Y}{X}\) beschränkte lineare Operatoren, sodass \(F=GRG^\ast\) für einen beschränkten linearen Operator \(\func{R}{Y}{Y}\), der eine Koerzivitätsbedingung der Form
+	\begin{equation}
+		\label{koerzivitätsbedingung für R}
+		\exists c>0\colon\;|\scalY{Ry}{y}|\geq c\|y\|_Y^2,\qquad\te{ für alle }y\in\Ran(G^\ast)\subset Y,
+	\end{equation}
+	erfüllt. Dann ist für alle \(\phi\in X\), \(\phi\neq0\)
+	\begin{equation}
+		\label{charakterisierung bild von G (= bild (F*F)^0.25)}
+		\phi\in\Ran(G)\,\Lolrarr\,\inf\big\{|\scalX{Fx}{x}|\colon x\in X,\scalX{x}{\phi}=1\big\}>0.
+	\end{equation}
+\end{lem}
+\begin{proof}\
+	\begin{enumerate}
+		\item[\glqq{}\(\Rarr\)\grqq{}] Sei \(\phi=Gy\in\Ran(G)\) für ein \(y\in Y\) und \(\phi\neq0\). Dann ist \(y\neq0\) und für alle \(x\in X\) mit \(\scalX{x}{\phi}=1\) folgt, dass
+		\begin{align*}
+			|\scalX{Fx}{x}|
+			& = |\scalX{GRG^\ast x}{x}|
+			= |\scalY{RG^\ast x}{G^\ast x}|
+			\geq c\|G^\ast x\|_Y^2\\
+			& = \frac{c}{\|y\|_Y^2}\|G^\ast x\|_Y^2\|y\|_Y^2
+			\geq\frac{c}{\|y\|_Y^2}|\scalY{G^\ast x}{y}|^2
+			= \frac{c}{\|y\|_Y^2}|\scalX{x}{G y}|^2\\
+			& = \frac{c}{\|y\|_Y^2}|\scalX{x}{\phi}|^2 
+			= \frac{c}{\|y\|_Y^2}
+			> 0.
+		\end{align*}
+		Damit haben wir eine positive untere Schranke für das Infimum gefunden.
+		
+		\item[\glqq{}\(\Larr\)\grqq{}] Sei umgekehrt \(\phi\notin\Ran(G)\). Wir definieren
+		\begin{equation*}
+			V\coloneqq\{x\in X\mid\scalX{\phi}{x}=0\}=\spann\{\phi\}^\perp.
+		\end{equation*}
+		Wir zeigen, dass das Bild  \(G^\ast(V)\) dicht in \(\overline{\Ran(G^\ast)}^Y\) ist. Angenommen das gilt nicht, d.h. \(\overline{G^\ast(V)}\subsetneq\overline{\Ran(G^\ast)}\), also ex. ein \(y\in\overline{\Ran(G^\ast)}\) so, dass \(y\perp G^\ast x\) für alle \(x\in V\). D.h.
+		\begin{equation*}
+			0=\scalY{G^\ast x}{y}=\scalX{x}{Gy},\qquad\te{ für alle }x\in V,
+		\end{equation*}
+		also ist \(Gy\in V^\perp=\spann\{\phi\}\). Da \(\phi\notin\Ran(G)\), folgt \(Gy=0\) und damit \(y\in\overline{\Ran(G^\ast)}\cap\Ker(G)\), also \(y=0\). Daher ist \(G^\ast(V)\subset\overline{\Ran(G^\ast)}^Y\) dicht.\vspace{1.5mm}
+	
+		Da \(-\frac{G^\ast\phi}{\|\phi\|_X^2}\in\Ran(G^\ast)\), gibt es \((\widetilde{x}_n)_n\subset V\), sodass
+		\begin{equation*}
+			G^\ast\widetilde{x}_n\lorarr-\frac{G^\ast\phi}{\|\phi\|_X^2},\qquad\te{ für }n\to\infty.
+		\end{equation*}
+		Wir definieren \(x_n\coloneqq\widetilde{x}_n+\frac{\phi}{\|\phi\|_X^2}\), dann gilt \(\scalX{x_n}{\phi}=1\) und \(G^\ast x_n\to0\) für \(n\to\infty\). Es folgt
+		\begin{equation*}
+			|\scalX{Fx_n}{x_n}|
+			=|\scalY{RG^\ast x_n}{G^\ast x_n}|
+			\leq\|R\|_{Y\leftarrow Y}\|G^\ast x_n\|_Y^2\lorarr0,\qquad\te{ für }n\to\infty.
+		\end{equation*}
+		D.h. \(\inf\big\{\scalX{Fx}{x}\mid x\in X,\scalX{x}{\phi}=1\big\}=0\).
+	\end{enumerate}
+\end{proof}
+Die \(\inf\)-Bedingung auf der rechten Seite von \eqref{charakterisierung bild von G (= bild (F*F)^0.25)} hängt nur von \(F\) ab, aber nicht von der betrachteten Faktorisierung.
+\begin{cor}\label{cor: zwei faktorisierungen von F -> bild von G1 und G2 gleich}
+	Seien \(X,Y_1\) und \(Y_2\) Hilberträume und \(\func{F}{X}{X}\) habe zwei Faktorisierungen der Form
+	\begin{equation*}
+		F=G_1R_1G_1^\ast = G_2R_2G_2^\ast,
+	\end{equation*}
+	mit beschränkten linearen Operatoren \(\func{G_j}{Y_j}{X}\) und \(\func{R_j}{Y_j}{Y_j}\), \(j=1,2\), die beide eine Koerzivitätsbedingung wie in \eqref{koerzivitätsbedingung für R} erfüllen. Dann gilt \(\Ran(G_1)=\Ran(G_2)\).
+\end{cor}
+Um Korollar \ref{cor: zwei faktorisierungen von F -> bild von G1 und G2 gleich} anzuwenden zu können, müssen wir also noch zeigen, dass die Operatoren \(S\) und \(R\) die Koerzivitätsbedingung \eqref{koerzivitätsbedingung für R} erfüllen.
+\begin{lem}\label{lem: koerzivität S}
+	Es gibt \(c_1>0\), sodass
+	\begin{equation}
+		\label{koerzivität S}
+		|\scalLtwoD{S\psi}{\psi}|\geq c_1\|\psi\|_{L^2(D)}^2,\qquad\te{ für alle }\psi\in\Ran(G^\ast)\subset L^2(D),
+	\end{equation}
+	wobei \(\func{G^\ast}{L^2(\SS^2)}{L^2(D)}\) die Adjungierte des Operators \(G\) aus \eqref{definition operator G} bezeichnet.
+\end{lem}
+\begin{proof}
+	Angenommen so ein \(c_1\) existiert nicht. Dann gibt es eine Folge \((\psi_j)_j\subset\Ran(G^\ast)\), \(\|\psi_j\|_{L^2(D)}=1\), sodass \(|\scalLtwoD{S\psi_j}{\psi_j}|\to0\). Im Hilbertraum \(L^2(D)\) hat die beschränkte Folge \((\psi_j)_j\) eine schwach konvergente Teilfolge, die wir wiederum mit \((\psi_j)_j\) bezeichnen, sodass \(\psi_j\weak\psi\) für ein \(\psi\in\overline{\Ran(G^\ast)}\). Damit ist
+	\begin{equation}
+		\label{beweis koerzivität operator S}
+		\begin{aligned}
+			\underbrace{\scalLtwoD{\psi-\psi_j}{S_0(\psi-\psi_j)}}_{\in\R}
+			&=
+			\underbrace{\scalLtwoD{\psi}{S_0(\psi-\psi_j)}}_{\overset{j\to\infty}{\lorarr}0}
+			-
+			\scalLtwoD{\psi_j}{(S_0-S)(\psi-\psi_j)}\\
+			&\quad+
+			\underbrace{\scalLtwoD{\psi_j}{S\psi_j}}_{\overset{j\to\infty}{\lorarr}0}
+			-
+			\underbrace{\scalLtwoD{\psi_j}{S\psi}}_{\overset{j\to\infty}{\lorarr}\scalLtwoD{\psi}{S\psi}}.
+		\end{aligned}
+	\end{equation}
+	Aus der Kompaktheit von \(S-S_0\) folgt, dass \(\|(S-S_0)(\psi-\psi_j)\|_{L^2(D)}\to0\) und daher
+	\begin{equation*}
+		\scalLtwoD{\psi_j}{(S_0-S)(\psi-\psi_j)}\to0.
+	\end{equation*}
+	Also konvergieren die ersten drei Terme auf der rechten Seite von \eqref{beweis koerzivität operator S} gegen Null und der letzte gegen \(\scalLtwoD{\psi}{S\psi}\). Betrachtet man nun den Imaginärteil von \eqref{beweis koerzivität operator S}, so folgt
+	\begin{equation*}
+		\IM\scalLtwoD{\psi}{S\psi}=0,
+	\end{equation*}
+	und mit Satz \ref{satz: eigenschaften von S}.\ref{satz: eigenschaften von S e}, dass \(\psi=0\). Damit folgt mit Satz \ref{satz: eigenschaften von S}.\ref{satz: eigenschaften von S a}, dass
+	\begin{equation*}
+		0<\frac{1}{\|\kontrast\|_{L^\infty(D)}}
+		\leq
+		|\scalLtwoD{\psi_j}{S_0\psi_j}|
+		\leq
+		|\scalLtwoD{\psi_j}{(S_0-S)\psi_j}| + |\scalLtwoD{\psi_j}{S\psi_j}|\overset{j\to\infty}{\lorarr}0.\qquad\te{ Widerspruch!}
+	\end{equation*}
+\end{proof}
+Als nächstes diskutieren wir die Koerzivität von \(R\) aus \eqref{definition R}. Dazu zeigen wir folgendes Hilfsresultat
+\begin{lem}\label{lem: hilfsresultat für koerzivität von R}
+	Seien \((\lambda_j)_{j\in\N}\subset\C\) die Eigenwerte des Fernfeldoperators \(F\). Die \(\lambda_j\) liegen auf dem Kreis
+	\begin{equation*}
+		\Big|\frac{2\pi}{k}\ii-z\Big| = \frac{2\pi}{k},
+	\end{equation*}
+	vom Radius \(\frac{2\pi}{k}\) um \(\frac{2\pi}{k}\ii\) und konvergieren von rechts gegen Null, d.h. \(\lambda_j\overset{j\to\infty}{\longrightarrow}0\) und 
+	\begin{equation*}
+		\exists j_0>0\,\forall j\geq j_0\colon\qquad\RE(\lambda_j)>0.
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	Wir haben schon im Anschluss an den Beweis von Satz \ref{satz: eigenschaften von S} gesehen, dass \(\lambda_j\) auf dem Kreis um \(\frac{2\pi}{k}\ii\) mit Radius \(\frac{2\pi}{k}\) liegen. Weil \(F\) kompakt, konvergiert \(\lambda_j\to0\) für \(j\to\infty\).
+	
+	Um zu zeigen, dass die Eigenwerte von rechts gegen Null gehen, seien \(\psi_j\) die normierten Eigenfunktionen zu den Eigenwerten \(\lambda_j\neq0\). Aus der Faktorisierung \eqref{faktorisierung von F} folgt
+	\begin{equation*}
+		4\pi k^2\scalLtwoD{S^\ast G^\ast\psi_j}{G^\ast\psi_\ell}
+		=\scalLtwoStwo{F\psi_j}{\psi_\ell}
+		=\scalLtwoStwo{\lambda\psi_j}{\psi_\ell}
+		=\lambda_j\delta_{j,\ell}.
+	\end{equation*}
+	Setzen wir
+	\begin{equation*}
+		\varphi_j\coloneqq\frac{2k\sqrt{\pi}}{\sqrt{|\lambda_j|}}G^\ast\psi_j,\qquad\te{ und }\qquad s_j\coloneqq\frac{\lambda_j}{|\lambda_j|},
+	\end{equation*}
+	so folgt \(\scalLtwoD{\varphi_j}{S\varphi_\ell}=s_j\delta_{j,\ell}\). Da \((\lambda_j)_j\) auf dem Kreis um \(\frac{2\pi}{k}\ii\) mit Radius \(\frac{2\pi}{k}\) liegen, und \(\lambda_j\to0\) für \(j\to\infty\) gilt, folgt, dass \(\pm1\) die einzigen Häufungspunkte von \((s_j)_{j\in\N}\) sein können. Wir müssen zeigen, dass \(+1\) der einzige Häufungspunkt ist:\vspace{1.5mm}
+		
+	Angenommen \(s_j\to-1\) für eine Teilfolge \((s_j)_j\). Aus Lemma \ref{lem: koerzivität S} folgt, dass
+	\begin{equation*}
+		1=|s_j|=|\scalLtwoD{\varphi_j}{S\varphi_j}|\geq c_1\|\varphi_j\|_{L^2(D)},
+	\end{equation*}
+	d.h. \((\varphi_j)_j\subset L^2(D)\) ist beschränkt. Daher hat es eine schwach konvergente Teilfolge \((\varphi_j)_j\) mit \(\varphi_j\weak\varphi\in L^2(D)\) und
+	\begin{align*}
+		\scalLtwoD{\varphi-\varphi_j}{S_0(\varphi-\varphi_j)}
+		&=\underbrace{\scalLtwoD{\varphi}{S_0(\varphi-\varphi_j)}}_{\overset{j\to\infty}{\lorarr}0}
+		-\underbrace{\scalLtwoD{\varphi_j}{(S_0-S)(\varphi-\varphi_j)}}_{\overset{j\to\infty}{\lorarr}0}\\
+		&\quad+\underbrace{\scalLtwoD{\varphi_j}{S\varphi_j}}_{=s_j\to-1}
+		-\underbrace{\scalLtwoD{\varphi_j}{S\varphi}}_{\to\scalLtwoD{\varphi}{S\varphi}}.
+	\end{align*}
+	Die linke Seite ist reellwertig, während die rechte Seite gegen \(-1-\scalLtwoD{\varphi}{S\varphi}\) konvergiert. Anwenden des Imaginärteils liefert \(0=-\IM\scalLtwoD{\varphi}{S\varphi}\), mit Satz \ref{satz: eigenschaften von S}.\ref{satz: eigenschaften von S e} folgt \(\varphi=0\). Damit folgt aus Satz \ref{satz: eigenschaften von S}.\ref{satz: eigenschaften von S a}, dass
+	\begin{equation*}
+		0
+		\leq\frac{\|\varphi_j\|_{L^2(D)}^2}{\|q\|_{L^{\infty}(D)}}
+		\leq\scalLtwoD{\varphi_j}{S_0\varphi_j}
+		=\underbrace{\scalLtwoD{\varphi_j}{(S_0-S)\varphi_j}}_{\overset{j\to\infty}{\lorarr}0}
+		+\underbrace{\scalLtwoD{\varphi_j}{S\varphi_j}}_{\overset{j\to\infty}{\lorarr}-1},\qquad\te{ Widerspruch!}
+	\end{equation*}
+\end{proof}
+\begin{lem}\label{lem: koerzivität operator R bzgl. L2(S2) norm}
+	Es gibt \(c_2>0\), sodass
+	\begin{equation}
+		\label{koerzivität operator R bzgl. L2(S2) norm}
+		|\scalLtwoStwo{R\psi}{\psi}|\geq c_2\|\psi\|_{L^2(\SS^2)}^2,\qquad\te{ für alle }\psi\in L^2(\SS^2).
+	\end{equation}
+\end{lem}
+\begin{proof}
+	Es reicht aus, \eqref{koerzivität operator R bzgl. L2(S2) norm} für \(\psi\in L^2(\SS^2)\) mit \(\|\psi\|_{L^2(\SS^2)}=1\) von der Form
+	\begin{equation*}
+		\psi=\sum_{j=1}^\infty c_j\psi_j,\qquad\te{ mit }\qquad\|\psi\|_{L^2(\SS^2)}^2=\sum_{j=1}^\infty|c_j|^2=1,
+	\end{equation*}
+	zu zeigen, wobei \((\psi_j)_j\) wieder die normalisierten Eigenfunktionen zu \(\lambda_j\neq0\) von \(F\) bezeichnen. Setze \(s_j=\frac{\lambda_j}{|\lambda_j|}\), dann ist
+	\begin{equation*}
+		|\scalLtwoStwo{R\psi}{\psi}|
+		=\Big|\BscalLtwoStwo{\sum_{j=1}^\infty s_jc_j\psi_j}{\sum_{\ell=1}^\infty c_l\psi_\ell}\Big|
+		=\Big|\sum_{j=1}^\infty s_j|c_j|^2\Big|.
+	\end{equation*}
+	Die komplexe Zahl \(\sum_{j=1}^\infty s_j|c_j|^2\) gehört zum Abschluss der konvexen Hülle
+	\begin{equation*}
+		\convhull\coloneqq\conv\{s_j\mid j\in\N\}\subset\C,
+	\end{equation*}
+	damit gilt
+	\begin{equation*}
+		|\scalLtwoStwo{R\psi}{\psi}|\geq\inf\{|z|\colon z\in\convhull\},
+		\qquad\te{ für alle }\psi\in L^2(\SS^2),\,\|\psi\|_{L^2(\SS^2)}=1.
+	\end{equation*}
+	Aus Lemma \ref{lem: hilfsresultat für koerzivität von R} folgt, dass \(s_j\to1\) und 
+	\begin{equation*}
+		\IM(s_j)=\IM\scalLtwoD{\varphi_j}{S\varphi_j}=-\IM\scalLtwoD{S\varphi_j}{\varphi_j}>0,
+	\end{equation*}
+	(wegen Satz \ref{satz: eigenschaften von S}.\ref{satz: eigenschaften von S d}). Sei \(\widehat{s}\) der Punkt in \(\{s_j\mid j\in\N\}\) mit dem kleinsten Realteil (evtl. negativ), dann gilt:\vspace{1mm}
+	
+	\(\convhull\) ist in der Menge zwischen oberem Halbkreis und der Geraden
+	\begin{equation*}
+		l=\{t\widehat{s}+(1-t)1\mid t\in\R\},
+	\end{equation*}
+	(durch \(\widehat{s}\) und \(1\)) enthalten. Es gilt demnach \(\dist(\convhull,0)>0\) und es existiert eine Konstante \(c_2>0\), sodass \eqref{koerzivität operator R bzgl. L2(S2) norm} erfüllt ist.
+\end{proof}
+Damit folgt aus Korollar \ref{cor: zwei faktorisierungen von F -> bild von G1 und G2 gleich}, dass \(\Ran(G)=\Ran\big((F^\ast F)^\frac{1}{4}\big)\). Zusammen mit Satz \ref{satz: charakterisierung phi_z vzgl ran(G) bzw z in D} ergibt das das Hauptresultat dieses Abschnitts --- die Charakterisierung des Trägers der Streukörper anhand der gegebenen Daten.
+\begin{satz}\label{satz: charakterisierung des trägers der streukörper anhand der geg. daten}
+	Sei \(k^2\) kein verallgemeinerter Transmissionseigenwert. Für alle \(z\in\R^3\) definiere \(\phi_z\in L^2(\SS^2)\) durch
+	\begin{equation*}
+		\phi_z(\widehat{x})=\e^{-\ii k\widehat{x}\cdot z},\qquad\widehat{x}\in\SS^2.
+	\end{equation*}
+	Dann ist 
+	\begin{equation}
+		\label{charakterisierung des trägers der streukörper anhand der geg. daten}
+		z\in D\,\Lolrarr\,\phi_z\in\Ran\big((F^\ast F)^\frac{1}{4}\big).
+	\end{equation}
+\end{satz}
+Mit Hilfe des Picard-Kriteriums kann \eqref{charakterisierung des trägers der streukörper anhand der geg. daten} wie folgt umgeschrieben werden: Seien \((\lambda_j)_{j\in\N}\subset\C\) die Eigenwerte des Fernfeldoperators \(F\) und \((\psi_j)_{j\in\N}\) die zugehörigen normalisierten Eigenvektoren. Dann ist \(\big(\sqrt{|\lambda_j|},\psi_j,\psi_j\big)_{j\in\N}\) ein singuläres System für \((F^\ast F)^\frac{1}{4}\).
+\begin{satz}\label{satz: charakterisierung des trägers mittels picard kriterium}
+	Sei \(k^2\) kein verallgemeinerter innerer Transmissionseigenwert und \(\phi_z\), \(z\in\R^3\), wie in Satz \ref{satz: charakterisierung des trägers der streukörper anhand der geg. daten}. Dann ist
+	\begin{equation}
+		\label{charakterisierung des trägers mittels picard kriterium}
+		z\in D\,\Lolrarr\,\sum_{j=1}^\infty\frac{|\scalLtwoStwo{\phi_z}{\psi_j}|^2}{|\lambda_j|}<\infty.
+	\end{equation}
+\end{satz}
+Setzen wir also \(\frac{1}{\infty}\eqqcolon0\) und 
+\begin{equation*}
+	\sign(t)=
+	\begin{cases}
+		1,&t>0,\\
+		0,&t=0,
+	\end{cases}
+\end{equation*}
+dann ist
+\begin{equation}
+	\label{charakteristische funktion auf D}
+	\chi(z)=\sign\Big(\sum_{j=1}^\infty\frac{|\scalLtwoStwo{\phi_z}{\psi_j}|^2}{|\lambda_j|}\Big)^{-1},\qquad z\in\R^3,
+\end{equation}
+also die charakteristische Funktion auf \(D\). Um \eqref{charakteristische funktion auf D} numerisch zu implementieren, plottet man
+\begin{equation*}
+	J(z)\coloneqq\Big(\sum_{j=1}^N\frac{|\scalLtwoStwo{\phi_z}{\psi_j}|^2}{|\lambda_j|}\Big)^{-1},\qquad z\in B_R(0).
+\end{equation*}
+Die Funktion \(J\) hat typischerweise viel größere Werte für \(z\in D\) als für \(z\in\R^3\setminus\overline{D}\). Ein wesentlicher Vorteil dieser Methode besteht darin, dass keinerlei Annahmen an die Art und Anzahl der Streukörper getroffen wurden.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

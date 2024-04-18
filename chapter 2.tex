@@ -1,0 +1,283 @@
+\setcounter{section}{2}
+\setcounter{mydef}{0}
+\setcounter{equation}{0}
+\subsection{Lösungen der Helmholtzgleichung im homogenen Medium --- Darstellungssätze}
+
+Sei \(D\subset\R^3\) offen und beschränkt und
+\begin{align*}
+	\CC^n(D)&\coloneqq\big\{\func{w}{D}{\R}\mid w\te{ ist }n\te{-mal stetig differentierbar}\big\},\\
+	\CC^n(\overline{D})&\coloneqq\big\{w\in\CC^n(D)\mid \D^\alpha w\te{ ist gleichmäßig stetig für alle }|\alpha|\leq n\big\},
+\end{align*}
+d.h. ist \(w\in\CC^n(\overline{D})\), dann kann \(\D^\alpha w\) stetig auf \(\overline{D}\) fortgesetzt werden für alle Multiindizes \(\alpha\) mit \(|\alpha|\leq n\).
+\begin{definition}\label{def: parametrisierung des randes}\
+	\begin{enumerate}[label=(\roman*)]
+		\item Der Rand \(\partial D\) heißt \(\bm{\CC^n}\), \(n\in\N\), falls zu jedem \(z_0\in\p D\) ein \(r>0\) und eine \(\CC^n\)-Funktion \(\func{\gamma}{\R^2}{\R}\) existiert, sodass (bis auf Umbenennung und Umorientierung des Koordinatensystems)
+		\begin{equation*}
+			D\cap B_r(z_0)=\{z=(x_1,x_2,x_3)\in B_r(z_0)\mid x_3>\gamma(x_1,x_2)\}.
+		\end{equation*}
+		Die Menge \(D\) heißt \(\bm{\CC^n}\), falls \(\p D\) \(\CC^n\) ist.\vspace{3cm}
+		
+		
+		\item Ist \(\p D\) \(\CC^1\), so kann ein \bol{äußeres Einheitsnormalenfeld} \(\normal=(\normal_1,\normal_2,\normal_3)^\transpose\) definiert werden durch
+		\begin{equation*}
+			\normal(z_0)=\Big\|\Big(\frac{\p\gamma}{\p x_1}(x_1,x_2),\frac{\p\gamma}{\p x_2}(x_1,x_2),1\Big)\Big\|^{-1}
+			\begingroup
+			\renewcommand*{\arraystretch}{1.5}
+			\begin{pmatrix}
+				\cfrac{\p\gamma}{\p x_1}(x_1,x_2)\\\cfrac{\p\gamma}{\p x_2}(x_1,x_2)\\1
+			\end{pmatrix}
+			\endgroup,
+			\;\;\;\;z_0=(x_1,x_2,x_3)\in\p D,
+		\end{equation*}
+		es ist \(\|\normal(z_0)\|=1\) und \(\normal(z_0)\perp T_{\p D}(z_0)\) für alle \(z_0\in\p D\), wobei \(T_{\p D}(z_0)\) die Tangentialebene an \(\p D\) in \(z_0\) sei.
+	\end{enumerate}
+\end{definition}
+\begin{satz}[Gaußscher Satz \& Greensche Formeln]\
+	\begin{enumerate}[label=(\roman*)]
+		\item Sei \(u\in\CC^1(\overline{D},\R^3)\). Dann ist
+		\begin{equation}
+			\label{greenscher satz 1}
+			\int_D\divv( u) \dx=\int_{\p D}\normal\cdot u\ds.
+		\end{equation}
+		\item Sei \(u\in\CC^1(\overline{D})\) und \(v\in\CC^2(\overline{D})\). Dann ist
+		\begin{equation}
+			\label{greenscher satz 2}
+			\int_D u\Delta v+\nabla u\cdot\nabla v\dx=\int_{\p D}u\frac{\p v}{\p\normal}\ds,
+		\end{equation}
+		mit \(\frac{\p v}{\p\normal}\coloneqq\normal\cdot\nabla v\), also entspricht \eqref{greenscher satz 2} einfach \eqref{greenscher satz 1} mit \(u\nabla v\) anstelle von \(u\).
+		\item Seien \(u,v\in\CC^2(\overline{D})\), dann ist
+		\begin{equation}
+			\label{greenscher satz 3}
+			\int_Du\Delta v-v\Delta u\dx=\int_{\p D}u\frac{\p v}{\p\normal}-v\frac{\p u}{\p\normal}\ds,
+		\end{equation}
+		dies entspricht \eqref{greenscher satz 2} mit \(u,v\) und \(v,u\) eingesetzt voneinander subtrahiert.
+	\end{enumerate}
+\end{satz}
+\begin{proof}
+	Analysis 3 bzw. Forster 3, §15.
+\end{proof}
+\begin{definition}[Fundamentallösung]
+	Die Funktion
+	\begin{equation*}
+		\Phi(x)\coloneqq\frac{1}{4\pi}\frac{\e^{\ii k|x|}}{|x|},\;\;\;\;x\in\R^3,x\neq0,
+	\end{equation*}
+	heißt \bol{Fundamentallösung} für die Helmholtzgleichung.
+\end{definition}
+Wir haben bereits in Beispiel \ref{kapitel 1 erstes beispiel} gesehen, dass \(\Phi\) eine Lösung der \rec{Helmholtzgleichung}
+\begin{equation*}
+	\Delta u+k^2u=0,
+\end{equation*}
+in \(\R^3\setminus\{0\}\) ist, die die \SAB erfüllt.
+\begin{satz}[Darstellungssatz im Inneren]\label{satz: darstellungssatz im inneren}
+	Sei \(D\subset\R^3\) ein beschränktes \(\CC^1\)-Gebiet und \(\normal(x)\) die äußere Einheitsnormale an \(\p D\) in \(x\). Sei \(u\in\CC^2(\overline{D})\) eine Lösung der Helmholtzgleichung \(\Delta u+k^2u=0\) in \(D\), dann gilt
+	\begin{equation}
+		\label{darstellungssatz im inneren}
+		\int_{\p D}\Phi(x-y)\frac{\p u}{\p\normal}(y)-u(y)\frac{\p\Phi(x-y)}{\p\normal(y)}\ds(y)=
+		\begin{cases}
+			u(x),&x\in D,\\
+			0,&x\notin\overline{D}.
+		\end{cases}
+	\end{equation}
+\end{satz}
+\begin{proof}
+	\rec{Schritt 1:} Sei \(x\notin\overline{D}\). Dann lösen \(u\) und \(\Phi(x-\cdot)\) die Helmholtzgleichung in \(D\). Aus \eqref{greenscher satz 3} folgt
+	\begin{equation*}
+		\int_{\p D}\Phi(x-y)\frac{\p u}{\p\normal}(y)-u(y)\frac{\p\Phi(x-y)}{\p\normal(y)}\ds(y)=\int_D\Phi(x-y)\underbrace{\Delta u(y)}_{=-k^2u(y)}-u(y)\underbrace{\Delta_y\Phi(x-y)}_{=-k^2\Phi(x-y)}\dy=0.
+	\end{equation*}\vspace{1cm}
+	\rec{Schritt 2:} Sei \(x\in D\). Für \(\varepsilon>0\), sodass \(\overline{B_\varepsilon(x)}\subset D\) erhalten wir wie in Schritt 1, dass\vspace{2cm}
+	
+	
+	\begin{equation}
+		\label{darstellungssatz im inneren beweis}
+		\begin{aligned}
+			0&=\int_{D\setminus\overline{B_\varepsilon(x)}}\Phi(x-y)\Delta u(y)-u(y)\Delta_y\Phi(x-y)\dy\\
+			&=\int_{\p D}\Phi(x-y)\frac{\p u}{\p\normal}(y)-u(y)\frac{\p\Phi(x-y)}{\p\normal(y)}\ds(y)\\
+			&\;\;\;\,-\int_{\p B_\varepsilon(x)}\Phi(x-y)\frac{\p u}{\p\normal}(y)-u(y)\frac{\p\Phi(x-y)}{\p\normal(y)}\ds(y),
+		\end{aligned}
+	\end{equation}
+	wobei \(\normal\) die äußere Einheitsnormale an \(\p D\) bzw. \(\p B_\varepsilon(x)\) bezeichnet. Da auf \(\p B_\varepsilon(x)\)
+	\begin{equation*}
+		\normal(y)=\frac{y-x}{\varepsilon},
+	\end{equation*}
+	gilt und außerdem
+	\begin{equation*}
+		\Phi(x-y)=\frac{\e^{\ii k\varepsilon}}{4\pi\varepsilon}\;\;\;\te{ und }\;\;\;\nabla_y\Phi(x-y)=\Big(\ii k-\frac{1}{\varepsilon}\Big)\frac{\e^{\ii k\varepsilon}}{4\pi\varepsilon}\frac{y-x}{\varepsilon},
+	\end{equation*}
+	folgt
+	\begin{equation*}
+		\begin{aligned}
+			&-\int_{\p B_\varepsilon(x)}\Phi(x-y)\frac{\p u}{\p\normal}(y)-u(y)\frac{\p\Phi(x-y)}{\p\normal(y)}\ds(y)\\
+			=&-\int_{|x-y|=\varepsilon}\frac{\e^{\ii k\varepsilon}}{4\pi\varepsilon}\frac{\p u}{\p\normal}(y)-u(y)\Big(\ii k-\frac{1}{\varepsilon}\Big)\frac{\e^{\ii k\varepsilon}}{4\pi\varepsilon}\ds(y),
+		\end{aligned}
+	\end{equation*}
+	und damit gilt für \(\varepsilon\leq\varepsilon_0\) mit \(\overline{B_{\varepsilon_0}(x)}\subset D\)
+	\begin{equation*}
+		\left|\int_{|x-y|=\varepsilon}\frac{\e^{\ii k\varepsilon}}{4\pi\varepsilon}\frac{\p u}{\p\normal}(y)\ds(y)\right|\leq\frac{1}{4\pi\varepsilon}\Big\|\frac{\p u}{\p\normal}\Big\|_{L^\infty\big(\overline{B_{\varepsilon_0}(x)}\big)}\int_{|x-y|=\varepsilon}1\ds=\varepsilon\Big\|\frac{\p u}{\p\normal}\Big\|_\infty\overset{\varepsilon\rarr0}{\lorarr}0.
+	\end{equation*}
+	Analog folgt
+	\begin{equation*}
+		\left|\int_{|x-y|=\varepsilon}u(y)\ii k\frac{\e^{\ii k\varepsilon}}{4\pi\varepsilon}\ds(y)\right|
+		\leq k\|u\|_{L^\infty\big(\overline{B_{\varepsilon_0}(x)}\big)}\frac{1}{4\pi\varepsilon}\int_{|x-y|=\varepsilon}1\ds
+		\overset{\varepsilon\rarr0}{\lorarr}0.
+	\end{equation*}
+	Ferner ist
+	\begin{equation*}
+		\int_{|x-y|=\varepsilon}u(y)\frac{\e^{\ii k\varepsilon}}{4\pi\varepsilon^2}\ds(y)
+		=\underbrace{\e^{\ii k\varepsilon}}_{\overset{\varepsilon\rarr0}{\lorarr1}}
+		\underbrace{\frac{1}{4\pi\varepsilon^2}\int_{|x-y|=\varepsilon}u(y)\ds(y)}_{\overset{\varepsilon\rarr0}{\lorarr}u(x)}\overset{\varepsilon\rarr0}{\lorarr}u(x).
+	\end{equation*}
+	Da \eqref{darstellungssatz im inneren beweis} für alle \(\varepsilon>0\) gilt, also insbesondere im Limes \(\varepsilon\rarr0\), folgt die Behauptung.
+\end{proof}
+\begin{thm}\label{Theorem analytizität}
+	Ist \(u\in\CC^2(D)\) eine Lösung der Helmholtzgleichung \(\Delta u+k^2u=0\) in einem Gebiet \(D\), so ist \(u\) analytisch, d.h. es lässt sich lokal um jedes \(x\in D\) in eine Potenzreihe entwickeln.
+\end{thm}
+\begin{proof}
+	Sei \(x\in D\) und \(\varepsilon>0\), sodass \(B_\varepsilon(x)\subset D\). Dann ist nach Satz \ref{satz: darstellungssatz im inneren}
+	\begin{equation*}
+		u(x)=\int_{B_\varepsilon(x)}\Phi(x-y)\frac{\p u}{\p\normal}(y)-u(y)\frac{\p\Phi(x-y)}{\p\normal(y)}\ds(y).
+	\end{equation*}
+	Da \(\Phi(x-y)\) und \(\frac{\p\Phi(x-y)}{\p\normal(y)}\) für \(x\neq y\) analytisch sind, und der Integrand lokal gleichmäßig beschränkt ist, folgt (mit dem Satz von Lebesgue), dass \(u\) um \(x\) in eine Potenzreihe entwickelt werden kann. Da \(x\) beliebig war, folgt die Behauptung.
+\end{proof}
+Eine Folgerung von Theorem \ref{Theorem analytizität} ist, dass Lösungen der Helmholtzgleichung \(\Delta u+k^2u=0\) in einem Gebiet \(D\), die auf einer offenen Teilmenge verschwinden, identisch Null sind.
+\begin{lem}\label{lem: fundamentallsg löst HG}
+	Für alle \(y\in\R^3\) löst die Funktion \(\Phi(\cdot-y)\) die Helmholtzgleichung \(\Delta \Phi(\cdot -y)+k^2\Phi(\cdot -y)=0\) in \(\R^3\setminus\{y\}\) und erfüllt die \SAB
+	\begin{equation}
+		\label{SAB in lemma in kapitel 2}
+		\frac{x}{|x|}\cdot\nabla_x\Phi(x-y)-\ii k\Phi(x-y)=\OO\Big(\frac{1}{|x|^2}\Big),\;\;\;\;\te{ für }|x|\rarr\infty,
+	\end{equation}
+	gleichmäßig für \(\frac{x}{|x|}\in\SS^2\) und \(y\in Y\) für jede kompakte Teilmenge \(Y\subset\R^3\). Außerdem ist
+	\begin{equation}
+		\label{lemma zur SAB in kapitel 2}
+		\Phi(x-y)=\frac{\e^{\ii k|x|}}{4\pi|x|}\e^{-\ii k\widehat{x}\cdot y}+\OO\Big(\frac{1}{|x|^2}\Big),\;\;\;\;\te{ für }|x|\rarr\infty,
+	\end{equation}
+	gleichmäßig für \(\widehat{x}=\frac{x}{|x|}\in\SS^2\) und \(y\in Y\subset \R^3\) kompakt.
+\end{lem}
+\begin{proof}
+	Für festes \(y\in\R^3\) und \(x\in\R^3\) beliebig erhalten wir mit dem Satz von Taylor, dass
+	\begin{align*}
+		|x-y|&=\sqrt{|x|^2-2x\cdot y+|y|^2}\\
+		&=|x|\sqrt{1-2\frac{\widehat{x}\cdot y}{|x|}+\frac{|y|^2}{|x|^2}}\\
+		\te{\scriptsize\(\varepsilon=\frac{1}{|x|}\normalsize\)}\;\;\;&=|x|\sqrt{1-2\varepsilon\widehat{x}\cdot y+\varepsilon^2|y|^2}\\
+		&=|x|\big(1-\varepsilon\widehat{x}\cdot y+\OO(\varepsilon^2)\big)\\
+		&=|x|-\widehat{x}\cdot y+\OO\Big(\frac{1}{|x|}\Big),
+	\end{align*}
+	für \(|x|\rarr\infty\), d.h. \(\varepsilon\rarr0\). Analog folgt, dass
+	\begin{equation*}
+		\frac{1}{|x-y|}=\frac{1}{|x|}\Big(1+\OO\Big(\frac{1}{|x|}\Big)\Big),
+	\end{equation*}
+	für \(|x|\rarr\infty\). Damit erhält man
+	\begin{align*}
+		\Phi(x-y)&=\frac{\e^{\ii k|x-y|}}{4\pi|x-y|}\\
+		&=\frac{1}{4\pi}\frac{1}{|x|}\Big(1+\OO\Big(\frac{1}{|x|}\Big)\Big)\e^{\ii k|x|}\e^{-\ii k\widehat{x}\cdot y}\Big(1+\OO\Big(\frac{1}{|x|}\Big)\Big)\\
+		&=\frac{\e^{\ii k|x|}}{4\pi|x|}\e^{-\ii k\widehat{x}\cdot y}+\OO\Big(\frac{1}{|x|^2}\Big),
+	\end{align*}
+	und
+	\begin{equation}
+		\label{beweis lemma kapitel 2}
+		\begin{aligned}
+			\frac{x}{|x|}\cdot\nabla_x\Phi(x-y)
+			&=\widehat{x}\cdot\frac{x-y}{|x-y|}\Big(\ii k-\frac{1}{|x-y|}\Big)\frac{\e^{\ii k|x-y|}}{4\pi|x-y|}\\
+			&=\widehat{x}\cdot(x-y)\frac{1}{|x|}\Big(1+\OO\Big(\frac{1}{|x|}\Big)\Big)\Big(\ii k+\OO\Big(\frac{1}{|x|}\Big)\Big)\Big(\frac{\e^{\ii k|x|}}{4\pi|x|}\e^{-\ii k\widehat{x}\cdot y}+\OO\Big(\frac{1}{|x|^2}\Big)\Big)\\
+			&=\ii k\e^{-\ii k\widehat{x}\cdot y}\frac{\e^{\ii k|x|}}{4\pi|x|}+\OO\Big(\frac{1}{|x|^2}\Big).
+		\end{aligned}
+	\end{equation}
+	Damit folgen \eqref{SAB in lemma in kapitel 2} und \eqref{lemma zur SAB in kapitel 2}. Die gleichmäßige Abhängigkeit der Restglieder von \(\widehat{x}\in\SS^2\) und \(y\in Y\) erhält man unmittelbar aus der Stetigkeit der Restglieder in den Taylorentwicklungen.
+\end{proof}
+\begin{thm}[Darstellungssatz im Äußeren]\label{theorem: darstellungssatz im äußeren}
+	Sei \(D\subset\R^3\) offen und beschränkt mit \(\CC^1\)-Rand \(\p D\). Ist \(u\in\CC^2(\R^3\setminus D)\) eine Lösung der Helmholtzgleichung \(\Delta u+k^2u=0\) in \(\R^3\setminus \overline{D}\), die die \SAB erfüllt, dann gilt
+	\begin{equation}
+		\label{darstellungssatz im äußeren}
+		\int_{\p D}\Phi(x-y)\frac{\p u}{\p\normal}(y)-u(y)\frac{\p\Phi(x-y)}{\p\normal(y)}\ds(y)=
+		\begin{cases}
+			0,&x\in D,\\
+			-u(x),&x\in\R^3\setminus\overline{D},
+		\end{cases}
+	\end{equation}
+	wobei \(\normal\) die äußere Einheitsnormale an \(\p D\) bezeichnet.
+\end{thm}
+\begin{proof}
+	Sei \(R>0\) groß genug, sodass \(\overline{D}\subset B_R(0)\). Anwenden von Satz \ref{satz: darstellungssatz im inneren} liefert, dass
+	\begin{align*}
+		&-\int_{\partial B_R(0)}\Phi(x-y)\frac{\p u}{\p\normal}(y)-u(y)\frac{\p\Phi(x-y)}{\p\normal(y)}\ds(y)
+		+\int_{\p D}\Phi(x-y)\frac{\p u}{\p\normal}(y)-u(y)\frac{\p\Phi(x-y)}{\p\normal(y)}\ds(y)\\
+		&=\begin{cases}
+			-u(x),&x\in B_R(0)\setminus\overline{D},\\
+			0,&x\in D.
+		\end{cases}
+	\end{align*}
+	Wir müssen noch zeigen, dass das erste Integral für \(R\rarr\infty\) verschwindet. Setze
+	\begin{align*}
+		I_1&\coloneqq\int_{\partial B_R(0)}u(y)\Big(\frac{\p\Phi(x-y)}{\p\normal(y)}-\ii k\Phi(x-y)\Big)\ds(y),\\
+		I_2&\coloneqq\int_{\partial B_R(0)}\Phi(x-y)\Big(\frac{\p u}{\p\normal}(y)-\ii ku(y)\Big)\ds(y).
+	\end{align*}
+	Mit Cauchy-Schwarz folgt für \(I_1\), dass
+	\begin{equation*}
+		|I_1|^2\leq\left(\int_{\partial B_R(0)}|u(y)|^2\ds(y)\right)\left(\int_{\partial B_R(0)}\left|\frac{\p\Phi(x-y)}{\p\normal(y)}-\ii k\Phi(x-y)\right|^2\ds(y)\right).
+	\end{equation*}
+	Da \(\Phi(x-y)\) symmetrisch in \(x\) und \(y\) ist, gilt \eqref{SAB in lemma in kapitel 2} auch für
+	\begin{equation*}
+		\frac{y}{|y|}\cdot\nabla_y\Phi(x-y)-\ii k\Phi(x-y),
+	\end{equation*}
+	 gleichmäßig für \(\frac{y}{|y|}\in\SS^2\) und daher verschwindet das zweite Integral für \(R\rarr\infty\). Um zu zeigen, dass das erste Integral beschränkt ist, folgern wir aus der \SAB für \(u\), dass
+	 \begin{equation}
+	 	\label{darstellungssatz im äußeren beweis 1}
+	 	\begin{aligned}
+	 		0&=\lim_{R\rarr\infty}\int_{\partial B_R(0)}\left|\frac{\p u}{\p\normal}(y)-\ii ku(y)\right|^2\ds\\
+	 		&=\lim_{R\rarr\infty}\int_{\partial B_R(0)}\left|\frac{\p u}{\p\normal}(y)\right|^2+k^2|u(y)|^2+2k\IM\Big(u(y)\frac{\p \overline{u}}{\p\normal}(y)\Big)\ds(y).
+	 	\end{aligned}
+	 \end{equation}
+ 	Die Greensche Formel \eqref{greenscher satz 2} angewandt auf \(B_R(0)\setminus\overline{D}\) liefert
+ 	\begin{equation*}
+ 		\int_{\partial B_R(0)}u(y)\frac{\p\overline{u}}{\p\normal}(y)\ds(y)=\int_{\p D}u(y)\frac{\p \overline{u}}{\p\normal}(y)\ds(y)+\underbrace{\int_{B_R(0)\setminus\overline{D}}|\nabla u|^2-k^2|u(y)|^2\dy}_{\in\R}.
+ 	\end{equation*}
+ 	Damit folgt aus \eqref{darstellungssatz im äußeren beweis 1}
+ 	\begin{equation*}
+ 		\lim_{R\rarr\infty}\int_{\partial B_R(0)}\left|\frac{\p u}{\p\normal}(y)\right|^2+k^2|u(y)|^2\ds(y)=-2k\IM\int_{\p D}u(y)\frac{\p \overline{u}}{\p\normal}(y)\ds(y).
+ 	\end{equation*}
+ 	Da beide Terme auf der linken Seite positiv sind und ihre Summe beschränkt ist, ist auch jeder einzelne Summand beschränkt. Insbesondere ist \(\int_{\partial B_R(0)}|u(y)|^2\ds(y)\) beschränkt, also \(|I_1|\lorarr0\) für \(R\rarr\infty\). Um zu zeigen, dass \(|I_2|\lorarr0\) für \(R\rarr\infty\), wenden wieder Cauchy-Schwarz an:
+ 	\begin{equation}
+ 		\label{darstellungssatz im äußeren beweis 2}
+ 		|I_2|^2\leq\left(\int_{\partial B_R(0)}|\Phi(x-y)|^2\ds(y)\right)\underbrace{\left(\int_{\partial B_R(0)}\left|\frac{\p u}{\p\normal}(y)-\ii ku(y)\right|^2\ds(y)\right).}_{\substack{\lorarr0\te{ für }R\rarr\infty,\\\te{ da }u\te{ \SAB erfüllt}}}
+ 	\end{equation}
+ 	Ferner ist
+ 	\begin{align*}
+ 		\int_{\partial B_R(0)}|\Phi(x-y)|^2\ds(y)
+ 		&=\frac{1}{16\pi^2}\int_{\partial B_R(0)}\frac{1}{|x-y|^2}\ds(y)\\
+ 		&=\frac{1}{16\pi^2}\int_{\partial B_R(0)}\frac{1}{|y|^2}\Big(1+\OO\Big(\frac{1}{|y|}\Big)\Big)\ds(y)\\
+ 		&=\frac{1}{16\pi^2R^2}\int_{\partial B_R(0)}\Big(1+\OO\Big(\frac{1}{R}\Big)\Big)\ds(y)\\
+ 		&\leq\frac{8\pi R^2}{16\pi^2R^2}=\frac{1}{2\pi},
+ 	\end{align*}
+ 	falls \(R\) groß genug ist, sodass \(\OO(\frac{1}{R})\leq1\). Damit ist der erste Term in \eqref{darstellungssatz im äußeren beweis 2} beschränkt und \(|I_2|\lorarr0\) für \(R\rarr\infty\).
+\end{proof}
+\begin{no counter korollar}
+	Lösungen der Helmholtzgleichung \(\Delta u+k^2u=0\), die in ganz \(\R^3\) definiert sind, nennt man \bol{ganze Lösungen}. Aus Satz \ref{satz: darstellungssatz im inneren} und Theorem \ref{theorem: darstellungssatz im äußeren} folgt, dass ganze Lösungen, die die \SAB erfüllen, identisch Null sind.
+\end{no counter korollar}
+\begin{sa+de}\label{satz+def: fernfeld}
+	Sei \(D\) wie in Theorem \ref{theorem: darstellungssatz im äußeren} und \(u\in\CC^2(\R^3\setminus D)\) eine \bol{ausstrahlende Lösung} der Helmholtzgleichung \(\Delta u+k^2u=0\) (d.h. \(u\) erfüllt die \SAB gleichmäßig bzgl. \(\frac{x}{|x|}\in\SS^2\)). Dann verhält sich \(u\) asymptotisch wie eine ausstrahlende sphärische Welle
+	\begin{equation}
+		\label{definition und satz in kapitel 2 gleichung}
+		u(x)=\frac{\e^{\ii k|x|}}{|x|}u^\infty(\widehat{x})+\OO\Big(\frac{1}{|x|^2}\Big),\;\;\;\;\;\te{ für }|x|\rarr\infty,
+	\end{equation}
+	gleichmäßig in \(\widehat{x}=\frac{x}{|x|}\in\SS^2\). Die Funktion \(\func{u^\infty}{\SS^2}{\C}\) heißt das \bol{Fernfeld} von \(u\). Es gilt
+	\begin{equation}
+		\label{fernfeld definition kapitel 2}
+		u^\infty(\widehat{x})=\frac{1}{4\pi}\int_{\p D}u(y)\frac{\p\e^{-\ii k\widehat{x}\cdot y}}{\p\normal(y)}-\e^{-\ii k\widehat{x}\cdot y}\frac{\p u}{\p\normal}(y)\ds(y),\;\;\;\;\widehat{x}\in\SS^2.
+	\end{equation}
+\end{sa+de}
+\begin{proof}
+	Einsetzen von \eqref{lemma zur SAB in kapitel 2} und \eqref{beweis lemma kapitel 2} in die Darstellungsformel \eqref{darstellungssatz im äußeren}.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+

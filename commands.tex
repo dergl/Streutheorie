@@ -1,0 +1,148 @@
+\newcommand{\limn}{\displaystyle{\lim_{n \to \infty}}} % limes, as n tends to infinity
+\newcommand{\rec}[1]{\emph{#1}} % write recursive
+\newcommand{\bol}[1]{\textbf{#1}} % write bold
+
+%% ARROWS
+\newcommand{\rarr}{\rightarrow}
+\newcommand{\Rarr}{\Rightarrow}
+\newcommand{\Larr}{\Leftarrow}
+\newcommand{\Lrarr}{\Leftrightarrow}
+\newcommand{\lorarr}{\longrightarrow}
+\newcommand{\Lorarr}{\Longrightarrow}
+\newcommand{\Lolarr}{\Longleftarrow}
+\newcommand{\Lolrarr}{\Longleftrightarrow}
+\newcommand{\weak}{\rightharpoonup}
+
+%% MATHEMATICAL LETTERS
+\newcommand{\N}{\mathbb{N}} % natural numbers
+\newcommand{\NN}{\mathcal{N}}
+\newcommand{\R}{\mathbb{R}} % real numbers
+\newcommand{\RR}{\mathcal{R}}
+\newcommand{\Z}{\mathbb{Z}} % whole numbers
+\newcommand{\Q}{\mathbb{Q}} % rational numbers
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\Cb}{\CC_{\mathrm{b}}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\D}{\mathrm{D}}
+\newcommand{\OO}{\mathcal{O}}
+\renewcommand{\S}{\mathscr{S}}
+\renewcommand{\SS}{\mathcal{S}}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\1}{\mathbbm{1}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\cc}{\mathrm{c}}
+\newcommand{\bb}{\mathrm{b}}
+
+
+%% MATH OPERATORS
+\DeclareMathOperator{\essup}{essup}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\spann}{span}
+\DeclareMathOperator{\IM}{Im}
+\DeclareMathOperator{\RE}{Re}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\essran}{essran}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\diag}{diag}
+
+
+%% FUNCTIONS
+\newcommand{\func}[3]{#1\colon#2 \to #3}
+\newcommand{\liminfn}{\liminf\limits_{n\to\infty}}
+\newcommand{\limsupn}{\limsup\limits_{n\to\infty}}
+
+
+\newcommand{\fn}{(f_n)_n}
+\newcommand{\te}[1]{\text{#1}}
+\newcommand{\loc}{\text{loc}}
+\newcommand{\xn}{(x_n)_n}
+
+
+\newcommand{\scal}[2]{\langle #1, #2\rangle} % scalar product
+\newcommand{\bscal}[2]{\big\langle #1, #2\big\rangle} % big scalar product
+\newcommand{\Bscal}[2]{\Big\langle #1, #2\Big\rangle} % big scalar product
+\newcommand{\scalLtwoStwo}[2]{\langle #1, #2\rangle_{L^2(\SS^2)}}
+\newcommand{\BscalLtwoStwo}[2]{\Big\langle #1, #2\Big\rangle_{L^2(\SS^2)}}
+\newcommand{\scalLtwoD}[2]{\langle #1,#2\rangle_{L^2(D)}}
+\newcommand{\scalX}[2]{\langle #1, #2\rangle_X} % scalar product
+\newcommand{\scalY}[2]{\langle #1, #2\rangle_Y} % scalar product
+\newcommand{\conj}[1]{\overline{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     SCATTERING THEORY
+\newcommand{\normal}{\nu}
+\newcommand{\intRN}{\int_{\R^N}}
+\newcommand{\ds}{\mathrm{d}s}
+\newcommand{\dt}{\mathrm{d}t}
+\newcommand{\dx}{\mathrm{d}x}
+\newcommand{\dy}{\mathrm{d}y}
+\newcommand{\dr}{\mathrm{d}r}
+\newcommand{\dz}{\mathrm{d}z}
+
+\newcommand{\Cc}{\mathcal{C}_{\mathrm{c}}}
+\newcommand{\Lloc}{L_{\mathrm{loc}}}
+\newcommand{\Lc}{L_{\mathrm{c}}}
+\newcommand{\Lper}{L_{\mathrm{per}}}
+\newcommand{\Hloc}{\H_{\mathrm{loc}}}
+\newcommand{\Hper}{\H_{\mathrm{per}}}
+\newcommand{\Hc}{\H_{\mathrm{c}}}
+
+\newcommand{\p}{\partial}
+\newcommand{\ssubset}{\subset\joinrel\subset}
+
+\DeclareMathOperator{\divv}{div}
+\newcommand{\n}{n}
+\newcommand{\kk}{k}
+\DeclareMathOperator{\support}{supp}
+\DeclareMathOperator{\csupp}{csupp}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\conv}{conv}
+
+\newcommand{\transpose}{\top}
+
+\newcommand{\equalhat}{%
+	\let\savearraystretch\arraystretch
+	\renewcommand\arraystretch{0.3}
+	\begin{array}{c}
+		\stretchto{
+			\scalerel*[\widthof{=}]{\wedge}
+			{\rule{1ex}{3ex}}%
+		}{0.5ex}\\ 
+		=%
+	\end{array}
+	\let\arraystretch\savearraystretch
+}
+
+\newcommand{\scalmo}[2]{\langle #1,#2\rangle_{\H^m(\Omega)}}
+\newcommand{\scaltwoo}[2]{\langle #1,#2\rangle_{L^2(\Omega)}}
+\newcommand{\scaltwobro}[2]{\langle #1,#2\rangle_{L^2(B_R(0))}}
+\newcommand{\bigscaltwobro}[2]{\big\langle #1,#2\big\rangle_{L^2(B_R(0))}}
+\newcommand{\scalCM}[2]{\langle #1,#2\rangle_{\C^M}}
+
+\newcommand{\restrict}[1]{\raisebox{-0.3ex}{\(\big|\)}_{\raisebox{0.2ex}{\scriptsize\(#1\)}}} % restriction %% previously with dollars instead of \(\)
+
+\newcommand{\red}{\color{red}}
+\newcommand{\black}{\color{black}}
+
+\newcommand{\SAB}{\hyperlink{SAB}{SAB} }
+\newcommand{\SABdp}{\hyperlink{SABdp}{SAB} }
+
+\newcommand{\kontrast}{q}
+\newcommand{\Hfunc}{\mathscr{H}}
+\newcommand{\convhull}{\mathscr{C}}
+
+\newcommand{\refDirektesStreuproblem}{\eqref{helmholtzgleichung dp}-\eqref{SAB direktes problem}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Commands regarding pages / pagelayout
+\newcommand\newpageeven{\movetooddpage\thispagestyle{empty}\movetoevenpage} % if you end on an even page, use this command to clear the next odd page and skip to the next even page
+\newcommand\newpageodd{\movetoevenpage\thispagestyle{empty}\movetooddpage} % if you end on an odd page, use this command to clear the next even page and skip to the next odd page

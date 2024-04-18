@@ -1,0 +1,195 @@
+\setcounter{subsection}{10}
+\setcounter{section}{11}
+\setcounter{mydef}{0}
+\setcounter{equation}{0}
+
+\subsection{Der MUSIC Algorithmus}
+Als Vorbereitung für die Faktorisierungsmethode betrachten wir ein vereinfachtes Modell für sogenannte Punktstreukörper und den sogenannten MUSIC-Algorithmus (\bol{Mu}ltiple \bol{Si}gnal \bol{C}lassification).
+
+Wir nehmen an, dass \(M\) Streukörper \(D_1,\ldots,D_M\subset B_R(0)\) gegeben sind, wobei \(D_m=z_m+\delta B_m\), \(m=1,\ldots,M\) mit einem Parameter \(\delta>0\), der die Größe von \(D_m\) beschreibt. Der Brechungsindex sei gegeben durch
+\begin{equation*}
+	n^2(x)=
+	\begin{cases}
+		n_m^2,&x\in D_m,\\
+		1,&x\in\R^3\setminus(\bigcup_{m=1}^MD_m),
+	\end{cases}
+\end{equation*}
+wobei \(n_m^2\in\C\) mit \(\RE(n_m^2)>0\) und \(\IM(n_m^2)\geq0\). Wir untersuchen das Verhalten von \(u^\infty\), falls die Streuobjekte klein werden, also für \(\delta\to0\). In der Bornschen Näherung ist das Fernfeld zu einer ebenen einfallenden Welle \(u^i(x;d)=\e^{\ii kx\cdot d}\), \(x\in\R^3\) und \(d\in\SS^2\), gegeben durch
+\begin{equation*}
+	u_b^\infty(\widehat{x};d)=-\frac{k^2}{4\pi}\sum_{m=1}^M\int_{D_m}(1-n_m^2)\e^{-\ii k(\widehat{x}-d)\cdot y}\dy,\qquad\widehat{x}\in\SS^2.
+\end{equation*}
+Nehmen wir nun an, dass die Streukörper bzgl. der Wellenlänge \(\lambda=\frac{2\pi}{k}\) klein sind, d.h. \(k\delta>0\) ist klein, so folgt mit der Substitution \(\eta=(y-z_m)/\delta\) der Taylor-Entwicklung \(\e^{-\ii k(\widehat{x}-d)\cdot(z_m+\delta\eta)}=\e^{-\ii k(\widehat{x}-d)\cdot z_m}+\OO(k\delta)\)
+\begin{align*}
+	u_b^\infty(\widehat{x};d)
+	&=-\frac{k^2}{4\pi}\sum_{m=1}^M\int_{B_m}(1-n_m^2)\e^{-\ii k(\widehat{x}-d)\cdot(z_m+\delta\eta)}\delta^3\dd\eta\\
+	&=-\frac{k^2\delta^3}{4\pi}\sum_{m=1}^M\int_{B_m}(1-n_m^2)\e^{-\ii k(\widehat{x}-d)\cdot z_m}\dd\eta+\OO(k^3\delta^4)\\
+	&=-\frac{k^2\delta^3}{4\pi}\sum_{m=1}^M|B_m|(1-n_m^2)\e^{-\ii k(\widehat{x}-d)\cdot z_m}+\OO(k^3\delta^4)\\
+	&=\delta^3\sum_{m=1}^M\Big(-\frac{k^2|B_m|(1-n_m^2)}{4\pi}\Big)\e^{-\ii k(\widehat{x}-d)\cdot z_m}+\OO(\delta^4)\\
+	&=\delta^3\sum_{m=1}^M\tau_m\e^{-\ii k(\widehat{x}-d)\cdot z_m}+\OO(\delta^4).
+\end{align*}
+D.h. für \(\delta\to0\) und mit \(\tau_m\coloneqq-\frac{k^2}{4\pi}|B_m|(1-n_m^2)\in\C\setminus\{0\}\) ist
+\begin{equation}
+	\label{fernfeld von bornscher näherung mit tau_m}
+	\begin{aligned}
+		u_b^\infty(\widehat{x};d)
+		&=\delta^3\sum_{m=1}^M\tau_m\e^{-\ii k(\widehat{x}-d)\cdot z_m}+\OO(\delta^4)\\
+		&=\delta^3\sum_{m=1}^\infty\tau_m u^i(z_m;d)\e^{-\ii k\widehat{x}\cdot z_m}+\OO(\delta^4).
+	\end{aligned}
+\end{equation}
+Hier beschreibt \(\tau_m\) die Streustärke des \(m\)-ten Punktstreukörpers und \(\e^{-\ii k\widehat{x}\cdot z_m}\), \(\widehat{x}\in\SS^2\), ist das (reskalierte) Fernfeld einer Fundamentallösung \(\Phi_k(x-z_m)\), \(x\in\R^3\setminus\{z_m\}\), mit Singularität in \(z_m\).\vspace{2mm}
+
+\paragraph{Inverses Problem:} Gegeben \(u_b^\infty(\widehat{x};d)\), für alle \(\widehat{x},d\in\SS^2\), rekonstruiere \(z_1,\ldots,z_M\).
+
+\paragraph{Annahmen:} \(z_i\neq z_j\), für alle \(i\neq j\), \(i,j=1,\ldots,M\) und \(\tau_m\neq0\), für alle \(m=1,\ldots,M\).
+
+Definieren wir analog zum Fernfeldoperator einen entsprechenden Operator in der Bornschen Näherung
+\begin{equation}
+	\label{operator in bornscher näherung, analog zum fernfeldoperator}
+	\func{F_b}{L^2(\SS^2)}{L^2(\SS^2)},\qquad\big(F_bg\big)(\widehat{x})\coloneqq\int_{\SS^2}u_b^\infty(\widehat{x};d)g(d)\ds(d),
+\end{equation}
+dann folgt aus \eqref{fernfeld von bornscher näherung mit tau_m}, dass
+\begin{equation}
+	\label{operator zur bornschen näherung aufgesplittet mit restterm}
+	F_b=\delta^3\widetilde{F}_b+\OO(\delta^4),\qquad\te{ in }\LL\big(L^2(\SS^2),L^2(\SS^2)\big),
+\end{equation}
+wobei
+\begin{equation}
+	\label{definition von operator zur bornschen näherung aufgesplittet mit restterm}
+	\func{\widetilde{F}_b}{L^2(\SS^2)}{L^2(\SS^2)},\qquad\big(\widetilde{F}_bg\big)(\widehat{x})\coloneqq\sum_{m=1}^M\tau_m\int_{\SS^2}\e^{-\ii k(\widehat{x}-d)\cdot z_m}g(d)\ds(d).
+\end{equation}
+Im Folgenden nehmen wir an, dass \(\delta>0\) klein genug ist, sodass wir den \(\OO(\delta^4)\)-Term vernachlässigen und direkt mit \(\delta^3\widetilde{F}_b\) arbeiten können. 
+
+Der Operator \(\widetilde{F}_b\) kann faktorisiert werden: Betrachte dazu
+\begin{equation}
+	\label{H operator zur faktorisierung von tilde(F)_b}
+	\func{H}{L^2(\SS^2)}{\C^M},\qquad(Hg)_m\coloneqq\int_{\SS^2}\e^{\ii kd\cdot z_m}g(d)\ds(d).
+\end{equation}
+Dann ist für alle \(g\in L^2(\SS^2)\) und \(a\in\C^M\)
+\begin{align*}
+	\scalCM{Hg}{a}
+	&=\sum_{m=1}^M(Hg)_m\overline{a_m}\\
+	&=\sum_{m=1}^M\int_{\SS^2}\e^{\ii kd\cdot z_m}g(d)\ds(d)\overline{a_m}\\
+	&=\int_{\SS^2}g(d)\overline{\sum_{m=1}^M\e^{-\ii kd\cdot z_m}a_m}\ds(d)\\
+	&=\scalLtwoStwo{g}{H^\ast a}.
+\end{align*}
+D.h.
+\begin{equation}
+	\label{adjungierter H operator zur faktorisierung von tilde(F)_b}
+	\func{H^\ast}{\C^M}{L^2(\SS^2)},\qquad(H^\ast a)(d)=\sum_{m=1}^M\e^{-\ii kd\cdot z_m}a_m.
+\end{equation}
+Sei außerdem
+\begin{equation*}
+	\func{T}{\C^M}{\C^M},\qquad a\mapsto(\tau_ma_m)_{m=1}^M,
+\end{equation*}
+d.h. \(T\equalhat\diag(\tau_1,\ldots,\tau_M)\), dann ist
+\begin{equation}
+	\label{zerlegung von tilde(F)_b}
+	\widetilde{F}_b=H^\ast TH.
+\end{equation}
+\begin{lem}\label{lem: adjungierter H operator injektiv}
+	\(H^\ast\) ist injektiv.
+\end{lem}
+\begin{proof}
+	Sei \(H^\ast a=0\) für \(a=(a_1,\ldots,a_M)\in\C^M\). Dann ist
+	\begin{equation*}
+		w(x)\coloneqq\sum_{m=1}^Ma_m\Phi(x-z_m),\qquad x\in\R^3\setminus\{z_1,\ldots,z_M\},
+	\end{equation*}
+	eine ausstrahlende Lösung der Helmholtzgleichung \(\Delta w+k^2w=0\) in \(\R^3\setminus\{z_1,\ldots,z_M\}\), deren Fernfeld
+	\begin{equation*}
+		w^\infty(\widehat{x})=\frac{1}{4\pi}\sum_{m=1}^Ma_m\e^{-\ii k\widehat{x}\cdot z_m}=\frac{1}{4\pi}H^\ast a=0,
+	\end{equation*}
+	verschwindet. Aus Rellichs Lemma und der Analytizität von \(w\) in \(\R^3\setminus\{z_1,\ldots,z_M\}\) folgt, dass \(w=0\) in \(\R^3\setminus\{z_1,\ldots,z_M\}\), also 
+	\begin{equation*}
+		\lim_{x\to z_m}w(x)=0,\qquad\te{ für }m=1,\ldots,M.
+	\end{equation*}
+	Daraus folgt, dass \(a_m=0\), \(m=1,\ldots,M\), wegen der Unbeschränktheit von \(\Phi(\cdot-z_m)\) um \(z_m\).
+\end{proof}
+\begin{lem}\label{lem: H surjektiv}
+	\(H\) ist surjektiv.
+\end{lem}
+\begin{proof}
+	Das folgt aus Lemma \ref{lem: adjungierter H operator injektiv}, da \(\Ran(H)=\overline{\Ran(H)}=\Ker(H^\ast)^\perp=\{0\}^\perp=\C^M\). \(\Ran(H)=\overline{\Ran(H)}\) gilt, weil \(H\) endlichdimensionales Bild hat.
+\end{proof}
+Nun wollen wir \(\Ran(\widetilde{F}_b)\) genauer untersuchen. Aus \eqref{adjungierter H operator zur faktorisierung von tilde(F)_b} und \eqref{zerlegung von tilde(F)_b} folgt, dass
+\begin{equation*}
+	\Ran(\widetilde{F}_b)\subset\Ran(H^\ast)=\spann\big\{\widehat{x}\mapsto\e^{-\ii k\widehat{x}\cdot z_m}\mid m=1,\ldots,M\big\}\subset L^2(\SS^2).
+\end{equation*}
+\begin{satz}\label{satz: charakterisierung bild von F_b}
+	Das Bild von \(\widetilde{F}_b\) hat Dimension \(M\) und ist gegeben durch
+	\begin{equation*}
+		\Ran(\widetilde{F}_b)=\spann\big\{\widehat{x}\mapsto\e^{-\ii k\widehat{x}\cdot z_m}\mid m=1,\ldots,M\big\}.
+	\end{equation*}
+\end{satz}
+\begin{proof}
+	Die Surjektivität von \(H\) und \(T\) ergibt 
+	\begin{equation*}
+		\Ran(\widetilde{F}_b)=\Ran(H^\ast TH)=\Ran(H^\ast).
+	\end{equation*}
+	Damit folgt die Behauptung aus \eqref{adjungierter H operator zur faktorisierung von tilde(F)_b}.
+\end{proof}
+Nun zeigen wir, wie die unbekannten Positionen \(z_1,\ldots,z_M\) mit dem aus den gegebenen Daten \(u^\infty(\widehat{x};d)\) für alle \(\widehat{x},d\in\SS^2\) (ungefähr) bekannten \(\Ran(\widetilde{F}_b)\) zusammenhängen.
+\begin{satz}\label{satz: charakterisierung bild F_b mit phi_z funktionen}
+	Sei \(z\in\R^3\) und \(\phi_z(\widehat{x})\coloneqq\e^{-\ii k\widehat{x}\cdot z}\), \(\widehat{x}\in\SS^2\). Dann ist
+	\begin{equation*}
+		\phi_z\in\Ran(\widetilde{F}_b)\Lolrarr z\in\{z_1,z_2,\ldots,z_M\}.
+	\end{equation*}
+\end{satz}
+\begin{proof}\
+	\begin{enumerate}
+		\item[\glqq{}\(\Rarr\)\grqq{}] 
+		Sei \(\phi_z\in\Ran(\widetilde{F}_b)\). Wegen Satz \ref{satz: charakterisierung bild von F_b} kann man \(\phi_z\) darstellen als
+		\begin{equation*}
+			\phi_z(\widehat{x})=\sum_{m=1}^Ma_m\e^{-\ii k\widehat{x}\cdot z_m},\qquad \widehat{x}\in \SS^2,
+		\end{equation*}
+		für gewisse \(a_1,\ldots,a_M\in\C\). Damit sind nun aber
+		\begin{align*}
+			v(x) & \coloneqq\Phi(x-z), & x\in\R^3\setminus\{z\},\\
+			w(x) & \coloneqq \sum_{m=1}^Ma_m\Phi(x-z_m), & x\in\R^3\setminus\{z_1,\ldots,z_M\},
+		\end{align*}
+		ausstrahlende Lösungen der Helmholtzgleichung \(\Delta u+k^2u=0\) in \(\R^3\setminus\{z,z_1,\ldots,z_M\}\), deren Fernfelder \(\phi_z=v^\infty=w^\infty\) übereinstimmen. Mit Rellichs Lemma und der eindeutigen Fortsetzbarkeit analytischer Funktionen folgt, dass \(v=w\) in \(\R^3\setminus\{z,z_1,\ldots,z_M\}\). Angenommen \(z\notin\{z_1,\ldots, z_M\}\). Dann ist \(w\) in einer Umgebung \(B_\varepsilon(z)\), \(\varepsilon>0\) klein genug, beschränkt, während \(v\) in \(B_\varepsilon(z)\) unbeschränkt ist. Widerspruch! Also ist \(z\in\{z_1,\ldots,z_M\}\).
+		
+		\item[\glqq{}\(\Larr\)\grqq{}] Folgt aus Satz \ref{satz: charakterisierung bild von F_b}.
+	\end{enumerate}
+\end{proof}
+Aus Satz \ref{satz: charakterisierung bild F_b mit phi_z funktionen} kann man unmittelbar einen Rekonstruktionsalgorithmus ableiten:
+\begin{itemize}
+	\item Wähle ein Gitter \(Z\) von Punkten \(z\in Z\) im Suchgebiet \(B_R(0)\subset\R^3.\)
+	\item Für alle \(z\in Z\), berechne die Orthogonal-Projektion \(P\phi_z\) von \(\phi_z\) auf \(\Ran(\widetilde{F}_b)^\perp\) (das geht, da \(\Ran(\widetilde{F}_b)\) endlichdimensional und damit abgeschlossen ist). Berechne Projektion \(\widetilde{P}\) auf endl. dim. \(\Ran(\widetilde{F}_b)\) und benutze dann Projektion \(P=I-\widetilde{P}\) auf \(\Ran(\widetilde{F}_b)^\perp\).
+	\item \(\{z_1,\ldots, z_M\}=\{z\in Z\mid P\phi_z=0\}\). (Unter der Annahme, dass \(\{z_1,\ldots,z_M\}\subset Z\))
+\end{itemize}
+Um den Algorithmus mit den gegebenen Daten \(u^\infty(\widehat{x};d)\), für alle \(\widehat{x},d\in\SS^2\), d.h. mit \(F\approx\delta^3\widetilde{F}_b\) zu implementieren, betrachtet man die Singulärwertzerlegung von \(F\):
+\begin{equation*}
+	Fg=\sum_{\ell=1}^\infty\sigma_\ell\scalLtwoStwo{g}{v_\ell}u_\ell.
+\end{equation*}
+Auch der Operator \(\widetilde{F}_b\) hat eine Singulärwertzerlegung:
+\begin{equation*}
+	\widetilde{F}_bg=\sum_{\ell=1}^M\widetilde{\sigma}_\ell\scalLtwoStwo{g}{\widetilde{v}_\ell}\widetilde{u}_\ell.
+\end{equation*}
+(\(\widetilde{F}_b\) hat \(M\)-dimensionales Bild!) Damit können Orthogonalprojektionen
+\begin{align*}
+	\func{Q_N}{L^2(\SS^2)}{L^2(\SS^2)},  \qquad  Q_Ng & \coloneqq\sum_{\ell=N+1}^\infty\scal{g}{v_\ell}u_\ell, & \te{ auf }\spann\{u_1,\ldots, u_N\}^\perp,\\
+	\func{P_N}{L^2(\SS^2)}{L^2(\SS^2)},  \qquad  P_Ng & \coloneqq\sum_{\ell=N+1}^\infty\scal{g}{\widetilde{v}_\ell}\widetilde{u}_\ell, & \te{ auf }\spann\{\widetilde{u}_1,\ldots, \widetilde{u}_N\}^\perp,
+\end{align*}
+(ergänze die \((\widetilde{v}_\ell)_\ell, (\widetilde{u}_\ell)_\ell\) zu ONB von \(L^2(\SS^2)\)) definiert werden. Resultate aus der Approximationstheorie für lineare Operatoren zeigen, dass \(Q_N\approx P_N\), falls \(F\approx\delta^3\widetilde{F}_b\). Außerdem ist \(\sigma_\ell\approx\delta^3\widetilde{\sigma}_\ell\) für alle \(\ell\), d.h. anhand der Singulärwerte kann die Anzahl der Punktstreukörper geschätzt werden:\vspace{1.5mm}
+
+Nur \(M=\dim\Ran(\widetilde{F}_b)\) Singulärwerte \(\sigma_\ell\) von \(F\) sind signifikant größer als \(0\) (bis auf den Approximationsfehler \(|\sigma_\ell-\widetilde{\sigma}_\ell|\)). Kennt man \(M\), so kann man \(P_M\phi_z\) für alle \(z\in Z\subset B_R(0)\) durch \(Q_M\phi_z\) appoximieren und erwartet sehr kleine Werte (\(\approx0\)) für \(z\) nahe bei \(z_1,\ldots,z_M\) und signifikant große Werte weg davon. Plottet man also \(\|P_M\phi_z\|_{L^2(\SS^2)}^{-1}\) bzw. \(\|Q_M\phi_z\|_{L^2(\SS^2)}^{-1}\) für alle \(z\in Z\), so erhält man scharfe Peaks um die Positionen der Streukörper.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
